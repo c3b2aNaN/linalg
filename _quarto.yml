@@ -22,12 +22,12 @@ format:
     theme:
       light: flatly
       dark: darkly
-  pdf:
-    header-includes:
-      - \usepackage{amsmath}
-    number-depth: 0
-    pdf-engine: pdflatex
-    documentclass: scrreprt
+  # pdf:
+  #   header-includes:
+  #     - \usepackage{amsmath}
+  #   number-depth: 0
+  #   pdf-engine: pdflatex
+  #   documentclass: scrreprt
 
 filters:
   - callouty-theorem
