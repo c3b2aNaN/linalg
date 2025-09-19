@@ -75,7 +75,7 @@ Let the $k$-th column be one of those columns. Then, $x_k$ is a free variable. A
 $$\mathbf{x}=x_k\mathbf{u}.$$
 Substitute this into the vector equation, $x_1\mathbf{v}_1+\dots+x_n\mathbf{v}_n=\mathbf{0}$:
 $$x_k u_1\mathbf{v}_1+\dots+x_k u_k\mathbf{v}_k+\dots+x_k u_n\mathbf{v}_n=\mathbf{0}.$$
-Since $x_k$ is a free variable, we can divide the equation by $x_k$ if $x_k \neq 0$. Then, separate the $k$-th term to one side (WLOG, let $u_k$=1):
+Since $x_k$ is a free variable, we can divide the equation by $x_k$ if $x_k \neq 0$. Then, separate the $k$-th term to one side ($u_k=1$):
 $$\mathbf{v}_k=(-u_1)\mathbf{v}_1+\dots+(-u_n)\mathbf{v}_n.$$
 Since the matrix has been simplified to its RREF, $u_{k+1},\dots,u_n$ all equal zero. Then,
 $$\mathbf{v}_k=(-u_1)\mathbf{v}_1+\dots+(-u_{k-1})\mathbf{v}_{k-1}.$$
