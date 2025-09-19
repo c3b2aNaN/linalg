@@ -1,0 +1,52 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Some Notes in Linear Algebra",
+    "section": "",
+    "text": "Preface\nThis is a book about some notes when the author (currently a 12th grader) is taking an honor course in college linear algebra in high school. Subjected to the author’s knowledge level and the fact that the course targets high school students, this book may include some parts that are inaccurate or misleading. The author will try to avoid making mistakes, but in case you find a potential error while reading, please consult your instructor.\nThe textbook used in the course, Linear Algebra and Its Applications 5th Edition (Lay, Lay, and McDonald 2016), serves as the basis of this book.\nThe indices of theorems, exercises, etc. may not be the same in the textbook. For example, “Theorem 1.1 (Theorem 7)” under Section 1.7 refers to Theorem 7 in Section 1.7 in the textbook, but it will sometimes be refered to as Theorem 1.1 in this book. Be cautious of the actual index.\nA reminder before all: do not try to prove definitions. They are called definitions because they are defined. What we prove are theorems.\n\n\n\n\nLay, David C, Steven R Lay, and Judith McDonald. 2016. Linear Algebra and Its Applications. 5th ed. Pearson.",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "notations.html",
+    "href": "notations.html",
+    "title": "Notations",
+    "section": "",
+    "text": "This is a page for notations.",
+    "crumbs": [
+      "Notations"
+    ]
+  },
+  {
+    "objectID": "chap1.html",
+    "href": "chap1.html",
+    "title": "1  Linear Equations in Linear Algebra",
+    "section": "",
+    "text": "1.7 Linear Independence",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Linear Equations in Linear Algebra</span>"
+    ]
+  },
+  {
+    "objectID": "chap1.html#linear-independence",
+    "href": "chap1.html#linear-independence",
+    "title": "1  Linear Equations in Linear Algebra",
+    "section": "",
+    "text": "Definition (Linear Independence)\n\n\n\n\nDefinition 1.1 (Linear Independence) An indexed set of vectors \\(\\{\\mathbf{v}_1,\\dots,\\mathbf{v}_n\\}\\) in \\(\\mathbb{R}^m\\) is said to be linearly independent if the vector equation \\[x_1\\mathbf{v}_1+x_2\\mathbf{v}_2+\\dots+x_n\\mathbf{v}_n=\\mathbf{0}\\] has only the trivial solution (\\(\\mathbf{x}=\\mathbf{0}\\)). Otherwise, it is said to be linearly dependent.\n\n\n\n\n\n\n\n\n\n\nTheorem 1.1 (Theorem 7: Characterization of Linearly Dependent Sets) An indexed set \\(S = \\{\\mathbf{v}_1, \\dots, \\mathbf{v}_n\\}\\) of two or more vectors is linearly dependent if and only if at least one of the vectors in \\(S\\) is a linear combination of the others. In fact, if \\(S\\) is linearly dependent and \\(\\mathbf{v}_1 \\neq \\mathbf{0}\\), then some \\(\\mathbf{v}_j\\) (with \\(j &gt; 1\\)) is a linear combination of the preceding vectors, \\(\\mathbf{v}_1,\\dots,\\mathbf{v}_{j-1}\\).\n\n\n\n\n\n\n\n\n\n\nProof (Proof of Theorem 1.1)\n\n\n\n\n\n\nProof (Proof of Theorem 1.1). Let “in fact” separate the theorem into two parts. Consider the first part.\n\nIf there is a vector that is a linear combination of the other vectors, \\[\\mathbf{v}_i=c_1\\mathbf{v}_1+\\dots+c_{i-1}\\mathbf{v}_{i-1}+c_{i+1}\\mathbf{v}_{i+1}+\\dots+c_n\\mathbf{v}_n,\\] move the terms into one side: \\[c_1\\mathbf{v}_1+\\dots+c_{i-1}\\mathbf{v}_{i-1}+(-1)\\mathbf{v}_i+c_{i+1}\\mathbf{v}_{i+1}+\\dots+c_n\\mathbf{v}_n=\\mathbf{0}.\\] Thus, there is a nontrivial solution for \\(\\mathbf{c}\\), where \\(c_i=-1\\), so the set is linearly dependent.\nIf the set is linearly dependent, the vector equation \\(c_1\\mathbf{v}_1+\\dots+c_n\\mathbf{v}_n=\\mathbf{0}\\) has nontrivial solution of \\(\\mathbf{c}\\). There exists an index \\(i\\) where \\(c_i \\neq 0\\). Moving the \\(i\\)-th term to the left hand side and the other terms to the right hand side: \\[-c_i\\mathbf{v}_i=c_1\\mathbf{v}_1+\\dots+c_{i-1}\\mathbf{v}_{i-1}+c_{i+1}\\mathbf{v}_{i+1}+\\dots+c_n\\mathbf{v}_n.\\] Divide both sides by \\(-c_i\\): \\[\\mathbf{v}_i=\\frac{c_1}{-c_i}\\mathbf{v}_1+\\dots+\\frac{c_{i-1}}{-c_i}\\mathbf{v}_{i-1}+\\frac{c_{i+1}}{-c_i}\\mathbf{v}_{i+1}+\\dots+\\frac{c_n}{-c_i}\\mathbf{v}_n.\\] Hence, \\(\\mathbf{v}_i\\) is a linear combination of the other vectors in the set.\n\nWe have now proved the first part of the theorem. Let’s prove the second part by induction and contradiction.\nIf \\(\\mathbf{v}_j = \\mathbf{0}\\) (\\(1 &lt; j \\leq n\\)), \\(\\mathbf{v}_j\\) can be expressed as \\(0\\cdot\\mathbf{v}_1+\\dots+0\\cdot\\mathbf{v}_{j-1}\\), so we only consider situations that, for all \\(1 \\leq j \\leq n\\), \\(\\mathbf{v}_j\\neq\\mathbf{0}\\).\nLet \\(A_k=\\begin{bmatrix} \\mathbf{v}_1 & \\cdots & \\mathbf{v}_k \\end{bmatrix}\\), where \\(1 \\leq k \\leq n\\), so \\(A \\in \\mathbb{R}^{m \\times k}\\).\nThe reduced row echelon form (RREF) of \\(A_1\\) is \\(\\begin{bmatrix} 1 \\\\ 0 \\\\ \\vdots \\\\ 0 \\end{bmatrix}\\). If \\(\\mathbf{v}_2\\) is not a linear combination of \\(\\mathbf{v}_1\\), \\(\\{\\mathbf{v}_1, \\mathbf{v}_2\\}\\) is linearly independent. Thus, the RREF of \\(A_2\\) is \\(\\begin{bmatrix} 1 & 0 \\\\ 0 & 1 \\\\ \\vdots & \\vdots \\\\ 0 & 0 \\end{bmatrix}\\). Similarly, the RREF of \\(A_3\\) needs to be \\(\\begin{bmatrix} 1 & 0 & 0 \\\\ 0 & 1 & 0 \\\\ 0 & 0 & 1 \\\\ \\vdots & \\vdots & \\vdots \\\\ 0 & 0 & 0 \\end{bmatrix}\\), since if there is no pivot position in the third column, the solution of \\(A_3\\begin{bmatrix}x_1\\\\x_2\\\\x_3\\end{bmatrix}=\\mathbf{0}\\) can be written as \\(\\begin{bmatrix}x_1\\\\x_2\\\\x_3\\end{bmatrix}=x_3\\begin{bmatrix}u_1\\\\u_2\\\\1\\end{bmatrix}\\), where \\(x_3,u_1,u_2\\in\\mathbb{R}\\). Thus, the RREF of \\(A_k\\) must be in the form of \\(\\begin{bmatrix} 1 & 0 & \\cdots & 0 \\\\ 0 & 1 & \\cdots & 0 \\\\ \\vdots & \\vdots & \\ddots & \\vdots \\\\ 0 & 0 & \\cdots & 1 \\\\ \\vdots & \\vdots & \\vdots & \\vdots \\\\ 0 & 0 & 0 & 0 \\end{bmatrix}\\). When \\(k=n\\), the matrix equation \\(A_n\\mathbf{x}=\\mathbf{0}\\) has only the trivial solution because every column has a pivot position. Hence, \\(S\\) is linearly independent, contradicting the stated condition that \\(S\\) is linearly dependent.\n\n\n\n\n\n\n\n\n\n\nRemark\n\n\n\n\n\n\nRemark. When the author first learned about linear independence, the characteristic (Theorem 1.1), rather than the definition (Definition 1.1), was taught first. That is, if none of the vectors in a set are a linear combination of the other vectors, the set is linearly independent. This characterization may more intuitively illustrates the name “linear independence” than the definition does, as every vector is “independent” of the other vectors.\n\n\n\n\n\nPivot Columns and Linear Independence\n\n\n\n\n\n\n\nExercise 1.1 (T27) How many pivot columns must a \\(7 \\times 5\\) matrix have if its columns are linearly independent?\n\n\n\n\n\n\n\n\n\n\nSolution (Solution to Exercise 1.1)\n\n\n\n\n\n\nSolution 1.1 (Solution to Exercise 1.1). Recall the definition of linear indenpendence: \\(A\\mathbf{x}=\\mathbf{0}\\) has only the trivial solution (\\(\\mathbf{x}=\\mathbf{0}\\)). There must be 5 pivot columns in \\(A\\)’s echelon form. Otherwise, the free variable(s) will produce solutions other than \\(\\mathbf{0}\\).\nIf we generalize the situation to \\(A \\in \\mathbb{R}^{m \\times n}\\), \\(n\\) pivot columns are required to avoid free variables. Therefore, the columns of \\(A\\) are necessarily linearly dependent when \\(n &gt; m\\), as there are no enough rows to generate \\(n\\) pivot columns (Theorem 8).\n\n\n\n\n\n\n\n\n\n\nRemark\n\n\n\n\n\n\nRemark. What if there are columns without a pivot position?\nLet the \\(k\\)-th column be one of those columns. Then, \\(x_k\\) is a free variable. According to the proof of Theorem 1.1, \\(\\mathbf{v}_k \\in \\text{Span}\\{\\mathbf{v}_1,\\dots,\\mathbf{v}_{k-1}\\}\\). In addition, we can observe the solution of the matrix equation \\(A\\mathbf{x}=\\mathbf{0}\\), \\(\\mathbf{x}=x_k\\mathbf{u}+x_{k_1}\\mathbf{u}_1+\\dots+x_{k_t}\\mathbf{u}_t\\), where \\(\\mathbf{u},\\mathbf{u}_1,\\dots,\\mathbf{u}_t\\) are the vectors obtained from the RREF and \\(x_{k_1},\\dots,x_{k_t}\\) are other free variables. Set \\(x_{k_1},\\dots,x_{k_t}\\) equal to zero: \\[\\mathbf{x}=x_k\\mathbf{u}.\\] Substitute this into the vector equation, \\(x_1\\mathbf{v}_1+\\dots+x_n\\mathbf{v}_n=\\mathbf{0}\\): \\[x_k u_1\\mathbf{v}_1+\\dots+x_k u_k\\mathbf{v}_k+\\dots+x_k u_n\\mathbf{v}_n=\\mathbf{0}.\\] Since \\(x_k\\) is a free variable, we can divide the equation by \\(x_k\\) if \\(x_k \\neq 0\\). Then, separate the \\(k\\)-th term to one side (WLOG, let \\(u_k\\)=1): \\[\\mathbf{v}_k=(-u_1)\\mathbf{v}_1+\\dots+(-u_n)\\mathbf{v}_n.\\] Since the matrix has been simplified to its RREF, \\(u_{k+1},\\dots,u_n\\) all equal zero. Then, \\[\\mathbf{v}_k=(-u_1)\\mathbf{v}_1+\\dots+(-u_{k-1})\\mathbf{v}_{k-1}.\\] Thus, the \\(k\\)-th column of the RREF exactly shows the coefficients of how it can be written as a linear combination of the preceding vectors.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Linear Equations in Linear Algebra</span>"
+    ]
+  },
+  {
+    "objectID": "references.html",
+    "href": "references.html",
+    "title": "References",
+    "section": "",
+    "text": "Lay, David C, Steven R Lay, and Judith McDonald. 2016. Linear\nAlgebra and Its Applications. 5th ed. Pearson.",
+    "crumbs": [
+      "References"
+    ]
+  }
+]
