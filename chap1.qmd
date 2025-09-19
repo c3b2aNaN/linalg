@@ -29,7 +29,7 @@ move the terms into one side:
 $$c_1\mathbf{v}_1+\dots+c_{i-1}\mathbf{v}_{i-1}+(-1)\mathbf{v}_i+c_{i+1}\mathbf{v}_{i+1}+\dots+c_n\mathbf{v}_n=\mathbf{0}.$$
 Thus, there is a nontrivial solution for $\mathbf{c}$, where $c_i=-1$, so the set is linearly dependent.
 
-2. If the set is linearly dependent, the vector equation $c_1\mathbf{v}_1+\dots+c_n\mathbf{v}_n=\mathbf{0}$ has nontrivial solution of $\mathbf{c}$. There exists an index $i$ where $c_i \neq 0$. Moving the $i$-th term to the left hand side and the other terms to the right hand side:
+2. If the set is linearly dependent, the vector equation $c_1\mathbf{v}_1+\dots+c_n\mathbf{v}_n=\mathbf{0}$ has nontrivial solution of $\mathbf{c}$. There exists an index $i$ where $c_i \neq 0$. Move the $i$-th term to the left hand side and the other terms to the right hand side:
 $$-c_i\mathbf{v}_i=c_1\mathbf{v}_1+\dots+c_{i-1}\mathbf{v}_{i-1}+c_{i+1}\mathbf{v}_{i+1}+\dots+c_n\mathbf{v}_n.$$
 Divide both sides by $-c_i$:
 $$\mathbf{v}_i=\frac{c_1}{-c_i}\mathbf{v}_1+\dots+\frac{c_{i-1}}{-c_i}\mathbf{v}_{i-1}+\frac{c_{i+1}}{-c_i}\mathbf{v}_{i+1}+\dots+\frac{c_n}{-c_i}\mathbf{v}_n.$$
