@@ -266,3 +266,14 @@ fig
 
 ```
 :::
+
+### Random Thoughts About the Characterization
+
+::: {.remark}
+
+The textbook warns that [@thm-thm1-7-7] does not guarantee that **every** vector in a linearly dependent set is a linear combination of the other vectors.
+
+The simplest example of this is a zero vector. Consider a linearly independent set $S=\{\mathbf{v}_1,\dots,\mathbf{v}_n\}$. Let $S'=S \cup \{\mathbf{0}\}$, then $S'$ is a linearly dependent set (Theorem 9). Only $\mathbf{0}$ in $S'$ is a linear combination of the other vectors ($0\mathbf{v}_1+\dots+0\mathbf{v}_n$) because, for all $1 \leq k \leq n$, adding a zero vector doesn't change the span of the other vectors. Thus, $\mathbf{v}_k \notin \text{Span}\{\mathbf{v}_1,\dots,\mathbf{v}_{k-1},\mathbf{v}_{k+1},\dots,\mathbf{v}_n,\mathbf{0}\}$. Similarly, we can add, rather than a zero vector, $t\mathbf{v}_k$ to $S$, where $t \neq 0$ and $1 \leq k \leq n$. Denote this new set as $S'=S \cup \{t\mathbf{v}_k\}$. Only the newly added vector, $t\mathbf{v}_k$, and $\mathbf{v}_k$ are a linear combination of the other vectors: $(t\mathbf{v}_k)=t\cdot\mathbf{v}_k$ and $\mathbf{v}_k=\frac{1}{t}\cdot t\mathbf{v}_k$. Moreover, these are also the only ways by which they can be written as a linear combination of the other vectors.
+
+Then, what if we add a linear combination of some of the vectors in $S$. Formally, let $V=\{\mathbf{v}_{i_1},\dots,\mathbf{v}_{i_m}\} \subset S$. Consider the vector $\mathbf{w}=c_1\mathbf{v}_{i_1}+\dots+c_m\mathbf{v}_{i_m}$.
+:::
