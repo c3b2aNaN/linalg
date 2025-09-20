@@ -51,16 +51,16 @@ When the author first learned about linear independence, the characteristic (@th
 
 ## Pivot Columns and Linear Independence
 
-::: {#exr-t27}
+::: {#exr-1-7-27}
 
 ## T27
 
 How many pivot columns must a $7 \times 5$ matrix have if its columns are linearly independent?
 :::
 
-::: {#sol-t27}
+::: {#sol-1-7-27}
 
-## Solution to [@exr-t27]
+## Solution to [@exr-1-7-27]
 
 Recall the definition of linear indenpendence: $A\mathbf{x}=\mathbf{0}$ has only the trivial solution ($\mathbf{x}=\mathbf{0}$). There must be 5 pivot columns in $A$'s row echelon form (REF). Otherwise, the free variable(s) will produce solutions other than $\mathbf{0}$.
 
@@ -91,7 +91,7 @@ How many pivot columns must a $5 \times 7$ matrix have if its columns span $\mat
 
 ::: {#sol-1-7-28}
 
-## Solution to [@sol-1-7-28]
+## Solution to [@exr-1-7-28]
 
 That the vectors span $\mathbb{R}^5$ means that, for all $\mathbf{b} \in \mathbb{R}^5$, $\mathbf{b}$ can be expressed as a linear combination of the vectors. That is, the matrix equation $A\mathbf{x}=\mathbf{b}$ is consistent. Thus, each of the 5 rows of the REF of A must have a pivot position.
 
@@ -276,6 +276,8 @@ The textbook warns that [@thm-thm1-7-7] does not guarantee that **every** vector
 The simplest example of this is a zero vector. Consider a linearly independent set $S=\{\mathbf{v}_1,\dots,\mathbf{v}_n\}$. Let $S'=S \cup \{\mathbf{0}\}$, then $S'$ is a linearly dependent set (Theorem 9). Only $\mathbf{0}$ in $S'$ is a linear combination of the other vectors ($0\mathbf{v}_1+\dots+0\mathbf{v}_n$) because, for all $1 \leq k \leq n$, adding a zero vector doesn't change the span of the other vectors. Thus, $\mathbf{v}_k \notin \text{Span}\{\mathbf{v}_1,\dots,\mathbf{v}_{k-1},\mathbf{v}_{k+1},\dots,\mathbf{v}_n,\mathbf{0}\}$. Similarly, we can add, rather than a zero vector, $t\mathbf{v}_k$ to $S$, where $t \neq 0$ and $1 \leq k \leq n$. Denote this new set as $S'=S \cup \{t\mathbf{v}_k\}$. Only the newly added vector, $t\mathbf{v}_k$, and $\mathbf{v}_k$ are a linear combination of the other vectors: $t\mathbf{v}_k=t\cdot\mathbf{v}_k$ and $\mathbf{v}_k=\frac{1}{t}\cdot t\mathbf{v}_k$. Moreover, these are also the only ways by which they can be written as a linear combination of the other vectors.
 
 Then, what if we add a linear combination of some of the vectors in $S$. Formally, let $V=\{\mathbf{v}_{i_1},\dots,\mathbf{v}_{i_m}\} \subset S$. Consider the vector $\mathbf{w}=c_1\mathbf{v}_{i_1}+\dots+c_m\mathbf{v}_{i_m}$, where $c_1 \cdots c_m \neq 0$. $S'=S \cup \{\mathbf{w}\}$ is linearly dependent. Let $V'=V \cup \{\mathbf{w}\}$. Since $\mathbf{c}$ is non-zero, for all $\mathbf{u}\in V'$, $\mathbf{u}$ can be expressed as a unique linear combination of the other vectors in $V'$. The case of the vectors not in $V'$ is the same. They cannot be written as a linear combination of the other vectors because adding a vector already in the span doesn't change the span.
+
+Let's consider a general case in [@prp-1-7-char].
 :::
 
 ::: {#prp-1-7-char}
