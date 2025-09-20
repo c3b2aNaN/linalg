@@ -1,5 +1,7 @@
 # 1.7 Linear Independence {.unnumbered}
 
+## Definition and Characterization
+
 ::: {#def-linearindependence}
 
 ## Linear Independence
