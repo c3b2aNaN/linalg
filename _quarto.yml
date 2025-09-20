@@ -8,7 +8,9 @@ book:
   chapters:
     - index.qmd
     - notations.qmd
-    - chap1.qmd
+    - part: "Part 1: Linear Equations in Linear Algebra"
+      chapters:
+      - chap1.7.qmd
     - references.qmd
 
 bibliography: references.bib
