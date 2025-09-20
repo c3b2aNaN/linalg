@@ -62,7 +62,7 @@ How many pivot columns must a $7 \times 5$ matrix have if its columns are linear
 
 ## Solution to [@exr-t27]
 
-Recall the definition of linear indenpendence: $A\mathbf{x}=\mathbf{0}$ has only the trivial solution ($\mathbf{x}=\mathbf{0}$). There must be 5 pivot columns in $A$'s echelon form. Otherwise, the free variable(s) will produce solutions other than $\mathbf{0}$.
+Recall the definition of linear indenpendence: $A\mathbf{x}=\mathbf{0}$ has only the trivial solution ($\mathbf{x}=\mathbf{0}$). There must be 5 pivot columns in $A$'s row echelon form (REF). Otherwise, the free variable(s) will produce solutions other than $\mathbf{0}$.
 
 If we generalize the situation to $A \in \mathbb{R}^{m \times n}$, $n$ pivot columns are required to avoid free variables. Therefore, the columns of $A$ are necessarily linearly dependent when $n > m$, as there are no enough rows to generate $n$ pivot columns (Theorem 8).
 :::
@@ -80,4 +80,189 @@ $$\mathbf{v}_k=(-u_1)\mathbf{v}_1+\dots+(-u_n)\mathbf{v}_n.$$
 Since the matrix has been simplified to its RREF, $u_{k+1},\dots,u_n$ all equal zero. Then,
 $$\mathbf{v}_k=(-u_1)\mathbf{v}_1+\dots+(-u_{k-1})\mathbf{v}_{k-1}.$$
 Thus, the $k$-th column of the RREF exactly shows the coefficients of how it can be written as a linear combination of the preceding vectors.
+:::
+
+::: {#exr-1-7-28}
+
+## T28
+
+How many pivot columns must a $5 \times 7$ matrix have if its columns span $\mathbb{R}^5$?
+:::
+
+::: {#sol-1-7-28}
+
+## Solution to [@sol-1-7-28]
+
+That the vectors span $\mathbb{R}^5$ means that, for all $\mathbf{b} \in \mathbb{R}^5$, $\mathbf{b}$ can be expressed as a linear combination of the vectors. That is, the matrix equation $A\mathbf{x}=\mathbf{b}$ is consistent. Thus, each of the 5 rows of the REF of A must have a pivot position.
+
+For $A \in \mathbb{R}^{m \times n}$, $m$ pivot columns are needed if $A$'s columns span $\mathbb{R}^m$. This also states that a minimum set of $m$ vectors can span $\mathbb{R}^m$ if the vectors are linearly independent.
+:::
+
+::: {.remark}
+
+Consider $A \in \mathbb{R}^{3\times3}$ with only two pivot positions. Obviously, the columns of $A$ do not span $\mathbb{R}^3$ and can only form a plane. But it is also mistaken to say the columns span $\mathbb{R}^2$ because the vectors are in $\mathbb{R}^3$.
+
+```{r, message=FALSE}
+# Requires: install.packages("plotly")
+library(plotly)
+
+# --- Parameters -------------------------------------------------------------
+v1 <- c(1, 0, 0)         # first vector
+v2 <- c(0, 1, 1)         # second vector
+v3 <- c(.8, .8, .8)
+L  <- 2                  # axis half-length (range [-L, L])
+head_size <- 0.18        # arrowhead size (adjust to taste)
+
+# --- Plane grid (parametric: s * v1 + t * v2) ------------------------------
+s <- seq(-1.8, 1.8, length.out = 40)
+t <- seq(-1.8, 1.8, length.out = 40)
+g <- expand.grid(s = s, t = t)
+X <- matrix(g$s * v1[1] + g$t * v2[1], nrow = length(s), ncol = length(t))
+Y <- matrix(g$s * v1[2] + g$t * v2[2], nrow = length(s), ncol = length(t))
+Z <- matrix(g$s * v1[3] + g$t * v2[3], nrow = length(s), ncol = length(t))
+
+# --- Helper: arrowhead lines for a vector ending at `p` pointing in direction d ---
+arrow_lines_for_tip <- function(p, d, size = head_size) {
+  # produce two short segments making a "V" arrowhead perpendicular-ish to d
+  # find two small orthogonal offsets
+  # naive but robust construction:
+  ux <- d / sqrt(sum(d^2))
+  # choose an arbitrary vector not parallel to ux
+  arb <- if (abs(ux[1]) < 0.9) c(1,0,0) else c(0,1,0)
+  v_perp1 <- crossprod(matrix(arb,1), matrix(ux,1))  # 1x3 result (cross)
+  v_perp1 <- as.numeric(v_perp1)
+  if (all(abs(v_perp1) < 1e-6)) arb <- c(0,0,1); v_perp1 <- as.numeric(crossprod(matrix(arb,1), matrix(ux,1)))
+  v_perp1 <- v_perp1 / sqrt(sum(v_perp1^2))
+  v_perp2 <- pracma::cross(ux, v_perp1) # need pracma for cross (or implement)
+  v_perp2 <- v_perp2 / sqrt(sum(v_perp2^2))
+  # two small points behind tip
+  base1 <- p - ux * size + v_perp1 * (size / 2)
+  base2 <- p - ux * size - v_perp1 * (size / 2)
+  list(
+    line1 = rbind(base1, p),
+    line2 = rbind(base2, p)
+  )
+}
+
+# If pracma is not available, we implement cross product quickly
+cross_prod <- function(a, b) c(a[2]*b[3] - a[3]*b[2],
+                             a[3]*b[1] - a[1]*b[3],
+                             a[1]*b[2] - a[2]*b[1])
+
+# replacement arrowheads function that doesn't depend on extra packages:
+arrow_lines_for_tip2 <- function(p, d, size = head_size) {
+  ux <- d / sqrt(sum(d^2))
+  arb <- if (abs(ux[1]) < 0.9) c(1,0,0) else c(0,1,0)
+  v_perp1 <- cross_prod(arb, ux)
+  if (sqrt(sum(v_perp1^2)) < 1e-6) { arb <- c(0,0,1); v_perp1 <- cross_prod(arb, ux) }
+  v_perp1 <- v_perp1 / sqrt(sum(v_perp1^2))
+  base1 <- p - ux * size + v_perp1 * (size / 2)
+  base2 <- p - ux * size - v_perp1 * (size / 2)
+  list(line1 = rbind(base1, p), line2 = rbind(base2, p))
+}
+
+# --- Precompute arrowheads for axes and vectors --------------------------------
+# axis ends
+x_tip <- c(L,0,0); y_tip <- c(0,L,0); z_tip <- c(0,0,L)
+x_head <- arrow_lines_for_tip2(x_tip, c(1,0,0), size = head_size*0.9)
+y_head <- arrow_lines_for_tip2(y_tip, c(0,1,0), size = head_size*0.9)
+z_head <- arrow_lines_for_tip2(z_tip, c(0,0,1), size = head_size*0.9)
+
+# vector tips
+v1_tip <- v1; v2_tip <- v2; v3_tip <- v3
+v1_head <- arrow_lines_for_tip2(v1_tip, v1, size = head_size*0.9)
+v2_head <- arrow_lines_for_tip2(v2_tip, v2, size = head_size*0.9)
+v3_head <- arrow_lines_for_tip2(v3_tip, v3, size = head_size*0.9)
+
+# --- Build plotly figure ------------------------------------------------------
+fig <- plot_ly() %>%
+  # Plane as parametric surface (x,y,z matrices)
+  add_surface(x = X, y = Y, z = Z,
+              opacity = 0.45,
+              showscale = FALSE,
+              hoverinfo = "none",
+              colorscale = list(c(0,1), c("lightblue","lightblue"))) %>%
+  # Axes (lines through origin)
+  add_trace(type = "scatter3d", mode = "lines",
+            x = c(-L, L), y = c(0,0), z = c(0,0),
+            line = list(color = "black", width = 4),
+            showlegend = FALSE) %>%
+  add_trace(type = "scatter3d", mode = "lines",
+            x = c(0,0), y = c(-L, L), z = c(0,0),
+            line = list(color = "black", width = 4),
+            showlegend = FALSE) %>%
+  add_trace(type = "scatter3d", mode = "lines",
+            x = c(0,0), y = c(0,0), z = c(-L, L),
+            line = list(color = "black", width = 4),
+            showlegend = FALSE) %>%
+  # Axis arrowheads (two short segments each)
+  add_trace(type = "scatter3d", mode = "lines",
+            x = c(x_head$line1[,1], NA, x_head$line2[,1]),
+            y = c(x_head$line1[,2], NA, x_head$line2[,2]),
+            z = c(x_head$line1[,3], NA, x_head$line2[,3]),
+            line = list(color = "black", width = 4),
+            showlegend = FALSE) %>%
+  add_trace(type = "scatter3d", mode = "lines",
+            x = c(y_head$line1[,1], NA, y_head$line2[,1]),
+            y = c(y_head$line1[,2], NA, y_head$line2[,2]),
+            z = c(y_head$line1[,3], NA, y_head$line2[,3]),
+            line = list(color = "black", width = 4),
+            showlegend = FALSE) %>%
+  add_trace(type = "scatter3d", mode = "lines",
+            x = c(z_head$line1[,1], NA, z_head$line2[,1]),
+            y = c(z_head$line1[,2], NA, z_head$line2[,2]),
+            z = c(z_head$line1[,3], NA, z_head$line2[,3]),
+            line = list(color = "black", width = 4),
+            showlegend = FALSE) %>%
+  # Vectors (lines from origin to tip)
+  add_trace(type = "scatter3d", mode = "lines+markers",
+            x = c(0, v1[1]), y = c(0, v1[2]), z = c(0, v1[3]),
+            line = list(color = "red", width = 6),
+            marker = list(size = 2),
+            name = "v1") %>%
+  add_trace(type = "scatter3d", mode = "lines+markers",
+            x = c(0, v2[1]), y = c(0, v2[2]), z = c(0, v2[3]),
+            line = list(color = "green", width = 6),
+            marker = list(size = 2),
+            name = "v2") %>%
+  add_trace(type = "scatter3d", mode = "lines+markers",
+            x = c(0, v3[1]), y = c(0, v3[2]), z = c(0, v3[3]),
+            line = list(color = "orange", width = 6),
+            marker = list(size = 2),
+            name = "v3") %>%
+  # Vector arrowheads
+  add_trace(type = "scatter3d", mode = "lines",
+            x = c(v1_head$line1[,1], NA, v1_head$line2[,1]),
+            y = c(v1_head$line1[,2], NA, v1_head$line2[,2]),
+            z = c(v1_head$line1[,3], NA, v1_head$line2[,3]),
+            line = list(color = "red", width = 6),
+            showlegend = FALSE) %>%
+  add_trace(type = "scatter3d", mode = "lines",
+            x = c(v2_head$line1[,1], NA, v2_head$line2[,1]),
+            y = c(v2_head$line1[,2], NA, v2_head$line2[,2]),
+            z = c(v2_head$line1[,3], NA, v2_head$line2[,3]),
+            line = list(color = "green", width = 6),
+            showlegend = FALSE) %>%
+  add_trace(type = "scatter3d", mode = "lines",
+            x = c(v3_head$line1[,1], NA, v3_head$line2[,1]),
+            y = c(v3_head$line1[,2], NA, v3_head$line2[,2]),
+            z = c(v3_head$line1[,3], NA, v3_head$line2[,3]),
+            line = list(color = "orange", width = 6),
+            showlegend = FALSE) %>%
+  # origin marker and labels
+  add_markers(x = 0, y = 0, z = 0, marker = list(size = 4, color = "black"), showlegend = FALSE) %>%
+  layout(scene = list(
+    aspectmode = "cube",   # equal scale on axes
+    xaxis = list(title = "X", range = c(-L, L),
+                 showgrid = TRUE, zeroline = FALSE, showbackground = FALSE),
+    yaxis = list(title = "Y", range = c(-L, L),
+                 showgrid = TRUE, zeroline = FALSE, showbackground = FALSE),
+    zaxis = list(title = "Z", range = c(-L, L),
+                 showgrid = TRUE, zeroline = FALSE, showbackground = FALSE),
+    camera = list(eye = list(x = 0.5, y = -1.5, z = 0.7))
+  ))
+
+fig
+
+```
 :::
