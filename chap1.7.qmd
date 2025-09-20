@@ -282,5 +282,5 @@ Let's consider a general case in [@prp-1-7-char].
 
 ::: {#prp-1-7-char}
 
-Suppose $S=\{\mathbf{v}_1,\dots,\mathbf{v}_n\}$ is an arbitrary set of vectors, where, for all $1 \leq k \leq n$, $\mathbf{v}_k\in\mathbb{R}^m$. It is always possible to partition $S$ into $p$ non-empty subsets, $V_1,\dots,V_p$, where, for every $|V_k|>1$, each vector $\mathbf{v}_i\in V_k$ is a linear combination of the other vectors in $V_k$. In addition, the partition satisfies that if a vector, $\mathbf{v}_i\in V_k$, can be written as a linear combination of the vectors other than $\mathbf{v}_i$ in $S$, it can only be written as a linear combination of the other vectors in $V_k$.  
+Suppose $S=\{\mathbf{v}_1,\dots,\mathbf{v}_n\}$ is an arbitrary set of vectors, where, for all $1 \leq k \leq n$, $\mathbf{v}_k\in\mathbb{R}^m$. It is always possible to partition $S$ into $p$ non-empty subsets, $V_1,\dots,V_p$, such that, for every $|V_k|>1$, each vector $\mathbf{v}_i\in V_k$ is a linear combination of the other vectors in $V_k$. In addition, the partition satisfies that if a vector, $\mathbf{v}_i\in V_k$, can be written as a linear combination of the vectors other than $\mathbf{v}_i$ in $S$, it can only be written as a linear combination of the other vectors in $V_k$.  
 :::
