@@ -10,7 +10,8 @@ book:
     - notations.qmd
     - part: "Part 1: Linear Equations in Linear Algebra"
       chapters:
-      - chap1.7.qmd
+      - part1/chap1.7.qmd
+      - part1/qa.qmd
     - references.qmd
 
 bibliography: references.bib

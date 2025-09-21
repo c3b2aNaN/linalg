@@ -1,0 +1,8 @@
+# Questions and Answers {.unnumbered}
+
+::: {.callout-tip}
+
+## What are the relationships between linear equations, vectors, matrices, and linear combination?
+
+This is an answer.
+:::
