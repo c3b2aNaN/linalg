@@ -2,7 +2,7 @@
 
 ::: {.callout-tip}
 
-## What are the relationships between linear equations, vectors, matrices, and linear combination?
+## What are the relationships between linear equations, vectors, matrices, and linear combinations?
 
 This is an answer.
 :::
