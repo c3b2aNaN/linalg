@@ -103,54 +103,18 @@ For $A \in \mathbb{R}^{m \times n}$, $m$ pivot columns are needed if $A$'s colum
 Consider $A \in \mathbb{R}^{3\times3}$ with only two pivot positions. Obviously, the columns of $A$ do not span $\mathbb{R}^3$ and can only form a plane. But it is also mistaken to say the columns span $\mathbb{R}^2$ because the vectors are in $\mathbb{R}^3$.
 
 ```{r, message=FALSE}
-# Requires: install.packages("plotly")
 library(plotly)
 
-# --- Parameters -------------------------------------------------------------
-v1 <- c(1, 0, 0)         # first vector
-v2 <- c(0, 1, 1)         # second vector
-v3 <- c(.8, .8, .8)
-L  <- 2                  # axis half-length (range [-L, L])
-head_size <- 0.18        # arrowhead size (adjust to taste)
+# ----------------- small math helpers ---------------------------------------
+cross_prod <- function(a, b) c(
+  a[2]*b[3] - a[3]*b[2],
+  a[3]*b[1] - a[1]*b[3],
+  a[1]*b[2] - a[2]*b[1]
+)
 
-# --- Plane grid (parametric: s * v1 + t * v2) ------------------------------
-s <- seq(-1.8, 1.8, length.out = 40)
-t <- seq(-1.8, 1.8, length.out = 40)
-g <- expand.grid(s = s, t = t)
-X <- matrix(g$s * v1[1] + g$t * v2[1], nrow = length(s), ncol = length(t))
-Y <- matrix(g$s * v1[2] + g$t * v2[2], nrow = length(s), ncol = length(t))
-Z <- matrix(g$s * v1[3] + g$t * v2[3], nrow = length(s), ncol = length(t))
-
-# --- Helper: arrowhead lines for a vector ending at `p` pointing in direction d ---
-arrow_lines_for_tip <- function(p, d, size = head_size) {
-  # produce two short segments making a "V" arrowhead perpendicular-ish to d
-  # find two small orthogonal offsets
-  # naive but robust construction:
-  ux <- d / sqrt(sum(d^2))
-  # choose an arbitrary vector not parallel to ux
-  arb <- if (abs(ux[1]) < 0.9) c(1,0,0) else c(0,1,0)
-  v_perp1 <- crossprod(matrix(arb,1), matrix(ux,1))  # 1x3 result (cross)
-  v_perp1 <- as.numeric(v_perp1)
-  if (all(abs(v_perp1) < 1e-6)) arb <- c(0,0,1); v_perp1 <- as.numeric(crossprod(matrix(arb,1), matrix(ux,1)))
-  v_perp1 <- v_perp1 / sqrt(sum(v_perp1^2))
-  v_perp2 <- pracma::cross(ux, v_perp1) # need pracma for cross (or implement)
-  v_perp2 <- v_perp2 / sqrt(sum(v_perp2^2))
-  # two small points behind tip
-  base1 <- p - ux * size + v_perp1 * (size / 2)
-  base2 <- p - ux * size - v_perp1 * (size / 2)
-  list(
-    line1 = rbind(base1, p),
-    line2 = rbind(base2, p)
-  )
-}
-
-# If pracma is not available, we implement cross product quickly
-cross_prod <- function(a, b) c(a[2]*b[3] - a[3]*b[2],
-                             a[3]*b[1] - a[1]*b[3],
-                             a[1]*b[2] - a[2]*b[1])
-
-# replacement arrowheads function that doesn't depend on extra packages:
-arrow_lines_for_tip2 <- function(p, d, size = head_size) {
+# arrowhead builder that does not depend on extra packages
+arrow_lines_for_tip2 <- function(p, d, size = 0.18) {
+  if (sqrt(sum(d^2)) < 1e-9) return(NULL)
   ux <- d / sqrt(sum(d^2))
   arb <- if (abs(ux[1]) < 0.9) c(1,0,0) else c(0,1,0)
   v_perp1 <- cross_prod(arb, ux)
@@ -161,108 +125,200 @@ arrow_lines_for_tip2 <- function(p, d, size = head_size) {
   list(line1 = rbind(base1, p), line2 = rbind(base2, p))
 }
 
-# --- Precompute arrowheads for axes and vectors --------------------------------
-# axis ends
-x_tip <- c(L,0,0); y_tip <- c(0,L,0); z_tip <- c(0,0,L)
-x_head <- arrow_lines_for_tip2(x_tip, c(1,0,0), size = head_size*0.9)
-y_head <- arrow_lines_for_tip2(y_tip, c(0,1,0), size = head_size*0.9)
-z_head <- arrow_lines_for_tip2(z_tip, c(0,0,1), size = head_size*0.9)
+# ----------------- main plotting function -----------------------------------
+# vectors: list of lists, each with fields: vec (numeric length-3), color, name, width, start (defaults to origin)
+# planes: list of lists, each with fields: v1 (len3), v2 (len3), color, opacity, n (grid density), scale
+# xrange/yrange/zrange: either NULL (auto) or length-2 numeric c(min,max)
+# camera_eye: numeric length-3 vector, e.g. c(0.5, -1.5, 0.7)
+# zoom: numeric > 0; zoom > 1 moves camera closer (zoom in), <1 moves camera farther (zoom out)
+make_3d_linear_plot <- function(vectors = list(), planes = list(),
+                                L = NULL, head_size = 0.18, plane_n = 40,
+                                axis_width = 4, show_axes = TRUE,
+                                xrange = NULL, yrange = NULL, zrange = NULL,
+                                camera_eye = c(0.5, -1.5, 0.7),
+                                zoom = 1) {
 
-# vector tips
-v1_tip <- v1; v2_tip <- v2; v3_tip <- v3
-v1_head <- arrow_lines_for_tip2(v1_tip, v1, size = head_size*0.9)
-v2_head <- arrow_lines_for_tip2(v2_tip, v2, size = head_size*0.9)
-v3_head <- arrow_lines_for_tip2(v3_tip, v3, size = head_size*0.9)
+  # validate basic inputs
+  if (!is.numeric(camera_eye) || length(camera_eye) != 3) stop("camera_eye must be numeric length 3")
+  if (!is.numeric(zoom) || zoom <= 0) stop("zoom must be a positive number")
+  if (!is.null(xrange) && length(xrange) != 2) stop("xrange must be NULL or length-2 numeric")
+  if (!is.null(yrange) && length(yrange) != 2) stop("yrange must be NULL or length-2 numeric")
+  if (!is.null(zrange) && length(zrange) != 2) stop("zrange must be NULL or length-2 numeric")
 
-# --- Build plotly figure ------------------------------------------------------
-fig <- plot_ly() %>%
-  # Plane as parametric surface (x,y,z matrices)
-  add_surface(x = X, y = Y, z = Z,
-              opacity = 0.45,
-              showscale = FALSE,
-              hoverinfo = "none",
-              colorscale = list(c(0,1), c("lightblue","lightblue"))) %>%
-  # Axes (lines through origin)
-  add_trace(type = "scatter3d", mode = "lines",
-            x = c(-L, L), y = c(0,0), z = c(0,0),
-            line = list(color = "black", width = 4),
-            showlegend = FALSE) %>%
-  add_trace(type = "scatter3d", mode = "lines",
-            x = c(0,0), y = c(-L, L), z = c(0,0),
-            line = list(color = "black", width = 4),
-            showlegend = FALSE) %>%
-  add_trace(type = "scatter3d", mode = "lines",
-            x = c(0,0), y = c(0,0), z = c(-L, L),
-            line = list(color = "black", width = 4),
-            showlegend = FALSE) %>%
-  # Axis arrowheads (two short segments each)
-  add_trace(type = "scatter3d", mode = "lines",
-            x = c(x_head$line1[,1], NA, x_head$line2[,1]),
-            y = c(x_head$line1[,2], NA, x_head$line2[,2]),
-            z = c(x_head$line1[,3], NA, x_head$line2[,3]),
-            line = list(color = "black", width = 4),
-            showlegend = FALSE) %>%
-  add_trace(type = "scatter3d", mode = "lines",
-            x = c(y_head$line1[,1], NA, y_head$line2[,1]),
-            y = c(y_head$line1[,2], NA, y_head$line2[,2]),
-            z = c(y_head$line1[,3], NA, y_head$line2[,3]),
-            line = list(color = "black", width = 4),
-            showlegend = FALSE) %>%
-  add_trace(type = "scatter3d", mode = "lines",
-            x = c(z_head$line1[,1], NA, z_head$line2[,1]),
-            y = c(z_head$line1[,2], NA, z_head$line2[,2]),
-            z = c(z_head$line1[,3], NA, z_head$line2[,3]),
-            line = list(color = "black", width = 4),
-            showlegend = FALSE) %>%
-  # Vectors (lines from origin to tip)
-  add_trace(type = "scatter3d", mode = "lines+markers",
-            x = c(0, v1[1]), y = c(0, v1[2]), z = c(0, v1[3]),
-            line = list(color = "red", width = 6),
-            marker = list(size = 2),
-            name = "v1") %>%
-  add_trace(type = "scatter3d", mode = "lines+markers",
-            x = c(0, v2[1]), y = c(0, v2[2]), z = c(0, v2[3]),
-            line = list(color = "green", width = 6),
-            marker = list(size = 2),
-            name = "v2") %>%
-  add_trace(type = "scatter3d", mode = "lines+markers",
-            x = c(0, v3[1]), y = c(0, v3[2]), z = c(0, v3[3]),
-            line = list(color = "orange", width = 6),
-            marker = list(size = 2),
-            name = "v3") %>%
-  # Vector arrowheads
-  add_trace(type = "scatter3d", mode = "lines",
-            x = c(v1_head$line1[,1], NA, v1_head$line2[,1]),
-            y = c(v1_head$line1[,2], NA, v1_head$line2[,2]),
-            z = c(v1_head$line1[,3], NA, v1_head$line2[,3]),
-            line = list(color = "red", width = 6),
-            showlegend = FALSE) %>%
-  add_trace(type = "scatter3d", mode = "lines",
-            x = c(v2_head$line1[,1], NA, v2_head$line2[,1]),
-            y = c(v2_head$line1[,2], NA, v2_head$line2[,2]),
-            z = c(v2_head$line1[,3], NA, v2_head$line2[,3]),
-            line = list(color = "green", width = 6),
-            showlegend = FALSE) %>%
-  add_trace(type = "scatter3d", mode = "lines",
-            x = c(v3_head$line1[,1], NA, v3_head$line2[,1]),
-            y = c(v3_head$line1[,2], NA, v3_head$line2[,2]),
-            z = c(v3_head$line1[,3], NA, v3_head$line2[,3]),
-            line = list(color = "orange", width = 6),
-            showlegend = FALSE) %>%
-  # origin marker and labels
-  add_markers(x = 0, y = 0, z = 0, marker = list(size = 4, color = "black"), showlegend = FALSE) %>%
-  layout(scene = list(
-    aspectmode = "cube",   # equal scale on axes
-    xaxis = list(title = "X", range = c(-L, L),
+  # sanitize vector entries and provide defaults
+  vectors <- lapply(vectors, function(v) {
+    v$vec   <- as.numeric(v$vec)
+    if (length(v$vec) != 3) stop("each vector must be length 3")
+    v$start <- if (!is.null(v$start)) as.numeric(v$start) else c(0,0,0)
+    if (length(v$start) != 3) stop("start must be length 3")
+    v$color <- if (!is.null(v$color)) v$color else "red"
+    v$name  <- if (!is.null(v$name)) v$name else ""
+    v$width <- if (!is.null(v$width)) v$width else 6
+    v
+  })
+
+  # sanitize planes and defaults
+  planes <- lapply(planes, function(p) {
+    p$v1 <- as.numeric(p$v1); p$v2 <- as.numeric(p$v2)
+    if (length(p$v1)!=3 || length(p$v2)!=3) stop("plane v1 and v2 must be length 3")
+    p$color <- if (!is.null(p$color)) p$color else "lightblue"
+    p$opacity <- if (!is.null(p$opacity)) p$opacity else 0.45
+    p$n <- if (!is.null(p$n)) p$n else plane_n
+    p$scale <- if (!is.null(p$scale)) p$scale else 1.8
+    p$name <- if (!is.null(p$name)) p$name else ""
+    p
+  })
+
+  # compute suggested axis limit L if not provided
+  if (is.null(L)) {
+    coords <- numeric(0)
+    if (length(vectors) > 0) {
+      for (v in vectors) coords <- c(coords, v$start + v$vec, v$start)
+    }
+    if (length(planes) > 0) {
+      for (p in planes) {
+        s <- p$scale; t <- p$scale
+        corners <- rbind(
+          s * p$v1 + t * p$v2,
+          s * p$v1 - t * p$v2,
+          -s * p$v1 + t * p$v2,
+          -s * p$v1 - t * p$v2
+        )
+        coords <- c(coords, as.numeric(corners))
+      }
+    }
+    maxc <- if (length(coords) == 0) 1 else max(abs(coords))
+    L <- max(1.2 * maxc, 2)
+  }
+
+  # default ranges: symmetric box [-L,L] unless user overrides
+  xrange <- if (is.null(xrange)) c(-L, L) else xrange
+  yrange <- if (is.null(yrange)) c(-L, L) else yrange
+  zrange <- if (is.null(zrange)) c(-L, L) else zrange
+
+  # build plane surfaces (precompute X,Y,Z for each plane)
+  plane_surfaces <- lapply(planes, function(p) {
+    s <- seq(-p$scale, p$scale, length.out = p$n)
+    t <- seq(-p$scale, p$scale, length.out = p$n)
+    g <- expand.grid(s = s, t = t)
+    X <- matrix(g$s * p$v1[1] + g$t * p$v2[1], nrow = length(s), ncol = length(t))
+    Y <- matrix(g$s * p$v1[2] + g$t * p$v2[2], nrow = length(s), ncol = length(t))
+    Z <- matrix(g$s * p$v1[3] + g$t * p$v2[3], nrow = length(s), ncol = length(t))
+    list(X = X, Y = Y, Z = Z)
+  })
+
+  # start building plotly figure
+  fig <- plot_ly()
+
+  # add planes first (so vectors/arrowheads are on top)
+  if (length(planes) > 0) {
+    for (i in seq_along(planes)) {
+      p <- planes[[i]]
+      surf <- plane_surfaces[[i]]
+      cols <- list(c(0,1), c(p$color, p$color))
+      fig <- fig %>%
+        add_surface(x = surf$X, y = surf$Y, z = surf$Z,
+                    opacity = p$opacity, showscale = FALSE, hoverinfo = "none",
+                    colorscale = cols, name = p$name, showlegend = FALSE)
+    }
+  }
+
+  # axes and arrowheads
+  if (isTRUE(show_axes)) {
+    fig <- fig %>%
+      add_trace(type = "scatter3d", mode = "lines",
+                x = c(xrange[1], xrange[2]), y = c(0,0), z = c(0,0),
+                line = list(color = "black", width = axis_width), showlegend = FALSE) %>%
+      add_trace(type = "scatter3d", mode = "lines",
+                x = c(0,0), y = c(yrange[1], yrange[2]), z = c(0,0),
+                line = list(color = "black", width = axis_width), showlegend = FALSE) %>%
+      add_trace(type = "scatter3d", mode = "lines",
+                x = c(0,0), y = c(0,0), z = c(zrange[1], zrange[2]),
+                line = list(color = "black", width = axis_width), showlegend = FALSE)
+
+    # axis arrowheads placed at positive ends of the axis ranges
+    x_tip <- c(xrange[2], 0, 0); y_tip <- c(0, yrange[2], 0); z_tip <- c(0, 0, zrange[2])
+    x_head <- arrow_lines_for_tip2(x_tip, c(1,0,0), size = head_size*0.9)
+    y_head <- arrow_lines_for_tip2(y_tip, c(0,1,0), size = head_size*0.9)
+    z_head <- arrow_lines_for_tip2(z_tip, c(0,0,1), size = head_size*0.9)
+
+    if (!is.null(x_head)) fig <- fig %>% add_trace(type = "scatter3d", mode = "lines",
+                x = c(x_head$line1[,1], NA, x_head$line2[,1]),
+                y = c(x_head$line1[,2], NA, x_head$line2[,2]),
+                z = c(x_head$line1[,3], NA, x_head$line2[,3]),
+                line = list(color = "black", width = axis_width), showlegend = FALSE)
+    if (!is.null(y_head)) fig <- fig %>% add_trace(type = "scatter3d", mode = "lines",
+                x = c(y_head$line1[,1], NA, y_head$line2[,1]),
+                y = c(y_head$line1[,2], NA, y_head$line2[,2]),
+                z = c(y_head$line1[,3], NA, y_head$line2[,3]),
+                line = list(color = "black", width = axis_width), showlegend = FALSE)
+    if (!is.null(z_head)) fig <- fig %>% add_trace(type = "scatter3d", mode = "lines",
+                x = c(z_head$line1[,1], NA, z_head$line2[,1]),
+                y = c(z_head$line1[,2], NA, z_head$line2[,2]),
+                z = c(z_head$line1[,3], NA, z_head$line2[,3]),
+                line = list(color = "black", width = axis_width), showlegend = FALSE)
+  }
+
+  # add vectors (lines + arrowheads)
+  if (length(vectors) > 0) {
+    for (i in seq_along(vectors)) {
+      v <- vectors[[i]]
+      start <- v$start
+      tip   <- start + v$vec
+      fig <- fig %>%
+        add_trace(type = "scatter3d", mode = "lines+markers",
+                  x = c(start[1], tip[1]), y = c(start[2], tip[2]), z = c(start[3], tip[3]),
+                  line = list(color = v$color, width = v$width),
+                  marker = list(size = 2),
+                  name = v$name)
+      ah <- arrow_lines_for_tip2(tip, v$vec, size = head_size)
+      if (!is.null(ah)) {
+        fig <- fig %>% add_trace(type = "scatter3d", mode = "lines",
+                  x = c(ah$line1[,1], NA, ah$line2[,1]),
+                  y = c(ah$line1[,2], NA, ah$line2[,2]),
+                  z = c(ah$line1[,3], NA, ah$line2[,3]),
+                  line = list(color = v$color, width = v$width), showlegend = FALSE)
+      }
+    }
+  }
+
+  # origin marker
+  fig <- fig %>% add_markers(x = 0, y = 0, z = 0,
+                             marker = list(size = 4, color = "black"), showlegend = FALSE)
+
+  # camera setup: apply zoom by scaling the eye vector (zoom > 1 => closer)
+  cam_eye_scaled <- as.numeric(camera_eye) * (1 / zoom)
+  camera_list <- list(eye = list(x = cam_eye_scaled[1], y = cam_eye_scaled[2], z = cam_eye_scaled[3]))
+
+  # final layout
+  fig <- fig %>% layout(scene = list(
+    aspectmode = "cube",
+    xaxis = list(title = "X", range = xrange,
                  showgrid = TRUE, zeroline = FALSE, showbackground = FALSE),
-    yaxis = list(title = "Y", range = c(-L, L),
+    yaxis = list(title = "Y", range = yrange,
                  showgrid = TRUE, zeroline = FALSE, showbackground = FALSE),
-    zaxis = list(title = "Z", range = c(-L, L),
+    zaxis = list(title = "Z", range = zrange,
                  showgrid = TRUE, zeroline = FALSE, showbackground = FALSE),
-    camera = list(eye = list(x = 0.5, y = -1.5, z = 0.7))
+    camera = camera_list
   ))
 
-fig
+  fig
+}
+
+# ----------------- Example usage 1: default/autorange -----------------------
+vecs <- list(
+  list(vec = c(1, 0, 0), color = "red",   name = "v1"),
+  list(vec = c(0, 1, 1), color = "green", name = "v2"),
+  list(vec = c(.8, .8, .8), color = "orange", name = "v3")
+)
+
+pls <- list(
+  list(v1 = c(1,0,0), v2 = c(0,1,1), color = "lightblue", opacity = 0.45, scale = 1.8, n = 40)
+)
+
+# Auto axis-range (L computed internally), default camera and zoom=1
+fig1 <- make_3d_linear_plot(vectors = vecs, planes = pls)
+fig1  # print/plot the figure in notebook or Quarto
 
 ```
 :::
