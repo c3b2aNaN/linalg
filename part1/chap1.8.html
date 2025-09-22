@@ -386,6 +386,101 @@ window.Quarto = {
 </header>
 
 
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Summary of the Chapter
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>A transformation <span class="math inline">\(T\)</span> (not necessarily a linear transformation) that maps a vector <span class="math inline">\(\mathbf{x}\in\mathbb{R}^n\)</span> to a vector <span class="math inline">\(T(\mathbf{x})\in\mathbb{R}^m\)</span> is denoted as <span class="math inline">\(T: \mathbb{R}^n\to\mathbb{R}^m\)</span>. The <span class="math inline">\(\mathbb{R}^n\)</span> is called the domain, and the <span class="math inline">\(\mathbb{R}^m\)</span> is called the codomain.<br>
+Note that although the range of <span class="math inline">\(T\)</span>, <span class="math inline">\(\text{Range}(T)=\{T(\mathbf{x})\mid\mathbf{x}\in\mathbb{R}^n\}\)</span>, may not cover the entire codomain, the dimensionality is the same: <span class="math inline">\(\text{Range}(T)\subseteq \mathbb{R}^m\)</span>.</li>
+<li>A matrix transformation is denoted as <span class="math inline">\(T(\mathbf{x})=A\mathbf{x}\)</span> or <span class="math inline">\(\mathbf{x}\mapsto A\mathbf{x}\)</span>. Suppose <span class="math inline">\(A\)</span> is an <span class="math inline">\(m\times n\)</span> matrix, then the domain is <span class="math inline">\(\mathbb{R}^n\)</span>, and the codomain is <span class="math inline">\(\mathbb{R}^m\)</span>.</li>
+<li>A linear transformation, <span class="math inline">\(T\)</span>, satisfies the following conditions for all <span class="math inline">\(\mathbf{u}\)</span>, <span class="math inline">\(\mathbf{v}\)</span>, and <span class="math inline">\(c\)</span>:
+<ol type="1">
+<li><span class="math inline">\(T(\mathbf{u}+\mathbf{v})=T(\mathbf{u})+T(\mathbf{v})\)</span>;</li>
+<li><span class="math inline">\(T(c\mathbf{u})=c T(\mathbf{u})\)</span>.</li>
+</ol></li>
+<li>The above two conditions are equivalent to <span class="math inline">\(T(c\mathbf{u}+d\mathbf{v})=c T(\mathbf{u})+d T(\mathbf{v})\)</span>.</li>
+<li>If <span class="math inline">\(T\)</span> is a linear transformation, <span class="math inline">\(T(\mathbf{0})=\mathbf{0}\)</span>, but the zero vector on the left hand side is in <span class="math inline">\(\mathbb{R}^n\)</span>, while the one on the right hand side is in <span class="math inline">\(\mathbb{R}^m\)</span>. This characteristic can be proved by substituting <span class="math inline">\(u\)</span> and <span class="math inline">\(v\)</span> with zero vectors and using either of the two conditions.</li>
+</ul>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="A Simple Interaction">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>A Simple Interaction
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div>
+  <div style="display: flex; align-items: center; gap: 10px;">
+    <div style="display: flex; align-items: center; height: 90px;">
+      Enter a&nbsp;\(2 \times 2\)&nbsp;matrix:
+    </div>
+    <div style="display: grid; grid-template-columns: 50px 50px; grid-template-rows: 30px 30px; gap: 5px;">
+      <input type="number" id="a11" placeholder="a11" style="width:50px;">
+      <input type="number" id="a12" placeholder="a12" style="width:50px;">
+      <input type="number" id="a21" placeholder="a21" style="width:50px;">
+      <input type="number" id="a22" placeholder="a22" style="width:50px;">
+    </div>
+  </div>
+  <div id="result"></div>
+</div>
+
+<script>
+function updateFormula() {
+  // Read matrix values; default to 0 if empty
+  let a11 = document.getElementById('a11').value || 0;
+  let a12 = document.getElementById('a12').value || 0;
+  let a21 = document.getElementById('a21').value || 0;
+  let a22 = document.getElementById('a22').value || 0;
+
+  // Build LaTeX formula
+  let latex = `
+  \\[
+  \\begin{bmatrix}
+    ${a11} & ${a12} \\\\
+    ${a21} & ${a22}
+  \\end{bmatrix}
+  \\begin{bmatrix}
+    x_1 \\\\
+    x_2
+  \\end{bmatrix}
+  =
+  \\begin{bmatrix}
+    ${a11}x_1 + ${a12}x_2 \\\\
+    ${a21}x_1 + ${a22}x_2
+  \\end{bmatrix}
+  \\]
+  `;
+
+  // Display LaTeX
+  document.getElementById('result').innerHTML = latex;
+
+  // Trigger MathJax to render the new LaTeX
+  if (window.MathJax) {
+    MathJax.typesetPromise();
+  }
+}
+
+// Add event listeners to all inputs to update dynamically
+['a11','a12','a21','a22'].forEach(id => {
+  document.getElementById(id).addEventListener('input', updateFormula);
+});
+
+// Initial render
+updateFormula();
+</script>
+</div>
+</div>
 <div class="callout callout-style-simple callout-tip no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -399,7 +494,7 @@ window.Quarto = {
 </div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -408,7 +503,7 @@ window.Quarto = {
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-1" class="callout-1-contents callout-collapse collapse show">
+<div id="callout-3" class="callout-3-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
 <div class="proof solution">
 <p><span class="proof-title"><em>Solution</em> (Solution to <a href="#exr-1-8-eg1c" class="quarto-xref">Exercise&nbsp;<span>1</span></a>). </span><span class="math display">\[\begin{bmatrix}1 &amp; -3 &amp; 3 \\ 3 &amp; 5 &amp; 2 \\ -1 &amp; 7 &amp; -5\end{bmatrix} \sim \begin{bmatrix}1 &amp; -3 &amp; 3 \\ 0 &amp; 1 &amp; -.5 \\ 0 &amp; 0 &amp; 0\end{bmatrix}\]</span></p>
@@ -418,7 +513,7 @@ window.Quarto = {
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -427,7 +522,7 @@ window.Quarto = {
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-2" class="callout-2-contents callout-collapse collapse show">
+<div id="callout-4" class="callout-4-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
 <div class="proof remark">
 <p><span class="proof-title"><em>Remark</em>. </span>Having a <strong>row</strong> of zeros does not imply that the equation has multiple solutions. It all depends on free variables—namely, the coefficient columns.</p>
