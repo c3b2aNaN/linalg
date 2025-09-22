@@ -14,7 +14,9 @@ Note that although the range of $T$, $\text{Range}(T)=\{T(\mathbf{x})\mid\mathbf
 - If $T: \mathbb{R}^n \to \mathbb{R}^m$ is a linear transformation, $T(\mathbf{0})=\mathbf{0}$, but the zero vector on the left hand side is in $\mathbb{R}^n$, while the one on the right hand side is in $\mathbb{R}^m$. This characteristic can be proved by substituting $\mathbf{u}$ and $\mathbf{v}$ with zero vectors and using either of the two conditions. 
 :::
 
-::: {.callout-tip title="A Simple Interaction"}
+::: {.callout-tip}
+
+## A Simple Interaction
 
 ```{=html}
 <div>
@@ -83,6 +85,7 @@ function updateFormula() {
 updateFormula();
 </script>
 ```
+
 :::
 
 ::: {#exr-1-8-eg1c}
