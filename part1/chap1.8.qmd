@@ -1,5 +1,84 @@
 # 1.8 Introduction to Linear Transformations {.unnumbered}
 
+::: {.callout-tip}
+
+## Summary of the Chapter
+
+- A transformation $T$ (not necessarily a linear transformation) that maps a vector $\mathbf{x}\in\mathbb{R}^n$ to a vector $T(\mathbf{x})\in\mathbb{R}^m$ is denoted as $T: \mathbb{R}^n\to\mathbb{R}^m$. The $\mathbb{R}^n$ is called the domain, and the $\mathbb{R}^m$ is called the codomain. \
+Note that although the range of $T$, $\text{Range}(T)=\{T(\mathbf{x})\mid\mathbf{x}\in\mathbb{R}^n\}$, may not cover the entire codomain, the dimensionality is the same: $\text{Range}(T)\subseteq \mathbb{R}^m$.
+- A matrix transformation is denoted as $T(\mathbf{x})=A\mathbf{x}$ or $\mathbf{x}\mapsto A\mathbf{x}$. Suppose $A$ is an $m\times n$ matrix, then the domain is $\mathbb{R}^n$, and the codomain is $\mathbb{R}^m$.
+- A linear transformation, $T$, satisfies the following conditions for all $\mathbf{u}$, $\mathbf{v}$, and $c$:
+    1. $T(\mathbf{u}+\mathbf{v})=T(\mathbf{u})+T(\mathbf{v})$;
+    2. $T(c\mathbf{u})=c T(\mathbf{u})$.
+- The above two conditions are equivalent to $T(c\mathbf{u}+d\mathbf{v})=c T(\mathbf{u})+d T(\mathbf{v})$.
+- If $T$ is a linear transformation, $T(\mathbf{0})=\mathbf{0}$, but the zero vector on the left hand side is in $\mathbb{R}^n$, while the one on the right hand side is in $\mathbb{R}^m$. This characteristic can be proved by substituting $u$ and $v$ with zero vectors and using either of the two conditions. 
+:::
+
+::: {.callout-tip title="A Simple Interaction"}
+
+```{=html}
+<div>
+  <div style="display: flex; align-items: center; gap: 10px;">
+    <div style="display: flex; align-items: center; height: 90px;">
+      Enter a&nbsp;\(2 \times 2\)&nbsp;matrix:
+    </div>
+    <div style="display: grid; grid-template-columns: 50px 50px; grid-template-rows: 30px 30px; gap: 5px;">
+      <input type="number" id="a11" placeholder="a11" style="width:50px;">
+      <input type="number" id="a12" placeholder="a12" style="width:50px;">
+      <input type="number" id="a21" placeholder="a21" style="width:50px;">
+      <input type="number" id="a22" placeholder="a22" style="width:50px;">
+    </div>
+  </div>
+  <div id="result"></div>
+</div>
+
+<script>
+function updateFormula() {
+  // Read matrix values; default to 0 if empty
+  let a11 = document.getElementById('a11').value || 0;
+  let a12 = document.getElementById('a12').value || 0;
+  let a21 = document.getElementById('a21').value || 0;
+  let a22 = document.getElementById('a22').value || 0;
+
+  // Build LaTeX formula
+  let latex = `
+  \\[
+  \\begin{bmatrix}
+    ${a11} & ${a12} \\\\
+    ${a21} & ${a22}
+  \\end{bmatrix}
+  \\begin{bmatrix}
+    x_1 \\\\
+    x_2
+  \\end{bmatrix}
+  =
+  \\begin{bmatrix}
+    ${a11}x_1 + ${a12}x_2 \\\\
+    ${a21}x_1 + ${a22}x_2
+  \\end{bmatrix}
+  \\]
+  `;
+
+  // Display LaTeX
+  document.getElementById('result').innerHTML = latex;
+
+  // Trigger MathJax to render the new LaTeX
+  if (window.MathJax) {
+    MathJax.typesetPromise();
+  }
+}
+
+// Add event listeners to all inputs to update dynamically
+['a11','a12','a21','a22'].forEach(id => {
+  document.getElementById(id).addEventListener('input', updateFormula);
+});
+
+// Initial render
+updateFormula();
+</script>
+```
+:::
+
 ::: {#exr-1-8-eg1c}
 
 ## Example 1.c
