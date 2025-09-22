@@ -406,7 +406,7 @@ Note that although the range of <span class="math inline">\(T\)</span>, <span cl
 <li><span class="math inline">\(T(c\mathbf{u})=c T(\mathbf{u})\)</span>.</li>
 </ol></li>
 <li>The above two conditions are equivalent to <span class="math inline">\(T(c\mathbf{u}+d\mathbf{v})=c T(\mathbf{u})+d T(\mathbf{v})\)</span>.</li>
-<li>If <span class="math inline">\(T\)</span> is a linear transformation, <span class="math inline">\(T(\mathbf{0})=\mathbf{0}\)</span>, but the zero vector on the left hand side is in <span class="math inline">\(\mathbb{R}^n\)</span>, while the one on the right hand side is in <span class="math inline">\(\mathbb{R}^m\)</span>. This characteristic can be proved by substituting <span class="math inline">\(u\)</span> and <span class="math inline">\(v\)</span> with zero vectors and using either of the two conditions.</li>
+<li>If <span class="math inline">\(T: \mathbb{R}^n \to \mathbb{R}^m\)</span> is a linear transformation, <span class="math inline">\(T(\mathbf{0})=\mathbf{0}\)</span>, but the zero vector on the left hand side is in <span class="math inline">\(\mathbb{R}^n\)</span>, while the one on the right hand side is in <span class="math inline">\(\mathbb{R}^m\)</span>. This characteristic can be proved by substituting <span class="math inline">\(\mathbf{u}\)</span> and <span class="math inline">\(\mathbf{v}\)</span> with zero vectors and using either of the two conditions.</li>
 </ul>
 </div>
 </div>
@@ -422,14 +422,16 @@ Note that although the range of <span class="math inline">\(T\)</span>, <span cl
 <div class="callout-body-container callout-body">
 <div>
   <div style="display: flex; align-items: center; gap: 10px;">
-    <div style="display: flex; align-items: center; height: 90px;">
-      Enter a&nbsp;\(2 \times 2\)&nbsp;matrix:
+    <div style="display: flex; align-items: center; height: 120px;">
+      Enter a&nbsp;\(3 \times 2\)&nbsp;matrix:
     </div>
-    <div style="display: grid; grid-template-columns: 50px 50px; grid-template-rows: 30px 30px; gap: 5px;">
+    <div style="display: grid; grid-template-columns: 50px 50px; grid-template-rows: 30px 30px 30px; gap: 5px;">
       <input type="number" id="a11" placeholder="a11" style="width:50px;">
       <input type="number" id="a12" placeholder="a12" style="width:50px;">
       <input type="number" id="a21" placeholder="a21" style="width:50px;">
       <input type="number" id="a22" placeholder="a22" style="width:50px;">
+      <input type="number" id="a31" placeholder="a31" style="width:50px;">
+      <input type="number" id="a32" placeholder="a32" style="width:50px;">
     </div>
   </div>
   <div id="result"></div>
@@ -442,13 +444,16 @@ function updateFormula() {
   let a12 = document.getElementById('a12').value || 0;
   let a21 = document.getElementById('a21').value || 0;
   let a22 = document.getElementById('a22').value || 0;
+  let a31 = document.getElementById('a31').value || 0;
+  let a32 = document.getElementById('a32').value || 0;
 
-  // Build LaTeX formula
+  // Build LaTeX formula for transformation R^2 -> R^3
   let latex = `
   \\[
   \\begin{bmatrix}
     ${a11} & ${a12} \\\\
-    ${a21} & ${a22}
+    ${a21} & ${a22} \\\\
+    ${a31} & ${a32}
   \\end{bmatrix}
   \\begin{bmatrix}
     x_1 \\\\
@@ -457,7 +462,8 @@ function updateFormula() {
   =
   \\begin{bmatrix}
     ${a11}x_1 + ${a12}x_2 \\\\
-    ${a21}x_1 + ${a22}x_2
+    ${a21}x_1 + ${a22}x_2 \\\\
+    ${a31}x_1 + ${a32}x_2
   \\end{bmatrix}
   \\]
   `;
@@ -472,7 +478,7 @@ function updateFormula() {
 }
 
 // Add event listeners to all inputs to update dynamically
-['a11','a12','a21','a22'].forEach(id => {
+['a11','a12','a21','a22','a31','a32'].forEach(id => {
   document.getElementById(id).addEventListener('input', updateFormula);
 });
 

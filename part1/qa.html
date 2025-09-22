@@ -75,6 +75,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -367,7 +396,10 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>This is an answer.</p>
+<p>This explanation is based on how the textbook brings up these concepts.</p>
+<p>At first, the textbook introduces matrices using linear equations by writing the coefficients line by line. Therefore, a matrix can be a way of representing a system of linear equations. Then, an alternative way to represent the same system of linear equations, vector equations, are introduced. As a recap, a vector equation is defined as follows: <span class="math display">\[x_1\mathbf{v}_1+\dots+x_n\mathbf{v}_n=\mathbf{b}.\]</span> To be specific, the vectors discussed so far are column vectors. Subsequently, the linear combination of vectors are defined as <span class="math inline">\(c_1\mathbf{v}_1+\dots+c_n\mathbf{v}_n\)</span>. All linear combinations of the set of vectors are denoted as <span class="math inline">\(\text{span}\{\mathbf{v}_1,\dots,\mathbf{v}_n\}=\{c_1\mathbf{v}_1+\dots+c_n\mathbf{v_n}\mid c_1,\dots,c_n\in \mathbb{R}\}\)</span>.</p>
+<p>Afterward, the multiplication of a matrix and a <strong>column</strong> vector is defined: <span class="math inline">\(\begin{bmatrix}\mathbf{v}_1 &amp; \cdots &amp; \mathbf{v}_n\end{bmatrix}\begin{bmatrix}x_1 \\ \vdots \\ x_n\end{bmatrix}=x_1\mathbf{v}_1+\dots+x_n\mathbf{v}_n\)</span>. Observably, the result of the multiplication is a linear combination of <span class="math inline">\(\mathbf{v}_1,\dots,\mathbf{v}_n\)</span> using <span class="math inline">\(x_1,\dots,x_n\)</span> as the coefficients. Suppose <span class="math inline">\(\mathbf{v}_1,\dots,\mathbf{v}_n\in\mathbb{R}^m\)</span>, then <span class="math inline">\(\begin{bmatrix}\mathbf{v}_1 &amp; \cdots &amp; \mathbf{v}_n\end{bmatrix}\)</span> is an <span class="math inline">\(m\times n\)</span> matrix. Thus, the previously introduced vector equation can be written as <span class="math inline">\(A\mathbf{x}=\mathbf{b}\)</span>, where <span class="math inline">\(A=\begin{bmatrix}\mathbf{v}_1 &amp; \cdots &amp; \mathbf{v}_n\end{bmatrix}\)</span> and <span class="math inline">\(\mathbf{x}=\begin{bmatrix}x_1 \\ \vdots \\ x_n\end{bmatrix}\)</span>.</p>
+<p>Viewing the coefficients <span class="math inline">\(c_1,\dots,c_n\)</span> in linear combinations as the unknowns, finding a set of coefficients whose corresponding linear combination is <span class="math inline">\(\mathbf{b}\)</span> is equivalent to solving the vector equation <span class="math inline">\(c_1\mathbf{v}_1+\dots+c_n\mathbf{v}_n=\mathbf{b}\)</span>, or <span class="math inline">\(\begin{bmatrix}\mathbf{v}_1 &amp; \cdots &amp; \mathbf{v}_n\end{bmatrix}\begin{bmatrix}c_1\\\vdots\\c_n\end{bmatrix}=\mathbf{b}\)</span>, which all tie back to a set of linear equations. Later, the concept of linear independence is defined: <span class="math inline">\(A\mathbf{x}=\mathbf{0}\)</span> has only the trivial solution, which can be judged using the echelon forms of a matrix.</p>
 </div>
 </div>
 
