@@ -7,7 +7,7 @@ book:
   date: today
   chapters:
     - index.qmd
-    - notations.qmd
+    # - notations.qmd
     - part: "Part 1: Linear Equations in Linear Algebra"
       chapters:
       - part1/chap1.7.qmd
