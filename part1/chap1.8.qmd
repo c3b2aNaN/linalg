@@ -108,3 +108,30 @@ Since there are no free variables (**the last column is augmented**), there is e
 
 Having a **row** of zeros does not imply that the equation has multiple solutions. It all depends on free variables---namely, the coefficient columns.
 :::
+
+::: {#exr-1-8-25}
+
+## T25
+
+Given $\mathbf{v}\neq\mathbf{0}$ and $\mathbf{p}$ in $\mathbb{R}^n$, the **line** through $\mathbf{p}$ in the direction of $\mathbf{v}$ has the parametric equation $\mathbf{x} = \mathbf{p} + t\mathbf{v}$. Show that a linear transformation $T: \mathbb{R}^n \to \mathbb{R}^n$ maps this **line** onto another line or onto a single point (a degenerate line).
+:::
+
+::: {.solution}
+
+## Solution to [@exr-1-8-25]
+
+Two points to notice at first:
+
+1. It's something that won't be misunderstood but clarifies the definition of vectors. The textbook is rigorously phrasing the problem as "**the line through** $\mathbf{p}$ in the direction of $\mathbf{v}$";
+2. The equation is a **parametric** equation, so all vectors and lines in this problem are in $\mathbb{R}^n$. Do not confuse this with line equations.
+
+A paraphrase of the problem would be "does applying a linear transformation to this line always yield another line, or possibly a single point?"
+
+$$T(\mathbf{x})=T(\mathbf{p}+t\mathbf{v})$$
+According to the definition of linear transformations,
+$$T(\mathbf{p}+t\mathbf{v})=T(\mathbf{p})+t T(\mathbf{v}).$$
+
+Since $T:\mathbb{R}^n\to\mathbb{R}^n$ maps a vector in $\mathbb{R}^n$ to another vector in $\mathbb{R}^n$, $T(\mathbf{p})$ and $T(\mathbf{v})$ are both vectors in $\mathbb{R}^n$. Thus, the new line can be described as a line through $T(\mathbf{p})$ in the direction of $T(\mathbf{v})$.
+
+When $T(\mathbf{v})=\mathbf{0}$, the line will be mapped onto the single point at $T(\mathbf{p})$.
+:::
