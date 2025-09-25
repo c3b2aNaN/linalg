@@ -44,9 +44,9 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-f2e7a7605c80472e4829c77b95a905a7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-194232c968a292054ad9c2d54c766ee0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-f2e7a7605c80472e4829c77b95a905a7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-4ff66e45b39d49436fe97d3fe27b9920.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-7e34ecb6a0e7991f0346b0751d4a7c3f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-4ff66e45b39d49436fe97d3fe27b9920.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -526,6 +526,44 @@ updateFormula();
 <div class="callout-body-container callout-body">
 <div class="proof remark">
 <p><span class="proof-title"><em>Remark</em>. </span>Having a <strong>row</strong> of zeros does not imply that the equation has multiple solutions. It all depends on free variables—namely, the coefficient columns.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-tip no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="exr-1-8-25" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 2 (T25)</strong></span> Given <span class="math inline">\(\mathbf{v}\neq\mathbf{0}\)</span> and <span class="math inline">\(\mathbf{p}\)</span> in <span class="math inline">\(\mathbb{R}^n\)</span>, the <strong>line</strong> through <span class="math inline">\(\mathbf{p}\)</span> in the direction of <span class="math inline">\(\mathbf{v}\)</span> has the parametric equation <span class="math inline">\(\mathbf{x} = \mathbf{p} + t\mathbf{v}\)</span>. Show that a linear transformation <span class="math inline">\(T: \mathbb{R}^n \to \mathbb{R}^n\)</span> maps this <strong>line</strong> onto another line or onto a single point (a degenerate line).</p>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Solution (Solution to <a href="#exr-1-8-25" class="quarto-xref">Exercise&nbsp;<span>2</span></a>)
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<div class="proof solution">
+<p><span class="proof-title"><em>Solution</em> (Solution to <a href="#exr-1-8-25" class="quarto-xref">Exercise&nbsp;<span>2</span></a>). </span>Two points to notice at first:</p>
+<ol type="1">
+<li>It’s something that won’t be misunderstood but clarifies the definition of vectors. The textbook is rigorously phrasing the problem as “<strong>the line through</strong> <span class="math inline">\(\mathbf{p}\)</span> in the direction of <span class="math inline">\(\mathbf{v}\)</span>”;</li>
+<li>The equation is a <strong>parametric</strong> equation, so all vectors and lines in this problem are in <span class="math inline">\(\mathbb{R}^n\)</span>. Do not confuse this with line equations.</li>
+</ol>
+<p>A paraphrase of the problem would be “does applying a linear transformation to this line always yield another line, or possibly a single point?”</p>
+<p><span class="math display">\[T(\mathbf{x})=T(\mathbf{p}+t\mathbf{v})\]</span> According to the definition of linear transformations, <span class="math display">\[T(\mathbf{p}+t\mathbf{v})=T(\mathbf{p})+t T(\mathbf{v}).\]</span></p>
+<p>Since <span class="math inline">\(T:\mathbb{R}^n\to\mathbb{R}^n\)</span> maps a vector in <span class="math inline">\(\mathbb{R}^n\)</span> to another vector in <span class="math inline">\(\mathbb{R}^n\)</span>, <span class="math inline">\(T(\mathbf{p})\)</span> and <span class="math inline">\(T(\mathbf{v})\)</span> are both vectors in <span class="math inline">\(\mathbb{R}^n\)</span>. Thus, the new line can be described as a line through <span class="math inline">\(T(\mathbf{p})\)</span> in the direction of <span class="math inline">\(T(\mathbf{v})\)</span>.</p>
+<p>When <span class="math inline">\(T(\mathbf{v})=\mathbf{0}\)</span>, the line will be mapped onto the single point at <span class="math inline">\(T(\mathbf{p})\)</span>.</p>
 </div>
 </div>
 </div>
