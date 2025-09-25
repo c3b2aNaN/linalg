@@ -135,3 +135,8 @@ Since $T:\mathbb{R}^n\to\mathbb{R}^n$ maps a vector in $\mathbb{R}^n$ to another
 
 When $T(\mathbf{v})=\mathbf{0}$, the line will be mapped onto the single point at $T(\mathbf{p})$.
 :::
+
+::: {.remark}
+
+We now know that applying a linear transformation on a line generates a new line or a point (a degenerate line). *Quite linear, right?*
+:::
