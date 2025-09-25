@@ -123,7 +123,7 @@ Given $\mathbf{v}\neq\mathbf{0}$ and $\mathbf{p}$ in $\mathbb{R}^n$, the **line*
 Two points to notice at first:
 
 1. This is mentioned not because it could cause misunderstanding, but because it clarifies the meaning of vectors. The textbook is rigorously phrasing the problem as "**the line through** $\mathbf{p}$ in the direction of $\mathbf{v}$";
-2. The equation is a **parametric** equation, so all vectors and lines in this problem are in $\mathbb{R}^n$. Do not confuse this with $y=a+bx$, though it can also be written as $\begin{bmatrix}x\\ y\end{bmatrix}=\begin{bmatrix}0\\ a\end{bmatrix} + x\begin{bmatrix}1\\ b\end{bmatrix}$.
+2. The equation is a **parametric** equation, so all vectors and lines in this problem are in $\mathbb{R}^n$. Do not confuse this with $y=a+bx$, though the line equation can also be written as $\begin{bmatrix}x\\ y\end{bmatrix}=\begin{bmatrix}0\\ a\end{bmatrix} + x\begin{bmatrix}1\\ b\end{bmatrix}$.
 
 A paraphrase of the problem would be "does applying a linear transformation to this line always yield another line, or possibly a single point?"
 
