@@ -5,6 +5,8 @@ book:
   title: "Some Notes in Linear Algebra"
   author: "Scissor"
   date: today
+  repo-url: "https://github.com/c3b2aNaN/linalg"
+  repo-actions: [issue]
   chapters:
     - index.qmd
     # - notations.qmd
