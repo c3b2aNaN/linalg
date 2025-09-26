@@ -14,6 +14,7 @@ book:
       chapters:
       - part1/chap1.7.qmd
       - part1/chap1.8.qmd
+      - part1/chap1.9.qmd
       - part1/qa.qmd
     - references.qmd
 

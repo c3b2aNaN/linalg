@@ -109,6 +109,32 @@ Since there are no free variables (**the last column is augmented**), there is e
 Having a **row** of zeros does not imply that the equation has multiple solutions. It all depends on free variables---namely, the coefficient columns.
 :::
 
+::: {#exr-1-8-19}
+
+## T19
+
+Let $\mathbf{e}_1=\begin{bmatrix}1\\ 0\end{bmatrix}$, $\mathbf{e}_2=\begin{bmatrix}0\\ 1\end{bmatrix}$, $\mathbf{y}_1=\begin{bmatrix}2\\ 5\end{bmatrix}$, and $\mathbf{y}_2=\begin{bmatrix}-1\\ 6\end{bmatrix}$, and let $T: \mathbb{R}^2 \to \mathbb{R}^2$ be a linear transformation that maps $\mathbf{e}_1$ into $\mathbf{y}_1$ and maps $\mathbf{e}_2$ into $\mathbf{y}_2$. Find the images of $\begin{bmatrix}5\\ -3\end{bmatrix}$ and $\begin{bmatrix}x_1\\ x_2\end{bmatrix}$.
+:::
+
+::: {.solution}
+
+## Solution to [@exr-1-8-19]
+
+Though it's possible to solve the transformation matrix because all are in $\mathbb{R}^2$, the forms of $\mathbf{e}_1$ and $\mathbf{e}_2$ make us easy to represent any $\mathbb{R}^2$ vectors using $\mathbf{e}_1$ and $\mathbf{e}_2$.
+
+$$\begin{bmatrix}x_1\\ x_2\end{bmatrix}=x_1\mathbf{e}_1+x_2\mathbf{e}_2$$
+
+Thus,
+
+\begin{align*}
+T(\begin{bmatrix}x_1\\ x_2\end{bmatrix}) &= T(x_1\mathbf{e}_1+x_2\mathbf{e}_2) \\
+&= x_1 T(\mathbf{e}_1) + x_2 T(\mathbf{e}_2) \\
+&= x_1\mathbf{y}_1 + x_2\mathbf{y}_2
+\end{align*}
+
+A more general form will be discussed in the next chapter.
+:::
+
 ::: {#exr-1-8-25}
 
 ## T25
@@ -139,4 +165,15 @@ When $T(\mathbf{v})=\mathbf{0}$, the line will be mapped onto the single point a
 ::: {.remark}
 
 We now know that applying a linear transformation on a line generates a new line or a point (a degenerate line). *Quite linear, right?*
+:::
+
+::: {.callout-tip}
+
+## Is every linear transformation a matrix transformation?
+
+We know that every matrix transformation is a linear transformation since $A(\mathbf{u}+\mathbf{v})=A\mathbf{u}+A\mathbf{v}$ and $A(c\mathbf{u})=c(A\mathbf{u})$.
+
+> If we are working in finite-dimensional vector spacese with chosen bases (e.g. $\mathbb{R}^n\to\mathbb{R}^m$), then yes --- every linear transformation is a matrix transformation. The matrix depends on the choice of basis. (We will also learn this in the next chapter.) \
+> If we are working in infinite-dimensional vector spaces (like function spaces), then not every linear transformation corresponds to a finite matrix. For example, the derivative operator $D: C^\infty (\mathbb{R})\to C^\infty(\mathbb{R}),D(f)=f'$, is linear but cannot be represented by a finite matrix. \
+> *--- ChatGPT*
 :::
