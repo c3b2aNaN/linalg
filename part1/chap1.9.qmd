@@ -22,5 +22,19 @@ If the matrix $A$ isn't unique, let $B=\begin{bmatrix}\mathbf{b}_1 & \cdots & \m
 
 $$T(\mathbf{e}_j)=B\mathbf{e}_j=0\mathbf{b}_1+\dots+0\mathbf{b}_{j-1}+\mathbf{b}_j+0\mathbf{b}_{j+1}+\dots+0\mathbf{b}_n=\mathbf{b}_j$$
 
-However, we know that the $j$ th column of $A$ is also $T(\mathbf{e}_j)$. Thus, for every $1\leq j\leq n$, the $j$ th columns of $A$ and $B$ are equal, so $A=B$. 
+However, we know that the $j$ th column of $A$ is also $T(\mathbf{e}_j)$. Thus, for every $1\leq j\leq n$, the $j$ th columns of $A$ and $B$ are equal, so $A=B$.
+:::
+
+::: {.callout-tip}
+
+## If $\mathbf{e}_1,\dots,\mathbf{e}_n$ are any linear independent set of vectors
+
+Suppose we need to find $T(\mathbf{x})$. Since $\mathbf{e}_1,\dots,\mathbf{e}_n$ are linear independent, $\begin{bmatrix}\mathbf{e}_1 & \cdots & \mathbf{e}_n\end{bmatrix}$ has a pivot position at each row. The equation $\begin{bmatrix}\mathbf{e}_1 & \cdots & \mathbf{e}_n\end{bmatrix}\mathbf{t}=\mathbf{x}$ has a unique solution.
+$$\mathbf{t}=\begin{bmatrix}\mathbf{e}_1 & \cdots & \mathbf{e}_n\end{bmatrix}^{-1} \mathbf{x}$$
+\begin{align*}
+T(\mathbf{x})&=T(t_1\mathbf{e}_1+\dots+t_n\mathbf{e}_n) \\
+&=t_1 T(\mathbf{e}_1)+\dots+t_n T(\mathbf{e}_n) \\
+&=\begin{bmatrix}T(\mathbf{e}_1) & \cdots & T(\mathbf{e}_n)\end{bmatrix}\mathbf{t} \\
+&=\left(\begin{bmatrix}T(\mathbf{e}_1) & \cdots & T(\mathbf{e}_n)\end{bmatrix}\begin{bmatrix}\mathbf{e}_1 & \cdots & \mathbf{e}_n\end{bmatrix}^{-1}\right)\mathbf{x}
+\end{align*}
 :::
