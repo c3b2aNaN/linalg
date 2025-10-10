@@ -1,5 +1,7 @@
 # Questions and Answers {.unnumbered}
 
+## Questions from Others
+
 ::: {.callout-tip}
 
 ## What are the relationships between linear equations, vectors, matrices, and linear combinations?
@@ -15,4 +17,13 @@ $$\begin{bmatrix}\mathbf{v}_1 & \cdots & \mathbf{v}_n\end{bmatrix}\begin{bmatrix
 Observably, the result of the multiplication is a linear combination of $\mathbf{v}_1,\dots,\mathbf{v}_n$ using $x_1,\dots,x_n$ as the coefficients. Suppose $\mathbf{v}_1,\dots,\mathbf{v}_n\in\mathbb{R}^m$, then $\begin{bmatrix}\mathbf{v}_1 & \cdots & \mathbf{v}_n\end{bmatrix}$ is an $m\times n$ matrix. Thus, the previously introduced vector equation can be written as $A\mathbf{x}=\mathbf{b}$, where $A=\begin{bmatrix}\mathbf{v}_1 & \cdots & \mathbf{v}_n\end{bmatrix}$ and $\mathbf{x}=\begin{bmatrix}x_1 \\ \vdots \\ x_n\end{bmatrix}$.
 
 Viewing the coefficients $c_1,\dots,c_n$ in linear combinations as the unknowns, finding a set of coefficients whose corresponding linear combination is $\mathbf{b}$ is equivalent to solving the vector equation $c_1\mathbf{v}_1+\dots+c_n\mathbf{v}_n=\mathbf{b}$, or $\begin{bmatrix}\mathbf{v}_1 & \cdots & \mathbf{v}_n\end{bmatrix}\begin{bmatrix}c_1\\\vdots\\c_n\end{bmatrix}=\mathbf{b}$, which all tie back to a set of linear equations. Later, the concept of linear independence is defined: $A\mathbf{x}=\mathbf{0}$ has only the trivial solution, which can be judged using the echelon forms of a matrix.
+:::
+
+## My Stupid Questions
+
+::: {.callout-tip}
+
+## What does it mean to transform $\mathbf{e}_2$ to $\mathbf{e}_2-2\mathbf{e}_1$ ...
+
+Out of unknown reason, the author first interpreted this as mapping $x_2$ to $x_2-2x_1$. This is incorrect because $\mathbf{e}_1$ and $\mathbf{e}_2$ are vectors, not simple numbers. The result of a transformation $T: \mathbb{R}^2 \to \mathbb{R}^2$ that maps $\mathbf{e}_2$ to $\mathbf{e}_2-2\mathbf{e}_1$ and leaves $\mathbf{e}_1$ unchanged is very different. The transformation actually changes $x_1$ to $x_1-2x_2$ while leaving $x_2$ unchanged. Each $\mathbf{x}$ in the domain is a linear combination of the basis, and the image is also a linear combination of the images of the basis. Moreover, it wouldn't make sense to interpret the problem as mapping $x_2$ to $x_2-2x_1$ since such transformation cannot change the dimensionality. 
 :::
