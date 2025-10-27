@@ -1,0 +1,48 @@
+# 2.5 Matrix Factorizations {.unnumbered}
+
+## LU Factorization
+
+::: {.remark}
+
+Why $A$ needs to be reducible to echelon form *without row interchanges*?
+:::
+
+Since $(E_m\cdots E_1) A = U$, $A = (E_m\cdots E_1)^{-1} U$. We can show that $L$ is unique regardless that it's a unit lower triangular matrix.
+
+::: {#prp-2-5-Luniqueness}
+
+If $X$ is invertible, there is a unique $X$ that $XY=Z$.
+:::
+
+::: {.proof}
+
+## Proof of [@prp-2-5-Luniqueness]
+
+If $X'Y$ also equal $Z$,
+$$(X-X')Y=(Z-Z)=0$$
+Left-multiply by $X^{-1}$:
+$$(I-X^{-1}X')Y=0$$
+
+Assume $Y$ and $Z$ are non-zero. Then,
+$$X^{-1}X'=I$$
+$$X=X'$$
+:::
+
+::: {#prp-2-5-Lequiv}
+
+If $X$ is invertible, $X$ is a lower triangular matrix if and only if $X^{-1}$ is a lower triangular matrix.
+:::
+
+::: {.proof}
+
+## Proof of [@prp-2-5-Lequiv]
+
+If $X$ is a lower triangular matrix, reducing $\begin{bmatrix}X & I\end{bmatrix}$ to $\begin{bmatrix}I & X^{-1}\end{bmatrix}$ makes $X^{-1}$ inherit the lower triangular form.
+
+If $X^{-1}$ is a lower triangular matrix, $(X^{-1})^{-1}=X$ is a lower triangular matrix.
+:::
+
+Now, we need to prove that if $L$ is a lower triangular matrix, operations to reduce $A$ to $U$ must not involve row interchange. If the operations include row interchanges, suppose $E_k$ represents the last swap. After the $k$-th operation, there must exist an entry $(E_k(E_{k-1}\cdots E_1))_{pq}\neq 0$, where $p < q$. Because $E_k$ is the last swap, $(E_m\cdots E_{k+1})$ is a lower triangular matrix. It's also possible to show that for every $1\leq q' < q$, $(E_k\cdots E_1)_{pq'}=0$. Thus, 
+$$(E_m\cdots E_1)_{pq} = \text{row}_p(E_m\cdots E_{k+1})\cdot \text{col}_q(E_k\cdots E_1)\neq 0$$
+
+Combined with the uniqueness of $L$, $A$ must be reducible to echelon form without row interchanges.

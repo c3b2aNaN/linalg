@@ -17,6 +17,9 @@ book:
       - part1/chap1.9.qmd
       - part1/sum.qmd
       - part1/qa.qmd
+    - part: "Part 2: Matrix Algebra"
+      chapters:
+      - part2/chap2.5.qmd
     - references.qmd
 
 bibliography: references.bib
