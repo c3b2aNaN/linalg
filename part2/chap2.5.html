@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>1.9 The Matrix of a Linear Transformation – Some Notes in Linear Algebra</title>
+<title>2.5 Matrix Factorizations – Some Notes in Linear Algebra</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../part1/sum.html" rel="next">
-<link href="../part1/chap1.8.html" rel="prev">
+<link href="../references.html" rel="next">
+<link href="../part1/qa.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -278,7 +278,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../part1/chap1.7.html">Part 1: Linear Equations in Linear Algebra</a></li><li class="breadcrumb-item"><a href="../part1/chap1.9.html">1.9 The Matrix of a Linear Transformation</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../part2/chap2.5.html">Part 2: Matrix Algebra</a></li><li class="breadcrumb-item"><a href="../part2/chap2.5.html">2.5 Matrix Factorizations</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -338,7 +338,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../part1/chap1.9.html" class="sidebar-item-text sidebar-link active">
+  <a href="../part1/chap1.9.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">1.9 The Matrix of a Linear Transformation</span></a>
   </div>
 </li>
@@ -367,7 +367,7 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../part2/chap2.5.html" class="sidebar-item-text sidebar-link">
+  <a href="../part2/chap2.5.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">2.5 Matrix Factorizations</span></a>
   </div>
 </li>
@@ -384,16 +384,22 @@ window.Quarto = {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#lu-factorization" id="toc-lu-factorization" class="nav-link active" data-scroll-target="#lu-factorization">LU Factorization</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/c3b2aNaN/linalg/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../part1/chap1.7.html">Part 1: Linear Equations in Linear Algebra</a></li><li class="breadcrumb-item"><a href="../part1/chap1.9.html">1.9 The Matrix of a Linear Transformation</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../part2/chap2.5.html">Part 2: Matrix Algebra</a></li><li class="breadcrumb-item"><a href="../part2/chap2.5.html">2.5 Matrix Factorizations</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">1.9 The Matrix of a Linear Transformation</h1>
+<h1 class="title">2.5 Matrix Factorizations</h1>
 </div>
 
 
@@ -410,60 +416,94 @@ window.Quarto = {
 </header>
 
 
+<section id="lu-factorization" class="level2">
+<h2 class="anchored" data-anchor-id="lu-factorization">LU Factorization</h2>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Remark
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<div class="proof remark">
+<p><span class="proof-title"><em>Remark</em>. </span>Why <span class="math inline">\(A\)</span> needs to be reducible to echelon form <em>without row interchanges</em>?</p>
+</div>
+</div>
+</div>
+</div>
+<p>Since <span class="math inline">\((E_m\cdots E_1) A = U\)</span>, <span class="math inline">\(A = (E_m\cdots E_1)^{-1} U\)</span>. We can show that <span class="math inline">\(L\)</span> is unique regardless that it’s a unit lower triangular matrix.</p>
 <div class="callout callout-style-simple callout-note no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div id="thm-1-9-10" class="theorem">
-<p><span class="theorem-title"><strong>Theorem 1 (Theorem 10)</strong></span> Let <span class="math inline">\(T: \mathbb{R}^n \to \mathbb{R}^m\)</span> be a linear transformation. Then there exists a unique matrix <span class="math inline">\(A\)</span> such that <span class="math display">\[T(\mathbf{x})=A\mathbf{x}\quad\text{for all }\mathbf{x}\text{ in }\mathbb{R}^n\]</span> In fact, <span class="math inline">\(A\)</span> is the <span class="math inline">\(m\times n\)</span> matrix whose <span class="math inline">\(j\)</span> th column is the vector <span class="math inline">\(T(\mathbf{e}_j)\)</span>, where <span class="math inline">\(\mathbf{e}_j\)</span> is the <span class="math inline">\(j\)</span> th column of the identity matrix in <span class="math inline">\(\mathbb{R}^n\)</span>: <span class="math display">\[A=\begin{bmatrix}T(\mathbf{e}_1) &amp; \cdots &amp; T(\mathbf{e}_n)\end{bmatrix}\]</span></p>
+<div id="prp-2-5-Luniqueness" class="theorem proposition">
+<p><span class="theorem-title"><strong>Proposition 1</strong></span> If <span class="math inline">\(X\)</span> is invertible, there is a unique <span class="math inline">\(X\)</span> that <span class="math inline">\(XY=Z\)</span>.</p>
 </div>
 </div>
 </div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Proof (Proof of <a href="#thm-1-9-10" class="quarto-xref">Theorem&nbsp;<span>1</span></a>)
+<span class="screen-reader-only">Note</span>Proof (Proof of <a href="#prp-2-5-Luniqueness" class="quarto-xref">Proposition&nbsp;<span>1</span></a>)
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-1" class="callout-1-contents callout-collapse collapse show">
+<div id="callout-2" class="callout-2-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
 <div class="proof">
-<p><span class="proof-title"><em>Proof</em> (Proof of <a href="#thm-1-9-10" class="quarto-xref">Theorem&nbsp;<span>1</span></a>). </span>The theorem says that every <span class="math inline">\(T: \mathbb{R}^n \to \mathbb{R}^m\)</span> can be represented as a matrix transformation, but we just said not all linear transformations can be represented by a matrix. However, there’s a condition in this theorem. That is, <span class="math inline">\(T\)</span> maps a vector in <span class="math inline">\(\mathbb{R}^n\)</span>, a finite vector space, to a vector in <span class="math inline">\(\mathbb{R}^m\)</span>, also a finite vector space.</p>
-<p>The proof of the existence is on both the textbook and the previous chapter in this book (a partial proof), so we prove only the uniqueness here.</p>
-<p>If the matrix <span class="math inline">\(A\)</span> isn’t unique, let <span class="math inline">\(B=\begin{bmatrix}\mathbf{b}_1 &amp; \cdots &amp; \mathbf{b}_n\end{bmatrix}\neq A\)</span> be another matrix.</p>
-<p><span class="math display">\[T(\mathbf{e}_j)=B\mathbf{e}_j=0\mathbf{b}_1+\dots+0\mathbf{b}_{j-1}+\mathbf{b}_j+0\mathbf{b}_{j+1}+\dots+0\mathbf{b}_n=\mathbf{b}_j\]</span></p>
-<p>However, we know that the <span class="math inline">\(j\)</span> th column of <span class="math inline">\(A\)</span> is also <span class="math inline">\(T(\mathbf{e}_j)\)</span>. Thus, for every <span class="math inline">\(1\leq j\leq n\)</span>, the <span class="math inline">\(j\)</span> th columns of <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are equal, so <span class="math inline">\(A=B\)</span>.</p>
+<p><span class="proof-title"><em>Proof</em> (Proof of <a href="#prp-2-5-Luniqueness" class="quarto-xref">Proposition&nbsp;<span>1</span></a>). </span>If <span class="math inline">\(X'Y\)</span> also equal <span class="math inline">\(Z\)</span>, <span class="math display">\[(X-X')Y=(Z-Z)=0\]</span> Left-multiply by <span class="math inline">\(X^{-1}\)</span>: <span class="math display">\[(I-X^{-1}X')Y=0\]</span></p>
+<p>Assume <span class="math inline">\(Y\)</span> and <span class="math inline">\(Z\)</span> are non-zero. Then, <span class="math display">\[X^{-1}X'=I\]</span> <span class="math display">\[X=X'\]</span></p>
 </div>
 </div>
 </div>
 </div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="prp-2-5-Lequiv" class="theorem proposition">
+<p><span class="theorem-title"><strong>Proposition 2</strong></span> If <span class="math inline">\(X\)</span> is invertible, <span class="math inline">\(X\)</span> is a lower triangular matrix if and only if <span class="math inline">\(X^{-1}\)</span> is a lower triangular matrix.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>If <span class="math inline">\(\mathbf{e}_1,\dots,\mathbf{e}_n\)</span> are any linear independent set of vectors
+<span class="screen-reader-only">Note</span>Proof (Proof of <a href="#prp-2-5-Lequiv" class="quarto-xref">Proposition&nbsp;<span>2</span></a>)
 </div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
-<p>Suppose we need to find <span class="math inline">\(T(\mathbf{x})\)</span>. Since <span class="math inline">\(\mathbf{e}_1,\dots,\mathbf{e}_n\)</span> are linear independent, <span class="math inline">\(\begin{bmatrix}\mathbf{e}_1 &amp; \cdots &amp; \mathbf{e}_n\end{bmatrix}\)</span> has a pivot position at each row and each column. The equation <span class="math inline">\(\begin{bmatrix}\mathbf{e}_1 &amp; \cdots &amp; \mathbf{e}_n\end{bmatrix}\mathbf{t}=\mathbf{x}\)</span> has a unique solution. <span class="math display">\[\mathbf{t}=\begin{bmatrix}\mathbf{e}_1 &amp; \cdots &amp; \mathbf{e}_n\end{bmatrix}^{-1} \mathbf{x}\]</span> <span class="math display">\[\begin{align*}
-T(\mathbf{x})&amp;=T(t_1\mathbf{e}_1+\dots+t_n\mathbf{e}_n) \\
-&amp;=t_1 T(\mathbf{e}_1)+\dots+t_n T(\mathbf{e}_n) \\
-&amp;=\begin{bmatrix}T(\mathbf{e}_1) &amp; \cdots &amp; T(\mathbf{e}_n)\end{bmatrix}\mathbf{t} \\
-&amp;=\left(\begin{bmatrix}T(\mathbf{e}_1) &amp; \cdots &amp; T(\mathbf{e}_n)\end{bmatrix}\begin{bmatrix}\mathbf{e}_1 &amp; \cdots &amp; \mathbf{e}_n\end{bmatrix}^{-1}\right)\mathbf{x}
-\end{align*}\]</span></p>
+<div class="proof">
+<p><span class="proof-title"><em>Proof</em> (Proof of <a href="#prp-2-5-Lequiv" class="quarto-xref">Proposition&nbsp;<span>2</span></a>). </span>If <span class="math inline">\(X\)</span> is a lower triangular matrix, reducing <span class="math inline">\(\begin{bmatrix}X &amp; I\end{bmatrix}\)</span> to <span class="math inline">\(\begin{bmatrix}I &amp; X^{-1}\end{bmatrix}\)</span> makes <span class="math inline">\(X^{-1}\)</span> inherit the lower triangular form.</p>
+<p>If <span class="math inline">\(X^{-1}\)</span> is a lower triangular matrix, <span class="math inline">\((X^{-1})^{-1}=X\)</span> is a lower triangular matrix.</p>
 </div>
 </div>
+</div>
+</div>
+<p>Now, we need to prove that if <span class="math inline">\(L\)</span> is a lower triangular matrix, operations to reduce <span class="math inline">\(A\)</span> to <span class="math inline">\(U\)</span> must not involve row interchange. If the operations include row interchanges, suppose <span class="math inline">\(E_k\)</span> represents the last swap. After the <span class="math inline">\(k\)</span>-th operation, there must exist an entry <span class="math inline">\((E_k(E_{k-1}\cdots E_1))_{pq}\neq 0\)</span>, where <span class="math inline">\(p &lt; q\)</span>. Because <span class="math inline">\(E_k\)</span> is the last swap, <span class="math inline">\((E_m\cdots E_{k+1})\)</span> is a lower triangular matrix. It’s also possible to show that for every <span class="math inline">\(1\leq q' &lt; q\)</span>, <span class="math inline">\((E_k\cdots E_1)_{pq'}=0\)</span>. Thus, <span class="math display">\[(E_m\cdots E_1)_{pq} = \text{row}_p(E_m\cdots E_{k+1})\cdot \text{col}_q(E_k\cdots E_1)\neq 0\]</span></p>
+<p>Combined with the uniqueness of <span class="math inline">\(L\)</span>, <span class="math inline">\(A\)</span> must be reducible to echelon form without row interchanges.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -881,13 +921,13 @@ T(\mathbf{x})&amp;=T(t_1\mathbf{e}_1+\dots+t_n\mathbf{e}_n) \\
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../part1/chap1.8.html" class="pagination-link" aria-label="1.8 Introduction to Linear Transformations">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">1.8 Introduction to Linear Transformations</span>
+      <a href="../part1/qa.html" class="pagination-link" aria-label="Questions and Answers">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Questions and Answers</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../part1/sum.html" class="pagination-link" aria-label="Summary">
-        <span class="nav-page-text">Summary</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../references.html" class="pagination-link" aria-label="References">
+        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -896,4 +936,4 @@ T(\mathbf{x})&amp;=T(t_1\mathbf{e}_1+\dots+t_n\mathbf{e}_n) \\
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/c3b2aNaN/linalg/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/c3b2aNaN/linalg/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
