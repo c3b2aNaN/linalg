@@ -11,12 +11,14 @@ Since $(E_m\cdots E_1) A = U$, $A = (E_m\cdots E_1)^{-1} U$. We can show that $L
 
 ::: {#prp-2-5-Luniqueness}
 
+False.
+
 If $X$ is invertible, there is a unique $X$ that $XY=Z$.
 :::
 
 ::: {.proof}
 
-## Proof of [@prp-2-5-Luniqueness]
+## Proof of [@prp-2-5-Luniqueness] (False)
 
 If $X'Y$ also equal $Z$,
 $$(X-X')Y=(Z-Z)=0$$
