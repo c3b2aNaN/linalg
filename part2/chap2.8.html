@@ -483,6 +483,23 @@ EA &amp;= E\begin{bmatrix}\mathbf{a}_1 &amp; \cdots &amp; \mathbf{a}_n\end{bmatr
 </div>
 </div>
 </div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>How many ways?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This is a very generalized question, so to my current knowledge, I doubt that there’s a clean mathematical solution. Still, we can simplify the question and use computers to solve it. The following solution can be implemented in a time complexity of <span class="math inline">\(\mathcal{O}(n^3)\)</span> for row reduction and <span class="math inline">\(\mathcal{O}(n^2)\)</span> for the main algorithm.</p>
+<p>First of all, a set of vectors is no more than a set of linearly independent vectors plus some vectors that can be expressed as a linear combination of the linearly independent set of vectors. Denote the linearly independent set as <span class="math inline">\(S\)</span>, which is obviously a basis.</p>
+<p>Let’s consider the simplest case, adding a non-zero vector that is a multiple of a vector in <span class="math inline">\(S\)</span>. The answer is simply two in this case since we can either replace the original vector or not.</p>
+<p>If we now insert <span class="math inline">\(\mathbf{v}=\mathbf{v}_1+\mathbf{v}_2\)</span>, where <span class="math inline">\(\mathbf{v}_1,\mathbf{v}_2\in S\)</span>, the answer is three because <span class="math inline">\(\mathbf{v}+(-\mathbf{v}_1)+(-\mathbf{v}_2)=0\)</span> indicates that we can linearly combine the third if we have two in the basis.</p>
+<p>Thus, if we are to add a vector <span class="math inline">\(\mathbf{v}\)</span> which can be expressed as a linear combination of <span class="math inline">\(k\)</span> vectors in <span class="math inline">\(S\)</span> with non-zero coefficients, the answer is <span class="math inline">\(k+1\)</span>.</p>
+</div>
+</div>
 </section>
 <section id="null-space" class="level2">
 <h2 class="anchored" data-anchor-id="null-space">Null Space</h2>
@@ -514,7 +531,7 @@ EA &amp;= E\begin{bmatrix}\mathbf{a}_1 &amp; \cdots &amp; \mathbf{a}_n\end{bmatr
 </div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -523,7 +540,7 @@ EA &amp;= E\begin{bmatrix}\mathbf{a}_1 &amp; \cdots &amp; \mathbf{a}_n\end{bmatr
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-4" class="callout-4-contents callout-collapse collapse show">
+<div id="callout-5" class="callout-5-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
 <div class="proof">
 <p><span class="proof-title"><em>Proof</em> (Proof of <a href="#prp-2-8-nullspace-1" class="quarto-xref">Proposition&nbsp;<span>1</span></a>). </span>This is how we solve equations.</p>
@@ -556,7 +573,7 @@ EA &amp;= E\begin{bmatrix}\mathbf{a}_1 &amp; \cdots &amp; \mathbf{a}_n\end{bmatr
 </div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -565,7 +582,7 @@ EA &amp;= E\begin{bmatrix}\mathbf{a}_1 &amp; \cdots &amp; \mathbf{a}_n\end{bmatr
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-5" class="callout-5-contents callout-collapse collapse show">
+<div id="callout-6" class="callout-6-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
 <div class="proof">
 <p><span class="proof-title"><em>Proof</em> (Proof to <a href="#prp-2-8-nullspace-3" class="quarto-xref">Proposition&nbsp;<span>3</span></a> (Informal)). </span>The solution to the system of linear equations is also the solution to each linear equation.</p>
@@ -586,7 +603,7 @@ EA &amp;= E\begin{bmatrix}\mathbf{a}_1 &amp; \cdots &amp; \mathbf{a}_n\end{bmatr
 </div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -595,7 +612,7 @@ EA &amp;= E\begin{bmatrix}\mathbf{a}_1 &amp; \cdots &amp; \mathbf{a}_n\end{bmatr
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-6" class="callout-6-contents callout-collapse collapse show">
+<div id="callout-7" class="callout-7-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
 <div class="proof">
 <p><span class="proof-title"><em>Proof</em>. </span>Since <span class="math inline">\(A\mathbf{x}=\mathbf{0}\)</span>, by the rule of matrix multiplication, <span class="math inline">\(\operatorname{row}_i(A)\mathbf{x}=0\)</span> for all <span class="math inline">\(1\leq i\leq m\)</span>. Thus, each vector <span class="math inline">\(x\)</span> in <span class="math inline">\(\operatorname{Nul} A\)</span> is orthogonal to the row space.</p>
@@ -605,7 +622,7 @@ EA &amp;= E\begin{bmatrix}\mathbf{a}_1 &amp; \cdots &amp; \mathbf{a}_n\end{bmatr
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -614,7 +631,7 @@ EA &amp;= E\begin{bmatrix}\mathbf{a}_1 &amp; \cdots &amp; \mathbf{a}_n\end{bmatr
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-7" class="callout-7-contents callout-collapse collapse show">
+<div id="callout-8" class="callout-8-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
 <div class="proof remark">
 <p><span class="proof-title"><em>Remark</em>. </span>Let’s construct a basis for the null space of a row of <span class="math inline">\(A\)</span>.</p>
@@ -630,7 +647,7 @@ EA &amp;= E\begin{bmatrix}\mathbf{a}_1 &amp; \cdots &amp; \mathbf{a}_n\end{bmatr
 <section id="linear-transformation" class="level2">
 <h2 class="anchored" data-anchor-id="linear-transformation">Linear Transformation</h2>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -639,7 +656,7 @@ EA &amp;= E\begin{bmatrix}\mathbf{a}_1 &amp; \cdots &amp; \mathbf{a}_n\end{bmatr
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-8" class="callout-8-contents callout-collapse collapse show">
+<div id="callout-9" class="callout-9-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
 <div class="proof remark">
 <p><span class="proof-title"><em>Remark</em>. </span>Consider a linear transformation <span class="math inline">\(T: \mathbb{R}^n \to \mathbb{R}^m\)</span>, where <span class="math inline">\(T(\mathbf{x})=A\mathbf{x}\)</span>. <span class="math inline">\(\operatorname{Col}A\)</span> is the range of the transformation, and <span class="math inline">\(\operatorname{Nul}A\)</span> is the set of <span class="math inline">\(\mathbf{x}\in\mathbb{R}^n\)</span> whose image under transformation <span class="math inline">\(T\)</span> is <span class="math inline">\(\mathbf{0}\)</span>. Thus, for every <span class="math inline">\(T(\mathbf{u})=\mathbf{v}\)</span> and <span class="math inline">\(\mathbf{p}\in\operatorname{Nul}A\)</span>, <span class="math inline">\(T(\mathbf{u}+\mathbf{p})=\mathbf{v}\)</span>.</p>
