@@ -477,6 +477,7 @@ EA &amp;= E\begin{bmatrix}\mathbf{a}_1 &amp; \cdots &amp; \mathbf{a}_n\end{bmatr
 <div class="callout-body-container callout-body">
 <div class="proof remark">
 <p><span class="proof-title"><em>Remark</em>. </span>It’s easy to show that every non-pivot column can be written as a linear combination of the prior pivot columns by the definition of RREF, so we can safely remove the non-pivot columns from the set of the columns without changing the span. Thus, we have completely proved <a href="#thm-2-8-13" class="quarto-xref">Theorem&nbsp;<span>1</span></a>.</p>
+<p>Although the pivot columns of <span class="math inline">\(A\)</span> form a basis for <span class="math inline">\(\operatorname{Col} A\)</span>, it’s not the only basis that can be formed from the columns. If we do row reduction in a different order of the columns, the pivot columns may be different.</p>
 </div>
 </div>
 </div>
@@ -484,11 +485,126 @@ EA &amp;= E\begin{bmatrix}\mathbf{a}_1 &amp; \cdots &amp; \mathbf{a}_n\end{bmatr
 </section>
 <section id="null-space" class="level2">
 <h2 class="anchored" data-anchor-id="null-space">Null Space</h2>
-</section>
-<section id="linear-transformation" class="level2">
-<h2 class="anchored" data-anchor-id="linear-transformation">Linear Transformation</h2>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Definition (Null Space)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div id="def-2-8-nullspace" class="theorem definition">
+<p><span class="theorem-title"><strong>Definition 1 (Null Space)</strong></span> The <strong>null space</strong> of a matrix <span class="math inline">\(A\)</span> is the set <span class="math inline">\(\operatorname{Nul} A\)</span> of all solutions of the homogeneous equation <span class="math inline">\(A\mathbf{x}=\mathbf{0}\)</span>.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="prp-2-8-nullspace-1" class="theorem proposition">
+<p><span class="theorem-title"><strong>Proposition 1</strong></span> Row operations don’t change null space.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Proof (Proof of <a href="#prp-2-8-nullspace-1" class="quarto-xref">Proposition&nbsp;<span>1</span></a>)
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<div class="proof">
+<p><span class="proof-title"><em>Proof</em> (Proof of <a href="#prp-2-8-nullspace-1" class="quarto-xref">Proposition&nbsp;<span>1</span></a>). </span>This is how we solve equations.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="prp-2-8-nullspace-2" class="theorem proposition">
+<p><span class="theorem-title"><strong>Proposition 2</strong></span> Row operations don’t change row space, and the non-zero rows of the REF of a matrix form a basis of the row space.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="prp-2-8-nullspace-3" class="theorem proposition">
+<p><span class="theorem-title"><strong>Proposition 3</strong></span> By some observation, <span class="math inline">\(\operatorname{Nul} A=\bigcap_{i=1}^m \operatorname{Nul}\operatorname{row}_i(A)\)</span>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Proof (Proof to <a href="#prp-2-8-nullspace-3" class="quarto-xref">Proposition&nbsp;<span>3</span></a> (Informal))
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<div class="proof">
+<p><span class="proof-title"><em>Proof</em> (Proof to <a href="#prp-2-8-nullspace-3" class="quarto-xref">Proposition&nbsp;<span>3</span></a> (Informal)). </span>The solution to the system of linear equations is also the solution to each linear equation.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="prp-2-8-nullspace-4" class="theorem proposition">
+<p><span class="theorem-title"><strong>Proposition 4</strong></span> Each row is orthogonal to the null space of the row. The row space is orthogonal to the null space.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Proof
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<div class="proof">
+<p><span class="proof-title"><em>Proof</em>. </span>Since <span class="math inline">\(A\mathbf{x}=\mathbf{0}\)</span>, by the rule of matrix multiplication, <span class="math inline">\(\operatorname{row}_i(A)\mathbf{x}=0\)</span> for all <span class="math inline">\(1\leq i\leq m\)</span>. Thus, each vector <span class="math inline">\(x\)</span> in <span class="math inline">\(\operatorname{Nul} A\)</span> is orthogonal to the row space.</p>
+<p>The first sentence is a special case of the second.</p>
+</div>
+</div>
+</div>
+</div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -497,7 +613,32 @@ EA &amp;= E\begin{bmatrix}\mathbf{a}_1 &amp; \cdots &amp; \mathbf{a}_n\end{bmatr
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-3" class="callout-3-contents callout-collapse collapse show">
+<div id="callout-7" class="callout-7-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<div class="proof remark">
+<p><span class="proof-title"><em>Remark</em>. </span>Let’s construct a basis for the null space of a row of <span class="math inline">\(A\)</span>.</p>
+<p>The null space of the <span class="math inline">\(i\)</span>-th row is <span class="math inline">\(\{(x_1,\dots,x_n):r_1x_1+\dots+r_nx_n=0\}\)</span>, where <span class="math inline">\(r_j\)</span> is the <span class="math inline">\(j\)</span>-th column of the <span class="math inline">\(i\)</span>-th row of <span class="math inline">\(A\)</span>.</p>
+<p>Set <span class="math inline">\(x_2=1\)</span> and <span class="math inline">\(x_3,\dots,x_n=0\)</span>, we have <span class="math inline">\((-\frac{r_2}{r_1},1,0,\dots,0)\)</span> as one vector in the basis.</p>
+<p>Similarly, we can obtain the other <span class="math inline">\(n-2\)</span> vectors in the basis.</p>
+<p><span class="math display">\[(-\frac{r_3}{r_1},0,1,0,0,\dots,0)\]</span> <span class="math display">\[(-\frac{r_4}{r_1},0,0,1,0,\dots,0)\]</span> <span class="math display">\[\cdots\]</span> <span class="math display">\[(-\frac{r_n}{r_1},0,0,0,0,\dots,1)\]</span></p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="linear-transformation" class="level2">
+<h2 class="anchored" data-anchor-id="linear-transformation">Linear Transformation</h2>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Remark
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
 <div class="proof remark">
 <p><span class="proof-title"><em>Remark</em>. </span>Consider a linear transformation <span class="math inline">\(T: \mathbb{R}^n \to \mathbb{R}^m\)</span>, where <span class="math inline">\(T(\mathbf{x})=A\mathbf{x}\)</span>. <span class="math inline">\(\operatorname{Col}A\)</span> is the range of the transformation, and <span class="math inline">\(\operatorname{Nul}A\)</span> is the set of <span class="math inline">\(\mathbf{x}\in\mathbb{R}^n\)</span> whose image under transformation <span class="math inline">\(T\)</span> is <span class="math inline">\(\mathbf{0}\)</span>. Thus, for every <span class="math inline">\(T(\mathbf{u})=\mathbf{v}\)</span> and <span class="math inline">\(\mathbf{p}\in\operatorname{Nul}A\)</span>, <span class="math inline">\(T(\mathbf{u}+\mathbf{p})=\mathbf{v}\)</span>.</p>
