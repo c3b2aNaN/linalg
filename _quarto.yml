@@ -20,6 +20,7 @@ book:
     - part: "Part 2: Matrix Algebra"
       chapters:
       - part2/chap2.5.qmd
+      - part2/chap2.8.qmd
     - references.qmd
 
 bibliography: references.bib

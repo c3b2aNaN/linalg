@@ -1,0 +1,43 @@
+# 2.8 Subspaces of R {.unnumbered}
+
+## Column Space
+
+::: {#thm-2-8-13}
+
+## Theorem 13
+
+The pivot columns of a matrix $A$ form a basis for the column space of $A$.
+:::
+
+::: {.proof}
+
+## Proof of [@thm-2-8-13]
+
+Suppose $B$ is the RREF of $A$, then there's a sequence of elementary matrices, $E_1,\dots,E_p$, where $E_p\cdots E_1 A=B$. Let $E=E_p\cdots E_1$, so we have $EA=B$.
+
+Denote the columns of $A$ and $B$ as $\mathbf{a}_k$ and $\mathbf{b}_k$, respectively. The linear relationship in the columns of $A$ is preserved in the columns of $B$ because
+\begin{align}
+EA &= E\begin{bmatrix}\mathbf{a}_1 & \cdots & \mathbf{a}_n\end{bmatrix} \\
+&= \begin{bmatrix}E\mathbf{a}_1 & \cdots & E\mathbf{a}_n\end{bmatrix} \\
+&= \begin{bmatrix}\mathbf{b}_1 & \cdots & \mathbf{b}_n\end{bmatrix}
+\end{align}
+Thus, if $\mathbf{a}_k = \sum_{j\neq k} c_j\mathbf{a}_j$, $\mathbf{b}_k=E\mathbf{a}_k=E\sum_{j\neq k} c_j \mathbf{a}_j=\sum_{j\neq k} c_j E\mathbf{a}_j=\sum_{j\neq k} c_j\mathbf{b}_j$.
+
+Conversely, since $E$ is invertible, we can prove the linear relationship in the columns of $B$ is preserved in the columns of $A$ by replacing $E$ in the above proof with $E^{-1}$ and swapping $A$ and $B$.
+
+Therefore, we have proved the linear relationship is the same in both $A$ and $B$.
+:::
+
+::: {.remark}
+
+In [Chapter 1.7](../part1/chap1.7.qmd#pivot-columns-and-linear-independence) of this note, we have shown that the non-pivot columns can be written as a linear combination of the prior columns, so we can safely remove them from the set of the columns without changing the span. Thus, we have completely proved [@thm-2-8-13].
+:::
+
+## Null Space
+
+## Linear Transformation
+
+::: {.remark}
+
+Consider a linear transformation $T: \mathbb{R}^n \to \mathbb{R}^m$, where $T(\mathbf{x})=A\mathbf{x}$. $\operatorname{Col}A$ is the range of the transformation, and $\operatorname{Nul}A$ is the set of $\mathbf{x}\in\mathbb{R}^n$ whose image under transformation $T$ is $\mathbf{0}$. Thus, for every $T(\mathbf{u})=\mathbf{v}$ and $\mathbf{p}\in\operatorname{Nul}A$, $T(\mathbf{u}+\mathbf{p})=\mathbf{v}$.
+:::
