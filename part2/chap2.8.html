@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>1.8 Introduction to Linear Transformations – Some Notes in Linear Algebra</title>
+<title>2.8 Subspaces of R – Some Notes in Linear Algebra</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../part1/chap1.9.html" rel="next">
-<link href="../part1/chap1.7.html" rel="prev">
+<link href="../references.html" rel="next">
+<link href="../part2/chap2.5.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -278,7 +278,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../part1/chap1.7.html">Part 1: Linear Equations in Linear Algebra</a></li><li class="breadcrumb-item"><a href="../part1/chap1.8.html">1.8 Introduction to Linear Transformations</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../part2/chap2.5.html">Part 2: Matrix Algebra</a></li><li class="breadcrumb-item"><a href="../part2/chap2.8.html">2.8 Subspaces of R</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -332,7 +332,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../part1/chap1.8.html" class="sidebar-item-text sidebar-link active">
+  <a href="../part1/chap1.8.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">1.8 Introduction to Linear Transformations</span></a>
   </div>
 </li>
@@ -373,7 +373,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../part2/chap2.8.html" class="sidebar-item-text sidebar-link">
+  <a href="../part2/chap2.8.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">2.8 Subspaces of R</span></a>
   </div>
 </li>
@@ -390,16 +390,24 @@ window.Quarto = {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#column-space" id="toc-column-space" class="nav-link active" data-scroll-target="#column-space">Column Space</a></li>
+  <li><a href="#null-space" id="toc-null-space" class="nav-link" data-scroll-target="#null-space">Null Space</a></li>
+  <li><a href="#linear-transformation" id="toc-linear-transformation" class="nav-link" data-scroll-target="#linear-transformation">Linear Transformation</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/c3b2aNaN/linalg/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../part1/chap1.7.html">Part 1: Linear Equations in Linear Algebra</a></li><li class="breadcrumb-item"><a href="../part1/chap1.8.html">1.8 Introduction to Linear Transformations</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../part2/chap2.5.html">Part 2: Matrix Algebra</a></li><li class="breadcrumb-item"><a href="../part2/chap2.8.html">2.8 Subspaces of R</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">1.8 Introduction to Linear Transformations</h1>
+<h1 class="title">2.8 Subspaces of R</h1>
 </div>
 
 
@@ -416,270 +424,90 @@ window.Quarto = {
 </header>
 
 
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Summary of the Chapter
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<ul>
-<li>A transformation <span class="math inline">\(T\)</span> (not necessarily a linear transformation) that maps a vector <span class="math inline">\(\mathbf{x}\in\mathbb{R}^n\)</span> to a vector <span class="math inline">\(T(\mathbf{x})\in\mathbb{R}^m\)</span> is denoted as <span class="math inline">\(T: \mathbb{R}^n\to\mathbb{R}^m\)</span>. The <span class="math inline">\(\mathbb{R}^n\)</span> is called the domain, and the <span class="math inline">\(\mathbb{R}^m\)</span> is called the codomain.<br>
-Note that although the range of <span class="math inline">\(T\)</span>, <span class="math inline">\(\text{Range}(T)=\{T(\mathbf{x})\mid\mathbf{x}\in\mathbb{R}^n\}\)</span>, may not cover the entire codomain, the dimensionality is the same: <span class="math inline">\(\text{Range}(T)\subseteq \mathbb{R}^m\)</span>.</li>
-<li>A matrix transformation is denoted as <span class="math inline">\(T(\mathbf{x})=A\mathbf{x}\)</span> or <span class="math inline">\(\mathbf{x}\mapsto A\mathbf{x}\)</span>. Suppose <span class="math inline">\(A\)</span> is an <span class="math inline">\(m\times n\)</span> matrix, then the domain is <span class="math inline">\(\mathbb{R}^n\)</span>, and the codomain is <span class="math inline">\(\mathbb{R}^m\)</span>.</li>
-<li>A linear transformation, <span class="math inline">\(T\)</span>, satisfies the following conditions for all <span class="math inline">\(\mathbf{u}\)</span>, <span class="math inline">\(\mathbf{v}\)</span>, and <span class="math inline">\(c\)</span>:
-<ol type="1">
-<li><span class="math inline">\(T(\mathbf{u}+\mathbf{v})=T(\mathbf{u})+T(\mathbf{v})\)</span>;</li>
-<li><span class="math inline">\(T(c\mathbf{u})=c T(\mathbf{u})\)</span>.</li>
-</ol></li>
-<li>The above two conditions are equivalent to <span class="math inline">\(T(c\mathbf{u}+d\mathbf{v})=c T(\mathbf{u})+d T(\mathbf{v})\)</span>.</li>
-<li>If <span class="math inline">\(T: \mathbb{R}^n \to \mathbb{R}^m\)</span> is a linear transformation, <span class="math inline">\(T(\mathbf{0})=\mathbf{0}\)</span>, but the zero vector on the left hand side is in <span class="math inline">\(\mathbb{R}^n\)</span>, while the one on the right hand side is in <span class="math inline">\(\mathbb{R}^m\)</span>. This characteristic can be proved by substituting <span class="math inline">\(\mathbf{u}\)</span> and <span class="math inline">\(\mathbf{v}\)</span> with zero vectors and using either of the two conditions.</li>
-</ul>
-</div>
-</div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>A Simple Interaction
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<div>
-  <div style="display: flex; align-items: center; gap: 10px;">
-    <div style="display: flex; align-items: center; height: 120px;">
-      Enter a&nbsp;\(3 \times 2\)&nbsp;matrix:
-    </div>
-    <div style="display: grid; grid-template-columns: 50px 50px; grid-template-rows: 30px 30px 30px; gap: 5px;">
-      <input type="number" id="a11" placeholder="a11" style="width:50px;">
-      <input type="number" id="a12" placeholder="a12" style="width:50px;">
-      <input type="number" id="a21" placeholder="a21" style="width:50px;">
-      <input type="number" id="a22" placeholder="a22" style="width:50px;">
-      <input type="number" id="a31" placeholder="a31" style="width:50px;">
-      <input type="number" id="a32" placeholder="a32" style="width:50px;">
-    </div>
-  </div>
-  <div id="result"></div>
-</div>
-
-<script>
-function updateFormula() {
-  // Read matrix values; default to 0 if empty
-  let a11 = document.getElementById('a11').value || 0;
-  let a12 = document.getElementById('a12').value || 0;
-  let a21 = document.getElementById('a21').value || 0;
-  let a22 = document.getElementById('a22').value || 0;
-  let a31 = document.getElementById('a31').value || 0;
-  let a32 = document.getElementById('a32').value || 0;
-
-  // Build LaTeX formula for transformation R^2 -> R^3
-  let latex = `
-  \\[
-  \\begin{bmatrix}
-    ${a11} & ${a12} \\\\
-    ${a21} & ${a22} \\\\
-    ${a31} & ${a32}
-  \\end{bmatrix}
-  \\begin{bmatrix}
-    x_1 \\\\
-    x_2
-  \\end{bmatrix}
-  =
-  \\begin{bmatrix}
-    ${a11}x_1 + ${a12}x_2 \\\\
-    ${a21}x_1 + ${a22}x_2 \\\\
-    ${a31}x_1 + ${a32}x_2
-  \\end{bmatrix}
-  \\]
-  `;
-
-  // Display LaTeX
-  document.getElementById('result').innerHTML = latex;
-
-  // Trigger MathJax to render the new LaTeX
-  if (window.MathJax) {
-    MathJax.typesetPromise();
-  }
-}
-
-// Add event listeners to all inputs to update dynamically
-['a11','a12','a21','a22','a31','a32'].forEach(id => {
-  document.getElementById(id).addEventListener('input', updateFormula);
-});
-
-// Initial render
-updateFormula();
-</script>
-</div>
-</div>
-<div class="callout callout-style-simple callout-tip no-icon">
+<section id="column-space" class="level2">
+<h2 class="anchored" data-anchor-id="column-space">Column Space</h2>
+<div class="callout callout-style-simple callout-note no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div id="exr-1-8-eg1c" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 1 (Example 1.c)</strong></span> Let <span class="math inline">\(A=\begin{bmatrix}1 &amp; -3 \\ 3 &amp; 5 \\ -1 &amp; 7\end{bmatrix}, \mathbf{b}=\begin{bmatrix}3 \\ 2 \\ -5\end{bmatrix}\)</span>, and define a transformation <span class="math inline">\(T: \mathbb{R}^2 \to \mathbb{R}^3\)</span> by <span class="math inline">\(T(\mathbf{x})=A\mathbf{x}\)</span>. Is there more than one <span class="math inline">\(\mathbf{x}\)</span> whose image under <span class="math inline">\(T\)</span> is <span class="math inline">\(\mathbf{b}\)</span>?</p>
+<div id="thm-2-8-13" class="theorem">
+<p><span class="theorem-title"><strong>Theorem 1 (Theorem 13)</strong></span> The pivot columns of a matrix <span class="math inline">\(A\)</span> form a basis for the column space of <span class="math inline">\(A\)</span>.</p>
 </div>
 </div>
 </div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Proof (Proof of <a href="#thm-2-8-13" class="quarto-xref">Theorem&nbsp;<span>1</span></a>)
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<div class="proof">
+<p><span class="proof-title"><em>Proof</em> (Proof of <a href="#thm-2-8-13" class="quarto-xref">Theorem&nbsp;<span>1</span></a>). </span>Suppose <span class="math inline">\(B\)</span> is the RREF of <span class="math inline">\(A\)</span>, then there’s a sequence of elementary matrices, <span class="math inline">\(E_1,\dots,E_p\)</span>, where <span class="math inline">\(E_p\cdots E_1 A=B\)</span>. Let <span class="math inline">\(E=E_p\cdots E_1\)</span>, so we have <span class="math inline">\(EA=B\)</span>.</p>
+<p>Denote the columns of <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> as <span class="math inline">\(\mathbf{a}_k\)</span> and <span class="math inline">\(\mathbf{b}_k\)</span>, respectively. The linear relationship in the columns of <span class="math inline">\(A\)</span> is preserved in the columns of <span class="math inline">\(B\)</span> because <span class="math display">\[\begin{align}
+EA &amp;= E\begin{bmatrix}\mathbf{a}_1 &amp; \cdots &amp; \mathbf{a}_n\end{bmatrix} \\
+&amp;= \begin{bmatrix}E\mathbf{a}_1 &amp; \cdots &amp; E\mathbf{a}_n\end{bmatrix} \\
+&amp;= \begin{bmatrix}\mathbf{b}_1 &amp; \cdots &amp; \mathbf{b}_n\end{bmatrix}
+\end{align}\]</span> Thus, if <span class="math inline">\(\mathbf{a}_k = \sum_{j\neq k} c_j\mathbf{a}_j\)</span>, <span class="math inline">\(\mathbf{b}_k=E\mathbf{a}_k=E\sum_{j\neq k} c_j \mathbf{a}_j=\sum_{j\neq k} c_j E\mathbf{a}_j=\sum_{j\neq k} c_j\mathbf{b}_j\)</span>.</p>
+<p>Conversely, since <span class="math inline">\(E\)</span> is invertible, we can prove the linear relationship in the columns of <span class="math inline">\(B\)</span> is preserved in the columns of <span class="math inline">\(A\)</span> by replacing <span class="math inline">\(E\)</span> in the above proof with <span class="math inline">\(E^{-1}\)</span> and swapping <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>.</p>
+<p>Therefore, we have proved the linear relationship is the same in both <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Remark
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<div class="proof remark">
+<p><span class="proof-title"><em>Remark</em>. </span>In <a href="../part1/chap1.7.html#pivot-columns-and-linear-independence">Chapter 1.7</a> of this note, we have shown that the non-pivot columns can be written as a linear combination of the prior columns, so we can safely remove them from the set of the columns without changing the span. Thus, we have completely proved <a href="#thm-2-8-13" class="quarto-xref">Theorem&nbsp;<span>1</span></a>.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="null-space" class="level2">
+<h2 class="anchored" data-anchor-id="null-space">Null Space</h2>
+</section>
+<section id="linear-transformation" class="level2">
+<h2 class="anchored" data-anchor-id="linear-transformation">Linear Transformation</h2>
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Solution (Solution to <a href="#exr-1-8-eg1c" class="quarto-xref">Exercise&nbsp;<span>1</span></a>)
+<span class="screen-reader-only">Tip</span>Remark
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-3" class="callout-3-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
-<div class="proof solution">
-<p><span class="proof-title"><em>Solution</em> (Solution to <a href="#exr-1-8-eg1c" class="quarto-xref">Exercise&nbsp;<span>1</span></a>). </span><span class="math display">\[\begin{bmatrix}1 &amp; -3 &amp; 3 \\ 3 &amp; 5 &amp; 2 \\ -1 &amp; 7 &amp; -5\end{bmatrix} \sim \begin{bmatrix}1 &amp; -3 &amp; 3 \\ 0 &amp; 1 &amp; -.5 \\ 0 &amp; 0 &amp; 0\end{bmatrix}\]</span></p>
-<p>Since there are no free variables (<strong>the last column is augmented</strong>), there is exactly one <span class="math inline">\(x\)</span> such that <span class="math inline">\(T(\mathbf{x})=\mathbf{b}\)</span>.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="true" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Remark
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-4" class="callout-4-contents callout-collapse collapse show">
-<div class="callout-body-container callout-body">
 <div class="proof remark">
-<p><span class="proof-title"><em>Remark</em>. </span>Having a <strong>row</strong> of zeros does not imply that the equation has multiple solutions. It all depends on free variables—namely, the coefficient columns.</p>
+<p><span class="proof-title"><em>Remark</em>. </span>Consider a linear transformation <span class="math inline">\(T: \mathbb{R}^n \to \mathbb{R}^m\)</span>, where <span class="math inline">\(T(\mathbf{x})=A\mathbf{x}\)</span>. <span class="math inline">\(\operatorname{Col}A\)</span> is the range of the transformation, and <span class="math inline">\(\operatorname{Nul}A\)</span> is the set of <span class="math inline">\(\mathbf{x}\in\mathbb{R}^n\)</span> whose image under transformation <span class="math inline">\(T\)</span> is <span class="math inline">\(\mathbf{0}\)</span>. Thus, for every <span class="math inline">\(T(\mathbf{u})=\mathbf{v}\)</span> and <span class="math inline">\(\mathbf{p}\in\operatorname{Nul}A\)</span>, <span class="math inline">\(T(\mathbf{u}+\mathbf{p})=\mathbf{v}\)</span>.</p>
 </div>
 </div>
-</div>
-</div>
-<div class="callout callout-style-simple callout-tip no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
-<div id="exr-1-8-19" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 2 (T19)</strong></span> Let <span class="math inline">\(\mathbf{e}_1=\begin{bmatrix}1\\ 0\end{bmatrix}\)</span>, <span class="math inline">\(\mathbf{e}_2=\begin{bmatrix}0\\ 1\end{bmatrix}\)</span>, <span class="math inline">\(\mathbf{y}_1=\begin{bmatrix}2\\ 5\end{bmatrix}\)</span>, and <span class="math inline">\(\mathbf{y}_2=\begin{bmatrix}-1\\ 6\end{bmatrix}\)</span>, and let <span class="math inline">\(T: \mathbb{R}^2 \to \mathbb{R}^2\)</span> be a linear transformation that maps <span class="math inline">\(\mathbf{e}_1\)</span> into <span class="math inline">\(\mathbf{y}_1\)</span> and maps <span class="math inline">\(\mathbf{e}_2\)</span> into <span class="math inline">\(\mathbf{y}_2\)</span>. Find the images of <span class="math inline">\(\begin{bmatrix}5\\ -3\end{bmatrix}\)</span> and <span class="math inline">\(\begin{bmatrix}x_1\\ x_2\end{bmatrix}\)</span>.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="true" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Solution (Solution to <a href="#exr-1-8-19" class="quarto-xref">Exercise&nbsp;<span>2</span></a>)
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-5" class="callout-5-contents callout-collapse collapse show">
-<div class="callout-body-container callout-body">
-<div class="proof solution">
-<p><span class="proof-title"><em>Solution</em> (Solution to <a href="#exr-1-8-19" class="quarto-xref">Exercise&nbsp;<span>2</span></a>). </span>Though it’s possible to solve the transformation matrix because all are in <span class="math inline">\(\mathbb{R}^2\)</span>, the forms of <span class="math inline">\(\mathbf{e}_1\)</span> and <span class="math inline">\(\mathbf{e}_2\)</span> make us easy to represent any <span class="math inline">\(\mathbb{R}^2\)</span> vectors using <span class="math inline">\(\mathbf{e}_1\)</span> and <span class="math inline">\(\mathbf{e}_2\)</span>.</p>
-<p><span class="math display">\[\begin{bmatrix}x_1\\ x_2\end{bmatrix}=x_1\mathbf{e}_1+x_2\mathbf{e}_2\]</span></p>
-<p>Thus,</p>
-<p><span class="math display">\[\begin{align*}
-T(\begin{bmatrix}x_1\\ x_2\end{bmatrix}) &amp;= T(x_1\mathbf{e}_1+x_2\mathbf{e}_2) \\
-&amp;= x_1 T(\mathbf{e}_1) + x_2 T(\mathbf{e}_2) \\
-&amp;= x_1\mathbf{y}_1 + x_2\mathbf{y}_2
-\end{align*}\]</span></p>
-<p>A more general form will be discussed in the next chapter.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="callout callout-style-simple callout-tip no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
-<div id="exr-1-8-25" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 3 (T25)</strong></span> Given <span class="math inline">\(\mathbf{v}\neq\mathbf{0}\)</span> and <span class="math inline">\(\mathbf{p}\)</span> in <span class="math inline">\(\mathbb{R}^n\)</span>, the <strong>line</strong> through <span class="math inline">\(\mathbf{p}\)</span> in the direction of <span class="math inline">\(\mathbf{v}\)</span> has the parametric equation <span class="math inline">\(\mathbf{x} = \mathbf{p} + t\mathbf{v}\)</span>. Show that a linear transformation <span class="math inline">\(T: \mathbb{R}^n \to \mathbb{R}^n\)</span> maps this <strong>line</strong> onto another line or onto a single point (a degenerate line).</p>
-</div>
-</div>
-</div>
-</div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="true" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Solution (Solution to <a href="#exr-1-8-25" class="quarto-xref">Exercise&nbsp;<span>3</span></a>)
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-6" class="callout-6-contents callout-collapse collapse show">
-<div class="callout-body-container callout-body">
-<div class="proof solution">
-<p><span class="proof-title"><em>Solution</em> (Solution to <a href="#exr-1-8-25" class="quarto-xref">Exercise&nbsp;<span>3</span></a>). </span>Two points to notice at first:</p>
-<ol type="1">
-<li>This is mentioned not because it could cause misunderstanding, but because it clarifies the meaning of vectors. The textbook is rigorously phrasing the problem as “<strong>the line through</strong> <span class="math inline">\(\mathbf{p}\)</span> in the direction of <span class="math inline">\(\mathbf{v}\)</span>”;</li>
-<li>The equation is a <strong>parametric</strong> equation, so all vectors and lines in this problem are in <span class="math inline">\(\mathbb{R}^n\)</span>. Do not confuse this with <span class="math inline">\(y=a+bx\)</span>, though the line equation can also be written as <span class="math inline">\(\begin{bmatrix}x\\ y\end{bmatrix}=\begin{bmatrix}0\\ a\end{bmatrix} + x\begin{bmatrix}1\\ b\end{bmatrix}\)</span>.</li>
-</ol>
-<p>A paraphrase of the problem would be “does applying a linear transformation to this line always yield another line, or possibly a single point?”</p>
-<p><span class="math display">\[T(\mathbf{x})=T(\mathbf{p}+t\mathbf{v})\]</span> According to the definition of linear transformations, <span class="math display">\[T(\mathbf{p}+t\mathbf{v})=T(\mathbf{p})+t T(\mathbf{v}).\]</span></p>
-<p>Since <span class="math inline">\(T:\mathbb{R}^n\to\mathbb{R}^n\)</span> maps a vector in <span class="math inline">\(\mathbb{R}^n\)</span> to another vector in <span class="math inline">\(\mathbb{R}^n\)</span>, <span class="math inline">\(T(\mathbf{p})\)</span> and <span class="math inline">\(T(\mathbf{v})\)</span> are both vectors in <span class="math inline">\(\mathbb{R}^n\)</span>. Thus, the new line can be described as a line through <span class="math inline">\(T(\mathbf{p})\)</span> in the direction of <span class="math inline">\(T(\mathbf{v})\)</span>.</p>
-<p>When <span class="math inline">\(T(\mathbf{v})=\mathbf{0}\)</span>, the line will be mapped onto the single point at <span class="math inline">\(T(\mathbf{p})\)</span>.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="true" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Remark
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-7" class="callout-7-contents callout-collapse collapse show">
-<div class="callout-body-container callout-body">
-<div class="proof remark">
-<p><span class="proof-title"><em>Remark</em>. </span>We now know that applying a linear transformation on a line generates a new line or a point (a degenerate line). <em>Quite linear, right?</em></p>
-</div>
-</div>
-</div>
-</div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Is every linear transformation a matrix transformation?
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>We know that every matrix transformation is a linear transformation since <span class="math inline">\(A(\mathbf{u}+\mathbf{v})=A\mathbf{u}+A\mathbf{v}\)</span> and <span class="math inline">\(A(c\mathbf{u})=c(A\mathbf{u})\)</span>.</p>
-<blockquote class="blockquote">
-<p>If we are working in finite-dimensional vector spacese with chosen bases (e.g.&nbsp;<span class="math inline">\(\mathbb{R}^n\to\mathbb{R}^m\)</span>), then yes — every linear transformation is a matrix transformation. The matrix depends on the choice of basis. (We will also learn this in the next chapter.)<br>
-If we are working in infinite-dimensional vector spaces (like function spaces), then not every linear transformation corresponds to a finite matrix. For example, the derivative operator <span class="math inline">\(D: C^\infty (\mathbb{R})\to C^\infty(\mathbb{R}),D(f)=f'\)</span>, is linear but cannot be represented by a finite matrix.<br>
-<em>— ChatGPT</em></p>
-</blockquote>
 </div>
 </div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -1097,13 +925,13 @@ If we are working in infinite-dimensional vector spaces (like function spaces), 
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../part1/chap1.7.html" class="pagination-link" aria-label="1.7 Linear Independence">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">1.7 Linear Independence</span>
+      <a href="../part2/chap2.5.html" class="pagination-link" aria-label="2.5 Matrix Factorizations">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">2.5 Matrix Factorizations</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../part1/chap1.9.html" class="pagination-link" aria-label="1.9 The Matrix of a Linear Transformation">
-        <span class="nav-page-text">1.9 The Matrix of a Linear Transformation</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../references.html" class="pagination-link" aria-label="References">
+        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -1112,4 +940,4 @@ If we are working in infinite-dimensional vector spaces (like function spaces), 
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/c3b2aNaN/linalg/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/c3b2aNaN/linalg/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
