@@ -33,6 +33,8 @@ Therefore, we have proved the linear relationship is the same in both $A$ and $B
 It's easy to show that every non-pivot column can be written as a linear combination of the prior pivot columns by the definition of RREF, so we can safely remove the non-pivot columns from the set of the columns without changing the span. Thus, we have completely proved [@thm-2-8-13].
 
 Although the pivot columns of $A$ form a basis for $\operatorname{Col} A$, it's not the only basis that can be formed from the columns. If we do row reduction in a different order of the columns, the pivot columns may be different.
+
+There's an interesting question: how many ways are there to form a basis of $\operatorname{Col} A$ using the columns of $A$?
 :::
 
 ## Null Space
