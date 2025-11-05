@@ -34,10 +34,10 @@ It's easy to show that every non-pivot column can be written as a linear combina
 
 Although the pivot columns of $A$ form a basis for $\operatorname{Col} A$, it's not the only basis that can be formed from the columns. If we do row reduction in a different order of the columns, the pivot columns may be different.
 
-There's an interesting question: how many ways are there to form a basis of $\operatorname{Col} A$ using the columns of $A$?
+<!-- There's an interesting question: how many ways are there to form a basis of $\operatorname{Col} A$ using the columns of $A$? -->
 :::
 
-::: {.callout-tip}
+<!-- ::: {.callout-tip}
 
 ## How many ways?
 
@@ -50,7 +50,7 @@ Let's consider the simplest case, adding a non-zero vector that is a multiple of
 If we now insert $\mathbf{v}=\mathbf{v}_1+\mathbf{v}_2$, where $\mathbf{v}_1,\mathbf{v}_2\in S$, the answer is three because $\mathbf{v}+(-\mathbf{v}_1)+(-\mathbf{v}_2)=0$ indicates that we can linearly combine the third if we have two in the basis.
 
 Thus, if we are to add a vector $\mathbf{v}$ which can be expressed as a linear combination of $k$ vectors in $S$ with non-zero coefficients, the answer is $k+1$.
-:::
+::: -->
 
 ## Null Space
 
