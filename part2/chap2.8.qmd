@@ -37,6 +37,13 @@ Although the pivot columns of $A$ form a basis for $\operatorname{Col} A$, it's 
 <!-- There's an interesting question: how many ways are there to form a basis of $\operatorname{Col} A$ using the columns of $A$? -->
 :::
 
+::: {.remark}
+
+It may be a bit confusing why we need to prove both directions here. We can formalize this proof using sets. Let $U$ be the set that represents the linear relationship in $A$, then $U=\{(k,c_1,\dots,c_n):\mathbf{a}_k=c_1\mathbf{a}_1+\dots+c_{k-1}\mathbf{a}_{k-1}+c_{k+1}\mathbf{a}_{k+1}+\dots+c_n\mathbf{a}_n\}$. In the same way, we define $V$ to be a set containing the linear relationship in $B$.
+
+The direction that is directly written in the above proof shows that for every combination $t\in U$, $t\in V$, so $U\subseteq V$. The opposite direction shows that $V\subseteq U$, so together we show that $U=V$.
+:::
+
 <!-- ::: {.callout-tip}
 
 ## How many ways?
