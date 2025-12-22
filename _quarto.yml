@@ -21,6 +21,9 @@ book:
       chapters:
       - part2/chap2.5.qmd
       - part2/chap2.8.qmd
+    - part: "Part 4: Vector Spaces"
+      chapters:
+      - part4/chap4.x.qmd
     - references.qmd
 
 bibliography: references.bib
