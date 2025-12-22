@@ -510,16 +510,25 @@ window.Quarto = {
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>First, we formalize our original problem as follows: we aim to find the value of <span class="math inline">\(T(\mathbf{p})\)</span>, where <span class="math inline">\(T: \mathbf{p} \mapsto [\mathbf{p}]_\mathcal{B}\)</span>. If we knows <span class="math inline">\(T_1: \mathbf{p} \mapsto [\mathbf{p}]_{\mathcal{B}'}\)</span> and <span class="math inline">\(T_2: [\mathbf{p}]_{\mathcal{B}'} \mapsto [\mathbf{p}]_{\mathcal{B}}\)</span>, then <span class="math inline">\(T(\mathbf{p})=T_2(T_1(\mathbf{p}))\)</span>.</p>
-<p>In our case, <span class="math inline">\(\mathcal{B}'=\{1,t,t^2\}\)</span>, so <span class="math inline">\(T_1\)</span> is obvious. For each <span class="math inline">\(\mathbf{b}_k \in \mathcal{B}\)</span>,</p>
+<p>Let <span class="math inline">\(T: \mathbf{x} \mapsto [\mathbf{x}]_\mathcal{B}\)</span>, so <span class="math inline">\(T\)</span> is a bijective linear transformation.</p>
 <p><span class="math display">\[\begin{align}
-T(\mathbf{b}_k)&amp;=\mathbf{e}_k \\
-&amp;=T_2(T_2^{-1}(\mathbf{e}_k)) \\
-&amp;=T_2(T_2^{-1}([\mathbf{b}_k]_\mathcal{B})) \\
-&amp;=T_2([\mathbf{b}_k]_{\mathcal{B}'}) \\
-&amp;=T_2(T_1(\mathbf{b}_k))
+T(c_1\mathbf{b}_1 + \cdots + c_n\mathbf{b}_n) &amp;= c_1 T(\mathbf{b}_1) + \cdots + c_n T(\mathbf{b}_n) \\
+&amp;= T(\mathbf{p})
 \end{align}\]</span></p>
-<p>Since <span class="math inline">\(T,T_1,T_2\)</span> are linear transformations, by proving that they yield the same result for each vector in their basis, we have shown that <span class="math inline">\(T\)</span> is equivalent to applying <span class="math inline">\(T_1\)</span> and then <span class="math inline">\(T_2\)</span>.</p>
+<p>where <span class="math inline">\(T(\mathbf{b}_1),\dots,T(\mathbf{b}_n)\)</span> are the coordinate vectors of the basis. Since <span class="math inline">\(T\)</span> is bijective, we can apply <span class="math inline">\(T^{-1}\)</span> to both side of the equation. Reversing the steps gives the same coefficients.</p>
+<!-- First, we formalize our original problem as follows: we aim to find the value of $T(\mathbf{p})$, where $T: \mathbf{p} \mapsto [\mathbf{p}]_\mathcal{B}$. If we knows $T_1: \mathbf{p} \mapsto [\mathbf{p}]_{\mathcal{B}'}$ and $T_2: [\mathbf{p}]_{\mathcal{B}'} \mapsto [\mathbf{p}]_{\mathcal{B}}$, then $T(\mathbf{p})=T_2(T_1(\mathbf{p}))$.
+
+In our case, $\mathcal{B}'=\{1,t,t^2\}$, so $T_1$ is obvious. For each $\mathbf{b}_k \in \mathcal{B}$,
+
+\begin{align}
+T(\mathbf{b}_k)&=\mathbf{e}_k \\
+&=T_2(T_2^{-1}(\mathbf{e}_k)) \\
+&=T_2(T_2^{-1}([\mathbf{b}_k]_\mathcal{B})) \\
+&=T_2([\mathbf{b}_k]_{\mathcal{B}'}) \\
+&=T_2(T_1(\mathbf{b}_k))
+\end{align}
+
+Since $T,T_1,T_2$ are linear transformations, by proving that they yield the same result for each vector in their basis, we have shown that $T$ is equivalent to applying $T_1$ and then $T_2$. -->
 </div>
 </div>
 
