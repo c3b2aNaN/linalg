@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Questions and Answers – Some Notes in Linear Algebra</title>
+<title>Summary – Some Notes in Linear Algebra</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../part2/chap2.5.html" rel="next">
-<link href="../part1/sum.html" rel="prev">
+<link href="../references.html" rel="next">
+<link href="../part2/chap2.8.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -278,7 +278,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../part1/chap1.7.html">Part 1: Linear Equations in Linear Algebra</a></li><li class="breadcrumb-item"><a href="../part1/qa.html">Questions and Answers</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../part4/chap4.x.html">Part 4: Vector Spaces</a></li><li class="breadcrumb-item"><a href="../part4/chap4.x.html">Summary</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -348,7 +348,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../part1/qa.html" class="sidebar-item-text sidebar-link active">
+  <a href="../part1/qa.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Questions and Answers</span></a>
   </div>
 </li>
@@ -388,7 +388,7 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../part4/chap4.x.html" class="sidebar-item-text sidebar-link">
+  <a href="../part4/chap4.x.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Summary</span></a>
   </div>
 </li>
@@ -410,8 +410,7 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#questions-from-others" id="toc-questions-from-others" class="nav-link active" data-scroll-target="#questions-from-others">Questions from Others</a></li>
-  <li><a href="#my-stupid-questions" id="toc-my-stupid-questions" class="nav-link" data-scroll-target="#my-stupid-questions">My Stupid Questions</a></li>
+  <li><a href="#coordinate-systems" id="toc-coordinate-systems" class="nav-link active" data-scroll-target="#coordinate-systems">4.4 Coordinate Systems</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/c3b2aNaN/linalg/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -419,9 +418,9 @@ window.Quarto = {
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../part1/chap1.7.html">Part 1: Linear Equations in Linear Algebra</a></li><li class="breadcrumb-item"><a href="../part1/qa.html">Questions and Answers</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../part4/chap4.x.html">Part 4: Vector Spaces</a></li><li class="breadcrumb-item"><a href="../part4/chap4.x.html">Summary</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Questions and Answers</h1>
+<h1 class="title">Summary</h1>
 </div>
 
 
@@ -438,38 +437,89 @@ window.Quarto = {
 </header>
 
 
-<section id="questions-from-others" class="level2">
-<h2 class="anchored" data-anchor-id="questions-from-others">Questions from Others</h2>
+<section id="coordinate-systems" class="level2">
+<h2 class="anchored" data-anchor-id="coordinate-systems">4.4 Coordinate Systems</h2>
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="thm-4-8" class="theorem">
+<p><span class="theorem-title"><strong>Theorem 1 (Theorem 8)</strong></span> Let <span class="math inline">\(\mathcal{B}=\left\{\mathbf{b}_1, \ldots, \mathbf{b}_n\right\}\)</span> be a basis for a vector space <span class="math inline">\(V\)</span>. Then the coordinate mapping <span class="math inline">\(\mathbf{x} \mapsto[\mathbf{x}]_{\mathcal{B}}\)</span> is a one-to-one linear transformation from <span class="math inline">\(V\)</span> onto <span class="math inline">\(\mathbb{R}^n\)</span>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Remark
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<div class="proof remark">
+<p><span class="proof-title"><em>Remark</em>. </span>What this theorem means is that for a transformation <span class="math inline">\(T: V \to \mathbb{R}^n\)</span> which is defined as <span class="math inline">\(\mathbf{x} \mapsto [\mathbf{x}]_{\mathcal{B}}\)</span>, <span class="math inline">\(T\)</span> is a linear transformation and is both one-to-one and onto.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-tip no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="exr-4-4-p2" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 1 (Practice Problem 2)</strong></span> The set <span class="math inline">\(\mathcal{B}=\left\{1+t, 1+t^2, t+t^2\right\}\)</span> is a basis for <span class="math inline">\(\mathbb{P}_2\)</span>. Find the coordinate vector of <span class="math inline">\(\mathbf{p}(t)=6+3 t-t^2\)</span> relative to <span class="math inline">\(\mathcal{B}\)</span>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Remark
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<div class="proof remark">
+<p><span class="proof-title"><em>Remark</em>. </span>One way to solve this is to equate the coefficients of the equation <span class="math display">\[c_1(1+t) + c_2(1+t^2) + c_3(t+t^2)=6+3 t-t^2\]</span> and solve for <span class="math inline">\(c_1,c_2,c_3\)</span>.</p>
+<p>However, by observation, we can also first write <span class="math inline">\(1+t,1+t^2,t+t^2,6+3t-t^2\)</span> as <span class="math inline">\(\begin{bmatrix}1\\ 1\\ 0\end{bmatrix}, \begin{bmatrix}1\\ 0\\ 1\end{bmatrix}, \begin{bmatrix}0\\ 1\\ 1\end{bmatrix}, \begin{bmatrix}6\\ 3\\ -1\end{bmatrix}\)</span>. Then, as for subspaces in <span class="math inline">\(\mathbb{R}\)</span>, we solve the coefficients <span class="math inline">\(\mathbf{c}\)</span> using row reduction.</p>
+</div>
+</div>
+</div>
+</div>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>What are the relationships between linear equations, vectors, matrices, and linear combinations?
+<span class="screen-reader-only">Tip</span>Why does this method work?
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>This explanation is based on how the textbook brings up these concepts.</p>
-<p>At first, the textbook introduces matrices using linear equations by writing the coefficients line by line. Therefore, a matrix can be a way of representing a system of linear equations. Then, an alternative way to represent the same system of linear equations, vector equations, are introduced. As a recap, a vector equation is defined as follows: <span class="math display">\[x_1\mathbf{v}_1+\dots+x_n\mathbf{v}_n=\mathbf{b}.\]</span> To be specific, the vectors discussed so far are column vectors. Subsequently, the linear combination of vectors are defined as <span class="math inline">\(c_1\mathbf{v}_1+\dots+c_n\mathbf{v}_n\)</span>. All linear combinations of the set of vectors are denoted as <span class="math inline">\(\text{span}\{\mathbf{v}_1,\dots,\mathbf{v}_n\}=\{c_1\mathbf{v}_1+\dots+c_n\mathbf{v_n}\mid c_1,\dots,c_n\in \mathbb{R}\}\)</span>.</p>
-<p>Afterward, the multiplication of a matrix and a <strong>column</strong> vector is defined: <span class="math display">\[\begin{bmatrix}\mathbf{v}_1 &amp; \cdots &amp; \mathbf{v}_n\end{bmatrix}\begin{bmatrix}x_1 \\ \vdots \\ x_n\end{bmatrix}=x_1\mathbf{v}_1+\dots+x_n\mathbf{v}_n.\]</span> Observably, the result of the multiplication is a linear combination of <span class="math inline">\(\mathbf{v}_1,\dots,\mathbf{v}_n\)</span> using <span class="math inline">\(x_1,\dots,x_n\)</span> as the coefficients. Suppose <span class="math inline">\(\mathbf{v}_1,\dots,\mathbf{v}_n\in\mathbb{R}^m\)</span>, then <span class="math inline">\(\begin{bmatrix}\mathbf{v}_1 &amp; \cdots &amp; \mathbf{v}_n\end{bmatrix}\)</span> is an <span class="math inline">\(m\times n\)</span> matrix. Thus, the previously introduced vector equation can be written as <span class="math inline">\(A\mathbf{x}=\mathbf{b}\)</span>, where <span class="math inline">\(A=\begin{bmatrix}\mathbf{v}_1 &amp; \cdots &amp; \mathbf{v}_n\end{bmatrix}\)</span> and <span class="math inline">\(\mathbf{x}=\begin{bmatrix}x_1 \\ \vdots \\ x_n\end{bmatrix}\)</span>.</p>
-<p>Viewing the coefficients <span class="math inline">\(c_1,\dots,c_n\)</span> in linear combinations as the unknowns, finding a set of coefficients whose corresponding linear combination is <span class="math inline">\(\mathbf{b}\)</span> is equivalent to solving the vector equation <span class="math inline">\(c_1\mathbf{v}_1+\dots+c_n\mathbf{v}_n=\mathbf{b}\)</span>, or <span class="math inline">\(\begin{bmatrix}\mathbf{v}_1 &amp; \cdots &amp; \mathbf{v}_n\end{bmatrix}\begin{bmatrix}c_1\\\vdots\\c_n\end{bmatrix}=\mathbf{b}\)</span>, which all tie back to a set of linear equations. Later, the concept of linear independence is defined: <span class="math inline">\(A\mathbf{x}=\mathbf{0}\)</span> has only the trivial solution, which can be judged using the echelon forms of a matrix.</p>
-</div>
-</div>
-</section>
-<section id="my-stupid-questions" class="level2">
-<h2 class="anchored" data-anchor-id="my-stupid-questions">My Stupid Questions</h2>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>What does it mean to transform <span class="math inline">\(\mathbf{e}_2\)</span> to <span class="math inline">\(\mathbf{e}_2-2\mathbf{e}_1\)</span> …
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Out of unknown reason, the author first interpreted this as mapping <span class="math inline">\(x_2\)</span> to <span class="math inline">\(x_2-2x_1\)</span>. This is incorrect because <span class="math inline">\(\mathbf{e}_1\)</span> and <span class="math inline">\(\mathbf{e}_2\)</span> are vectors, not simple numbers. The result of a transformation <span class="math inline">\(T: \mathbb{R}^2 \to \mathbb{R}^2\)</span> that maps <span class="math inline">\(\mathbf{e}_2\)</span> to <span class="math inline">\(\mathbf{e}_2-2\mathbf{e}_1\)</span> and leaves <span class="math inline">\(\mathbf{e}_1\)</span> unchanged is very different. The transformation actually changes <span class="math inline">\(x_1\)</span> to <span class="math inline">\(x_1-2x_2\)</span> while leaving <span class="math inline">\(x_2\)</span> unchanged. Each <span class="math inline">\(\mathbf{x}\)</span> in the domain is a linear combination of the basis, and the image is also a linear combination of the images of the basis. Moreover, it wouldn’t make sense to interpret the problem as mapping <span class="math inline">\(x_2\)</span> to <span class="math inline">\(x_2-2x_1\)</span> since such transformation cannot change the dimensionality.</p>
+<p>First, we formalize our original problem as follows: we aim to find the value of <span class="math inline">\(T(\mathbf{p})\)</span>, where <span class="math inline">\(T: \mathbf{p} \mapsto [\mathbf{p}]_\mathcal{B}\)</span>. If we knows <span class="math inline">\(T_1: \mathbf{p} \mapsto [\mathbf{p}]_{\mathcal{B}'}\)</span> and <span class="math inline">\(T_2: [\mathbf{p}]_{\mathcal{B}'} \mapsto [\mathbf{p}]_{\mathcal{B}}\)</span>, then <span class="math inline">\(T(\mathbf{p})=T_2(T_1(\mathbf{p}))\)</span>.</p>
+<p>In our case, <span class="math inline">\(\mathcal{B}'=\{1,t,t^2\}\)</span>, so <span class="math inline">\(T_1\)</span> is obvious. For each <span class="math inline">\(\mathbf{b}_k \in \mathcal{B}\)</span>,</p>
+<p><span class="math display">\[\begin{align}
+T(\mathbf{b}_k)&amp;=\mathbf{e}_k \\
+&amp;=T_2(T_2^{-1}(\mathbf{e}_k)) \\
+&amp;=T_2(T_2^{-1}([\mathbf{b}_k]_\mathcal{B})) \\
+&amp;=T_2([\mathbf{b}_k]_{\mathcal{B}'}) \\
+&amp;=T_2(T_1(\mathbf{b}_k))
+\end{align}\]</span></p>
+<p>Since <span class="math inline">\(T,T_1,T_2\)</span> are linear transformations, by proving that they yield the same result for each vector in their basis, we have shown that <span class="math inline">\(T\)</span> is equivalent to applying <span class="math inline">\(T_1\)</span> and then <span class="math inline">\(T_2\)</span>.</p>
 </div>
 </div>
 
@@ -892,13 +942,13 @@ window.Quarto = {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../part1/sum.html" class="pagination-link" aria-label="Summary">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Summary</span>
+      <a href="../part2/chap2.8.html" class="pagination-link" aria-label="2.8 Subspaces of R">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">2.8 Subspaces of R</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../part2/chap2.5.html" class="pagination-link" aria-label="2.5 Matrix Factorizations">
-        <span class="nav-page-text">2.5 Matrix Factorizations</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../references.html" class="pagination-link" aria-label="References">
+        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
