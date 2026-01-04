@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Some Notes in Linear Algebra",
     "section": "",
-    "text": "Preface\nThis is a book about some notes when the author (currently a 12th grader) is taking an honor course in college linear algebra in high school. Subjected to the author’s knowledge level and the fact that the course targets high school students, this book may include some inaccurate parts. The author will try to avoid making mistakes, but in case you find a potential error while reading, please consult your instructor (or ChatGPT, Grok, DeepSeek, etc.).\nThe textbook used in the course, Linear Algebra and Its Applications 5th Edition (Lay, Lay, and McDonald 2016), serves as the basis of this book.\nThe indices of theorems, exercises, etc. may not be the same in the textbook. For example, “Theorem 1.1 (Theorem 7)” under Section 1.7 refers to Theorem 7 in Section 1.7 in the textbook, but it will sometimes be referred to as Theorem 1.1 in this book. Be cautious of the actual index.\nA reminder before all: do not try to prove definitions. They are called definitions because they are defined. What we prove are theorems. \\[\\begin{align}\\end{align}\\]\n\n\n\n\nLay, David C, Steven R Lay, and Judith McDonald. 2016. Linear Algebra and Its Applications. 5th ed. Pearson.",
+    "text": "Preface\nThis is a book about some notes when the author (currently a 12th grader) is taking an honor course in college linear algebra in high school. Subjected to the author’s knowledge level and the fact that the course targets high school students, this book may include some inaccurate parts. The author will try to avoid making mistakes, but in case you find a potential error while reading, please consult your instructor (or ChatGPT, Grok, DeepSeek, etc.).\nThe textbook used in the course, Linear Algebra and Its Applications 5th Edition (Lay, Lay, and McDonald 2016), serves as the basis of this book.\nThe indices of theorems, exercises, etc. may not be the same in the textbook. For example, “Theorem 1.1 (Theorem 7)” under Section 1.7 refers to Theorem 7 in Section 1.7 in the textbook, but it will sometimes be referred to as Theorem 1.1 in this book. Be cautious of the actual index.\n“[R]” in the title of some chapters means random thoughts and further explorations.\nA reminder before all: do not try to prove definitions. They are called definitions because they are defined. What we prove are theorems. \\[\\begin{align}\\end{align}\\]\n\n\n\n\nLay, David C, Steven R Lay, and Judith McDonald. 2016. Linear Algebra and Its Applications. 5th ed. Pearson.",
     "crumbs": [
       "Preface"
     ]
@@ -183,6 +183,17 @@
     "crumbs": [
       "Part 3: Determinants",
       "3.1 Introduction to Determinants"
+    ]
+  },
+  {
+    "objectID": "part3/chap3.2x.html",
+    "href": "part3/chap3.2x.html",
+    "title": "3.2 [R] Number Theory?",
+    "section": "",
+    "text": "TipRemark\n\n\n\n\n\n\nRemark. Suppose we have a matrix \\(A\\), two of whose rows are \\(\\bf{u}\\) and \\(\\bf{v}\\). How to construct a matrix \\(A'\\) with the opposite determinant?\nThe simplest way is to negate either row. However, we can also replace \\(\\bf{v}\\) with \\(\\bf{u} - \\bf{v}\\). In number theory, we have \\[-v \\equiv u-v \\pmod{u}\\]",
+    "crumbs": [
+      "Part 3: Determinants",
+      "3.2 [R] Number Theory?"
     ]
   },
   {
