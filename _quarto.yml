@@ -40,7 +40,7 @@ format:
     theme:
       light: flatly
       dark: darkly
-    include-before-body:
+    include-in-header:
       file: math-cmd.tex
   # pdf:
   #   header-includes:
