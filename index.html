@@ -95,11 +95,7 @@ div.csl-indent {
     "search-label": "Search"
   }
 }</script>
-
-
-</head>
-
-<body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+</head><body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
       const bodyEl = window.document.querySelector("body");
@@ -261,7 +257,50 @@ div.csl-indent {
     } else {
       toggleColorMode(false);
     }
-  </script>
+  </script>\(
+\newcommand{\bb}{\mathbb}
+\newcommand{\bf}{\mathbf}
+\newcommand{\L}{\left}
+\newcommand{\R}{\right}
+\newcommand{\C}{\mathbb{R}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\mat}[1]{\begin{bmatrix} #1 \end{bmatrix}}
+\newcommand{\qed}{\quad\square}
+\)
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+
+
+
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -426,16 +465,6 @@ div.csl-indent {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-\(
-\newcommand{\bb}{\mathbb}
-\newcommand{\bf}{\mathbf}
-\newcommand{\L}{\left}
-\newcommand{\R}{\right}
-\newcommand{\C}{\mathbb{R}}
-\newcommand{\F}{\mathbb{F}}
-\newcommand{\mat}[1]{\begin{bmatrix} #1 \end{bmatrix}}
-\newcommand{\qed}{\quad\square}
-\)
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -472,8 +501,8 @@ div.csl-indent {
 <h1 class="unnumbered">Preface</h1>
 <p>This is a book about some notes when the author (currently a 12th grader) is taking an honor course in college linear algebra in high school. Subjected to the author’s knowledge level and the fact that the course targets high school students, this book may include some inaccurate parts. The author will try to avoid making mistakes, but in case you find a potential error while reading, please consult your instructor (or ChatGPT, Grok, DeepSeek, etc.).</p>
 <p>The textbook used in the course, <em>Linear Algebra and Its Applications 5th Edition</em> <span class="citation" data-cites="linalgapp">(<a href="references.html#ref-linalgapp" role="doc-biblioref">Lay, Lay, and McDonald 2016</a>)</span>, serves as the basis of this book.</p>
-<p>The indices of theorems, exercises, etc. may not be the same in the textbook. For example, “Theorem 1.1 (Theorem 7)” under Section 1.7 refers to Theorem 7 in Section 1.7 in the textbook, but it will sometimes be refered to as Theorem 1.1 in this book. Be cautious of the actual index.</p>
-<p>A reminder before all: <strong>do not try to prove definitions.</strong> They are called <strong>definitions</strong> because they are <strong>defined</strong>. What we prove are theorems.</p>
+<p>The indices of theorems, exercises, etc. may not be the same in the textbook. For example, “Theorem 1.1 (Theorem 7)” under Section 1.7 refers to Theorem 7 in Section 1.7 in the textbook, but it will sometimes be referred to as Theorem 1.1 in this book. Be cautious of the actual index.</p>
+<p>A reminder before all: <strong>do not try to prove definitions.</strong> They are called <strong>definitions</strong> because they are <strong>defined</strong>. What we prove are theorems. <span class="math display">\[\begin{align}\end{align}\]</span></p>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
