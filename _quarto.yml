@@ -15,7 +15,6 @@ book:
       - part1/chap1.7.qmd
       - part1/chap1.8.qmd
       - part1/chap1.9.qmd
-      - part1/sum.qmd
       - part1/qa.qmd
     - part: "Part 2: Matrix Algebra"
       chapters:
@@ -24,6 +23,7 @@ book:
     - part: "Part 3: Determinants"
       chapters:
       - part3/chap3.1.qmd
+      - part3/chap3.2x.qmd
     - part: "Part 4: Vector Spaces"
       chapters:
       - part4/chap4.x.qmd

@@ -6,4 +6,6 @@ The textbook used in the course, *Linear Algebra and Its Applications 5th Editio
 
 The indices of theorems, exercises, etc. may not be the same in the textbook. For example, "Theorem 1.1 (Theorem 7)" under Section 1.7 refers to Theorem 7 in Section 1.7 in the textbook, but it will sometimes be referred to as Theorem 1.1 in this book. Be cautious of the actual index.
 
+"[R]" in the title of some chapters means **r**andom thoughts and further explorations.
+
 A reminder before all: **do not try to prove definitions.** They are called **definitions** because they are **defined**. What we prove are theorems. \begin{align}\end{align}

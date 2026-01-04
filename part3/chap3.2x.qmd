@@ -1,0 +1,9 @@
+# 3.2 [R] Number Theory? {.unnumbered}
+
+::: {.remark}
+
+Suppose we have a matrix $A$, two of whose rows are $\bf{u}$ and $\bf{v}$. How to construct a matrix $A'$ with the opposite determinant?
+
+The simplest way is to negate either row. However, we can also replace $\bf{v}$ with $\bf{u} - \bf{v}$. In number theory, we have
+$$-v \equiv u-v \pmod{u}$$
+:::
