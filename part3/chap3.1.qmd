@@ -1,0 +1,83 @@
+# 3.1 Introduction to Determinants {.unnumbered}
+
+::: {#def-3-1-det}
+
+## Determinant
+
+The textbook defines the determinant of a matrix to be the cofactor expansion of the first row.
+$$ \det A = a_{i1}C_{i1} + a_{i2}C_{i2} + \dots + a_{in}C_{in} $$
+:::
+
+::: {#thm-3-1-1}
+
+Informal. The cofactor expansion of any row or column equals the determinant of the matrix.
+:::
+
+::: {.remark}
+
+But how could all these cofactor expansions be the same? The textbook doesn't give a proof, stating "We omit the proof of the following fundamental theorem to avoid a lengthy digression." Since the book leans more on applications, it's true that the proof is not much relevant, but the proof will give a more foundational understanding of determinants.
+
+To prove [@thm-3-1-1], we show that there's a unique determinant function. Then, we show that the cofactor expansion of any row or column equals the unique determinant function.
+:::
+
+::: {.proof}
+
+## Proof of [@thm-3-1-1]
+
+::: {#thm-3-1-uniqueness}
+
+## Uniqueness of the Determinant
+
+There's a unique function $D: \mathbb{F}^{n\times n} \to \mathbb{F}$ that satisfies the following conditions, where we treat each row of the input matrix as a vector variable:
+
+1. $D$ is multilinear in rows.
+2. If two adjacent rows of $A$ are equal, $D(A) = 0$.
+3. $D(I) = 1$.
+:::
+
+"Multilinear" means if there are two matrices that are only different in the $i$-th row, then
+
+$$ D\left(\begin{bmatrix}\vdots\\ \mathbf{a}_i\\ \vdots \end{bmatrix}\right) + D\left(\begin{bmatrix}\vdots\\ \mathbf{b}_i\\ \vdots \end{bmatrix}\right) = D\left(\begin{bmatrix}\vdots\\ \mathbf{a}_i + \mathbf{b}_i \\ \vdots \end{bmatrix}\right) $$
+
+::: {.proof}
+
+## Proof of [@thm-3-1-uniqueness]
+
+Some other textbooks prove the latter theorems such as $\det AB = (\det A)(\det B)$ and row operations first and use these theorems to prove the uniqueness. However, since this textbook relies on the cofactor expansion (which implies uniqueness) to prove those theorems, we can't follow the same track.
+
+We have to use the multilinearity to separate each element from the matrix. Let $A$ be a $n\times n$ matrix, where $a_{ij}$ denotes the element on the $i$-th row and $j$-th column. Let $\bf{e}_j$ denotes the row vector whose $j$-th entry is $1$ and is the only non-zero entry.
+
+\begin{align}
+D(A) &= \sum_{i}a_{1i} D\L(\mat{\bf{e}_i \\ \vdots}\R) \\
+     &= \sum_{i}a_{1i} \sum_{j}a_{2j} D\L(\mat{\bf{e}_i \\ \bf{e}_j \\ \vdots}\R) \\
+     &= \sum_{i}a_{1i} \sum_{j}a_{2j} \cdots \sum_{p}a_{np} D\L(\mat{\bf{e}_i \\ \bf{e}_j \\ \vdots \\ \bf{e}_p}\R) \\
+     &= \sum_{i,j,\dots,p} a_{1i}a_{2j}\cdots a_{np} D\L(\mat{\bf{e}_i \\ \bf{e}_j \\ \vdots \\ \bf{e}_p}\R)
+\end{align}
+
+From above derivation, we see each determinant can be decompose to a summation of the determinants of matrices whose rows are standard basis vectors. Then, we compute the value for those special matrices. The determinant of such matrices simply equals $D\L(\mat{\bf{e}_i \\ \bf{e}_j \\ \vdots \\ \bf{e}_p}\R)$ because other combinations include zero coefficients. Let's denote this kind of matrices $E$.
+
+Suppose we are interchanging two adjacent rows. We omit the other rows since they are equal. If $i \neq j$, then
+
+\begin{align}
+D\L(\mat{\bf{e}_i+\bf{e}_j \\ \bf{e}_i+\bf{e}_j}\R) &= D\L(\mat{\bf{e}_i \\ \bf{e}_i}\R) + D\L(\mat{\bf{e}_i \\ \bf{e}_j}\R) + D\L(\mat{\bf{e}_j \\ \bf{e}_i}\R) + D\L(\mat{\bf{e}_j \\ \bf{e}_j}\R) \\
+&= D\L(\mat{\bf{e}_i \\ \bf{e}_j}\R) + D\L(\mat{\bf{e}_j \\ \bf{e}_i}\R) \\
+&= 0
+\end{align}
+
+Otherwise, the determinant is $0$. Thus, interchanging adjacent rows of $E$ negates the determinant. If $E$ contains equal rows, by swapping rows, the determinant is $0$. Otherwise, since $D(I)=1$, $D(E) = (-1)^k$, where $k$ is the number of reverse pairs in the sequence of the positions of ones. This is because we need $k$ times of adjacent interchanges to transform $I$ to $E$.
+
+Now we obtain the value of each basic component of $D$. $\qed$
+:::
+
+We now prove cofactor expansions by a row satisfy multilinearity. Suppose we are applying cofactor expansion on the $k$-th row. If the $k$-th row is the row we operate, it's trivial that multilinearity is satisfied. By mathematical induction, we prove the other case.
+
+Because cofactor expansions are multilinear, to prove the second property, we again only need to verify that it is true for $E$ (in the above proof). If two adjacent rows are equal, then all cofactors will be zero because they contain a zero row. Thus, the result of the cofactor expansion is also zero.
+
+The third property is obviously true for cofactor expansions, so we prove that row cofactor expansions equal the determinant.
+
+We now prove column cofactor expansions satisfy multilinearity. Either scalar multiplication or addition can be proven by dividing into two situations. First, for entries that are not on the selected **row**, this is true by induction. For the entry on the selected row, we split the coefficient.
+
+For the second property, we again examine whether it's true for $E$. If the column contains more than a $1$, then the cofactors will be zero by induction because there will be zero rows in the sub-matrices. Otherwise, we finish our proof by induction.
+
+After verifying the last property, we finally complete our proof for [@thm-3-1-1]. $\qed$
+:::
