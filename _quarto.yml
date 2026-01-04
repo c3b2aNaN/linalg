@@ -21,6 +21,9 @@ book:
       chapters:
       - part2/chap2.5.qmd
       - part2/chap2.8.qmd
+    - part: "Part 3: Determinants"
+      chapters:
+      - part3/chap3.1.qmd
     - part: "Part 4: Vector Spaces"
       chapters:
       - part4/chap4.x.qmd
@@ -37,6 +40,8 @@ format:
     theme:
       light: flatly
       dark: darkly
+    include-before-body:
+      file: math-cmd.tex
   # pdf:
   #   header-includes:
   #     - \usepackage{amsmath}
