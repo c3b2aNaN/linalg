@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>2.5 Matrix Factorizations – Some Notes in Linear Algebra</title>
+<title>3.1 Introduction to Determinants – Some Notes in Linear Algebra</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../part2/chap2.8.html" rel="next">
-<link href="../part1/qa.html" rel="prev">
+<link href="../part4/chap4.x.html" rel="next">
+<link href="../part2/chap2.8.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -278,7 +278,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../part2/chap2.5.html">Part 2: Matrix Algebra</a></li><li class="breadcrumb-item"><a href="../part2/chap2.5.html">2.5 Matrix Factorizations</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../part3/chap3.1.html">Part 3: Determinants</a></li><li class="breadcrumb-item"><a href="../part3/chap3.1.html">3.1 Introduction to Determinants</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -365,7 +365,7 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../part2/chap2.5.html" class="sidebar-item-text sidebar-link active">
+  <a href="../part2/chap2.5.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">2.5 Matrix Factorizations</span></a>
   </div>
 </li>
@@ -388,7 +388,7 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../part3/chap3.1.html" class="sidebar-item-text sidebar-link">
+  <a href="../part3/chap3.1.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">3.1 Introduction to Determinants</span></a>
   </div>
 </li>
@@ -422,14 +422,8 @@ window.Quarto = {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
-   
-  <ul>
-  <li><a href="#lu-factorization" id="toc-lu-factorization" class="nav-link active" data-scroll-target="#lu-factorization">LU Factorization</a></li>
-  </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/c3b2aNaN/linalg/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -445,9 +439,9 @@ window.Quarto = {
 \newcommand{\qed}{\quad\square}
 \)
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../part2/chap2.5.html">Part 2: Matrix Algebra</a></li><li class="breadcrumb-item"><a href="../part2/chap2.5.html">2.5 Matrix Factorizations</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../part3/chap3.1.html">Part 3: Determinants</a></li><li class="breadcrumb-item"><a href="../part3/chap3.1.html">3.1 Introduction to Determinants</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">2.5 Matrix Factorizations</h1>
+<h1 class="title">3.1 Introduction to Determinants</h1>
 </div>
 
 
@@ -464,10 +458,35 @@ window.Quarto = {
 </header>
 
 
-<section id="lu-factorization" class="level2">
-<h2 class="anchored" data-anchor-id="lu-factorization">LU Factorization</h2>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Definition (Determinant)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div id="def-3-1-det" class="theorem definition">
+<p><span class="theorem-title"><strong>Definition 1 (Determinant)</strong></span> The textbook defines the determinant of a matrix to be the cofactor expansion of the first row. <span class="math display">\[ \det A = a_{i1}C_{i1} + a_{i2}C_{i2} + \dots + a_{in}C_{in} \]</span></p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="thm-3-1-1" class="theorem">
+<p><span class="theorem-title"><strong>Theorem 1</strong></span> Informal. The cofactor expansion of any row or column equals the determinant of the matrix.</p>
+</div>
+</div>
+</div>
+</div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -476,83 +495,94 @@ window.Quarto = {
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-1" class="callout-1-contents callout-collapse collapse show">
+<div id="callout-2" class="callout-2-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
 <div class="proof remark">
-<p><span class="proof-title"><em>Remark</em>. </span>Why <span class="math inline">\(A\)</span> needs to be reducible to echelon form <em>without row interchanges</em>?</p>
-</div>
-</div>
-</div>
-</div>
-<p>Since <span class="math inline">\((E_m\cdots E_1) A = U\)</span>, <span class="math inline">\(A = (E_m\cdots E_1)^{-1} U\)</span>. We can show that <span class="math inline">\(L\)</span> is unique regardless that it’s a unit lower triangular matrix.</p>
-<div class="callout callout-style-simple callout-note no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
-<div id="prp-2-5-Luniqueness" class="theorem proposition">
-<p><span class="theorem-title"><strong>Proposition 1</strong></span> False.</p>
-<p>If <span class="math inline">\(X\)</span> is invertible, there is a unique <span class="math inline">\(X\)</span> that <span class="math inline">\(XY=Z\)</span>.</p>
+<p><span class="proof-title"><em>Remark</em>. </span>But how could all these cofactor expansions be the same? The textbook doesn’t give a proof, stating “We omit the proof of the following fundamental theorem to avoid a lengthy digression.” Since the book leans more on applications, it’s true that the proof is not much relevant, but the proof will give a more foundational understanding of determinants.</p>
+<p>To prove <a href="#thm-3-1-1" class="quarto-xref">Theorem&nbsp;<span>1</span></a>, we show that there’s a unique determinant function. Then, we show that the cofactor expansion of any row or column equals the unique determinant function.</p>
 </div>
 </div>
 </div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Proof (Proof of <a href="#prp-2-5-Luniqueness" class="quarto-xref">Proposition&nbsp;<span>1</span></a> (False))
+<span class="screen-reader-only">Note</span>Proof (Proof of <a href="#thm-3-1-1" class="quarto-xref">Theorem&nbsp;<span>1</span></a>)
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-2" class="callout-2-contents callout-collapse collapse show">
+<div id="callout-4" class="callout-4-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
 <div class="proof">
-<p><span class="proof-title"><em>Proof</em> (Proof of <a href="#prp-2-5-Luniqueness" class="quarto-xref">Proposition&nbsp;<span>1</span></a> (False)). </span>If <span class="math inline">\(X'Y\)</span> also equal <span class="math inline">\(Z\)</span>, <span class="math display">\[(X-X')Y=(Z-Z)=0\]</span> Left-multiply by <span class="math inline">\(X^{-1}\)</span>: <span class="math display">\[(I-X^{-1}X')Y=0\]</span></p>
-<p>Assume <span class="math inline">\(Y\)</span> and <span class="math inline">\(Z\)</span> are non-zero. Then, <span class="math display">\[X^{-1}X'=I\]</span> <span class="math display">\[X=X'\]</span></p>
-</div>
-</div>
-</div>
-</div>
+<p><span class="proof-title"><em>Proof</em> (Proof of <a href="#thm-3-1-1" class="quarto-xref">Theorem&nbsp;<span>1</span></a>). </span></p>
 <div class="callout callout-style-simple callout-note no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div id="prp-2-5-Lequiv" class="theorem proposition">
-<p><span class="theorem-title"><strong>Proposition 2</strong></span> If <span class="math inline">\(X\)</span> is invertible, <span class="math inline">\(X\)</span> is a lower triangular matrix if and only if <span class="math inline">\(X^{-1}\)</span> is a lower triangular matrix.</p>
+<div id="thm-3-1-uniqueness" class="theorem">
+<p><span class="theorem-title"><strong>Theorem 2 (Uniqueness of the Determinant)</strong></span> There’s a unique function <span class="math inline">\(D: \mathbb{F}^{n\times n} \to \mathbb{F}\)</span> that satisfies the following conditions, where we treat each row of the input matrix as a vector variable:</p>
+<ol type="1">
+<li><span class="math inline">\(D\)</span> is multilinear in rows.</li>
+<li>If two adjacent rows of <span class="math inline">\(A\)</span> are equal, <span class="math inline">\(D(A) = 0\)</span>.</li>
+<li><span class="math inline">\(D(I) = 1\)</span>.</li>
+</ol>
 </div>
 </div>
 </div>
 </div>
+<p>“Multilinear” means if there are two matrices that are only different in the <span class="math inline">\(i\)</span>-th row, then</p>
+<p><span class="math display">\[ D\left(\begin{bmatrix}\vdots\\ \mathbf{a}_i\\ \vdots \end{bmatrix}\right) + D\left(\begin{bmatrix}\vdots\\ \mathbf{b}_i\\ \vdots \end{bmatrix}\right) = D\left(\begin{bmatrix}\vdots\\ \mathbf{a}_i + \mathbf{b}_i \\ \vdots \end{bmatrix}\right) \]</span></p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Proof (Proof of <a href="#prp-2-5-Lequiv" class="quarto-xref">Proposition&nbsp;<span>2</span></a>)
+<span class="screen-reader-only">Note</span>Proof (Proof of <a href="#thm-3-1-uniqueness" class="quarto-xref">Theorem&nbsp;<span>2</span></a>)
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-3" class="callout-3-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
 <div class="proof">
-<p><span class="proof-title"><em>Proof</em> (Proof of <a href="#prp-2-5-Lequiv" class="quarto-xref">Proposition&nbsp;<span>2</span></a>). </span>If <span class="math inline">\(X\)</span> is a lower triangular matrix, reducing <span class="math inline">\(\begin{bmatrix}X &amp; I\end{bmatrix}\)</span> to <span class="math inline">\(\begin{bmatrix}I &amp; X^{-1}\end{bmatrix}\)</span> makes <span class="math inline">\(X^{-1}\)</span> inherit the lower triangular form.</p>
-<p>If <span class="math inline">\(X^{-1}\)</span> is a lower triangular matrix, <span class="math inline">\((X^{-1})^{-1}=X\)</span> is a lower triangular matrix.</p>
+<p><span class="proof-title"><em>Proof</em> (Proof of <a href="#thm-3-1-uniqueness" class="quarto-xref">Theorem&nbsp;<span>2</span></a>). </span>Some other textbooks prove the latter theorems such as <span class="math inline">\(\det AB = (\det A)(\det B)\)</span> and row operations first and use these theorems to prove the uniqueness. However, since this textbook relies on the cofactor expansion (which implies uniqueness) to prove those theorems, we can’t follow the same track.</p>
+<p>We have to use the multilinearity to separate each element from the matrix. Let <span class="math inline">\(A\)</span> be a <span class="math inline">\(n\times n\)</span> matrix, where <span class="math inline">\(a_{ij}\)</span> denotes the element on the <span class="math inline">\(i\)</span>-th row and <span class="math inline">\(j\)</span>-th column. Let <span class="math inline">\(\bf{e}_j\)</span> denotes the row vector whose <span class="math inline">\(j\)</span>-th entry is <span class="math inline">\(1\)</span> and is the only non-zero entry.</p>
+<p><span class="math display">\[\begin{align}
+D(A) &amp;= \sum_{i}a_{1i} D\L(\mat{\bf{e}_i \\ \vdots}\R) \\
+     &amp;= \sum_{i}a_{1i} \sum_{j}a_{2j} D\L(\mat{\bf{e}_i \\ \bf{e}_j \\ \vdots}\R) \\
+     &amp;= \sum_{i}a_{1i} \sum_{j}a_{2j} \cdots \sum_{p}a_{np} D\L(\mat{\bf{e}_i \\ \bf{e}_j \\ \vdots \\ \bf{e}_p}\R) \\
+     &amp;= \sum_{i,j,\dots,p} a_{1i}a_{2j}\cdots a_{np} D\L(\mat{\bf{e}_i \\ \bf{e}_j \\ \vdots \\ \bf{e}_p}\R)
+\end{align}\]</span></p>
+<p>From above derivation, we see each determinant can be decompose to a summation of the determinants of matrices whose rows are standard basis vectors. Then, we compute the value for those special matrices. The determinant of such matrices simply equals <span class="math inline">\(D\L(\mat{\bf{e}_i \\ \bf{e}_j \\ \vdots \\ \bf{e}_p}\R)\)</span> because other combinations include zero coefficients. Let’s denote this kind of matrices <span class="math inline">\(E\)</span>.</p>
+<p>Suppose we are interchanging two adjacent rows. We omit the other rows since they are equal. If <span class="math inline">\(i \neq j\)</span>, then</p>
+<p><span class="math display">\[\begin{align}
+D\L(\mat{\bf{e}_i+\bf{e}_j \\ \bf{e}_i+\bf{e}_j}\R) &amp;= D\L(\mat{\bf{e}_i \\ \bf{e}_i}\R) + D\L(\mat{\bf{e}_i \\ \bf{e}_j}\R) + D\L(\mat{\bf{e}_j \\ \bf{e}_i}\R) + D\L(\mat{\bf{e}_j \\ \bf{e}_j}\R) \\
+&amp;= D\L(\mat{\bf{e}_i \\ \bf{e}_j}\R) + D\L(\mat{\bf{e}_j \\ \bf{e}_i}\R) \\
+&amp;= 0
+\end{align}\]</span></p>
+<p>Otherwise, the determinant is <span class="math inline">\(0\)</span>. Thus, interchanging adjacent rows of <span class="math inline">\(E\)</span> negates the determinant. If <span class="math inline">\(E\)</span> contains equal rows, by swapping rows, the determinant is <span class="math inline">\(0\)</span>. Otherwise, since <span class="math inline">\(D(I)=1\)</span>, <span class="math inline">\(D(E) = (-1)^k\)</span>, where <span class="math inline">\(k\)</span> is the number of reverse pairs in the sequence of the positions of ones. This is because we need <span class="math inline">\(k\)</span> times of adjacent interchanges to transform <span class="math inline">\(I\)</span> to <span class="math inline">\(E\)</span>.</p>
+<p>Now we obtain the value of each basic component of <span class="math inline">\(D\)</span>. <span class="math inline">\(\qed\)</span></p>
 </div>
 </div>
 </div>
 </div>
-<p>Now, we need to prove that if <span class="math inline">\(L\)</span> is a lower triangular matrix, operations to reduce <span class="math inline">\(A\)</span> to <span class="math inline">\(U\)</span> must not involve row interchange. If the operations include row interchanges, suppose <span class="math inline">\(E_k\)</span> represents the last swap. After the <span class="math inline">\(k\)</span>-th operation, there must exist an entry <span class="math inline">\((E_k(E_{k-1}\cdots E_1))_{pq}\neq 0\)</span>, where <span class="math inline">\(p &lt; q\)</span>. Because <span class="math inline">\(E_k\)</span> is the last swap, <span class="math inline">\((E_m\cdots E_{k+1})\)</span> is a lower triangular matrix. It’s also possible to show that for every <span class="math inline">\(1\leq q' &lt; q\)</span>, <span class="math inline">\((E_k\cdots E_1)_{pq'}=0\)</span>. Thus, <span class="math display">\[(E_m\cdots E_1)_{pq} = \text{row}_p(E_m\cdots E_{k+1})\cdot \text{col}_q(E_k\cdots E_1)\neq 0\]</span></p>
-<p>Combined with the uniqueness of <span class="math inline">\(L\)</span>, <span class="math inline">\(A\)</span> must be reducible to echelon form without row interchanges.</p>
+<p>We now prove cofactor expansions by a row satisfy multilinearity. Suppose we are applying cofactor expansion on the <span class="math inline">\(k\)</span>-th row. If the <span class="math inline">\(k\)</span>-th row is the row we operate, it’s trivial that multilinearity is satisfied. By mathematical induction, we prove the other case.</p>
+<p>Because cofactor expansions are multilinear, to prove the second property, we again only need to verify that it is true for <span class="math inline">\(E\)</span> (in the above proof). If two adjacent rows are equal, then all cofactors will be zero because they contain a zero row. Thus, the result of the cofactor expansion is also zero.</p>
+<p>The third property is obviously true for cofactor expansions, so we prove that row cofactor expansions equal the determinant.</p>
+<p>We now prove column cofactor expansions satisfy multilinearity. Either scalar multiplication or addition can be proven by dividing into two situations. First, for entries that are not on the selected <strong>row</strong>, this is true by induction. For the entry on the selected row, we split the coefficient.</p>
+<p>For the second property, we again examine whether it’s true for <span class="math inline">\(E\)</span>. If the column contains more than a <span class="math inline">\(1\)</span>, then the cofactors will be zero by induction because there will be zero rows in the sub-matrices. Otherwise, we finish our proof by induction.</p>
+<p>After verifying the last property, we finally complete our proof for <a href="#thm-3-1-1" class="quarto-xref">Theorem&nbsp;<span>1</span></a>. <span class="math inline">\(\qed\)</span></p>
+</div>
+</div>
+</div>
+</div>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -970,13 +1000,13 @@ window.Quarto = {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../part1/qa.html" class="pagination-link" aria-label="Questions and Answers">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Questions and Answers</span>
+      <a href="../part2/chap2.8.html" class="pagination-link" aria-label="2.8 Subspaces of R">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">2.8 Subspaces of R</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../part2/chap2.8.html" class="pagination-link" aria-label="2.8 Subspaces of R">
-        <span class="nav-page-text">2.8 Subspaces of R</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../part4/chap4.x.html" class="pagination-link" aria-label="Summary">
+        <span class="nav-page-text">Summary</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -985,4 +1015,4 @@ window.Quarto = {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/c3b2aNaN/linalg/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/c3b2aNaN/linalg/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
