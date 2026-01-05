@@ -7,3 +7,20 @@ Suppose we have a matrix $A$, two of whose rows are $\bf{u}$ and $\bf{v}$. How t
 The simplest way is to negate either row. However, we can also replace $\bf{v}$ with $\bf{u} - \bf{v}$. In number theory, we have
 $$-v \equiv u-v \pmod{u}$$
 :::
+
+## Quotient Spaces
+
+::: {.callout-warning}
+
+Waiting for the author to learn.
+:::
+
+## Bézout's Identity
+
+::: {.remark}
+
+Bézout's identity states that for given $a$ and $b$, there exist $x$ and $y$ such that $ax+by = \gcd(a,b)$.
+
+Consider the determinant of $\mat{m_1 & m_2 \\ x_1 & x_2}$.
+$$\det\mat{m_1 & m_2 \\ x_1 & x_2} = m_1x_2 - m_2x_1$$
+:::
