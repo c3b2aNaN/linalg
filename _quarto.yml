@@ -2,7 +2,7 @@ project:
   type: book
 
 book:
-  title: "Some Notes in Linear Algebra"
+  title: "Some Notes on Linear Algebra"
   author: "Scissor"
   date: today
   repo-url: "https://github.com/c3b2aNaN/linalg"
