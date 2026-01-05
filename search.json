@@ -212,7 +212,7 @@
     "href": "part3/chap3.2x.html#bézouts-identity",
     "title": "3.2 [R] Number Theory?",
     "section": "Bézout’s Identity",
-    "text": "Bézout’s Identity\n\n\n\n\n\n\nTipRemark\n\n\n\n\n\n\nRemark. Bézout’s identity states that for given \\(a\\) and \\(b\\), there exist \\(x\\) and \\(y\\) such that \\(ax+by = \\gcd(a,b)\\).\nConsider the determinant of \\(\\mat{m_1 & m_2 \\\\ x_1 & x_2}\\). \\[\\det\\mat{m_1 & m_2 \\\\ x_1 & x_2} = m_1x_2 - m_2x_1\\]",
+    "text": "Bézout’s Identity\n\n\n\n\n\n\nTipRemark\n\n\n\n\n\n\nRemark. Bézout’s identity states that for given \\(a\\) and \\(b\\), there exist \\(x\\) and \\(y\\) such that \\(ax+by = \\gcd(a,b)\\).\nConsider the determinant of \\(\\mat{m_1 & m_2 \\\\ x_1 & x_2}\\). \\[\\det\\mat{m_1 & m_2 \\\\ x_1 & x_2} = m_1x_2 - m_2x_1\\]\nIf the determinant is \\(1\\), which implies the bounded area by \\(\\mat{m_1 & m_2}\\) and \\(\\mat{x_1 & x_2}\\) is \\(1\\), then \\(m_1\\) and \\(m_2\\) are coprime. Additionally, \\[m_1x_2 \\equiv 1 \\pmod{m_2}\\] \\[-m_2x_1 \\equiv 1 \\pmod{m_1}\\]\nThus, \\(x_2\\) is the inverse of \\(m_1\\) modulo \\(m_2\\), and \\(-x_1\\) is the inverse of \\(m_2\\) modulo \\(m_1\\).",
     "crumbs": [
       "Part 3: Determinants",
       "3.2 [R] Number Theory?"
