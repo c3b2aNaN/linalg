@@ -339,7 +339,7 @@ fig
 
 In this case, neither $W=\opn{span}\{\bf{v}_1\}$ nor $W=\opn{span}\{\bf{v}_2\}$ would be a valid choice.
 
-Eventually, coordinate mappings lead to a successful (***flawed***) proof.
+Eventually, coordinate mappings lead to a successful proof.
 
 ::: {#thm-4-4-8}
 
@@ -348,7 +348,13 @@ Let $\mathcal{B}=\left\{\mathbf{b}_1, \ldots, \mathbf{b}_n\right\}$ be a basis f
 
 The theorem is proved in the textbook, and we would not reiterate the proof here. If we can find a coordinate mapping $\bf{x} \mapsto [\bf{x}]_\cal{B}$ which preserves the orthogonality, by proving the proposition for the coordinate vectors, we complete our proof by mapping $U$ onto $\bb{R}^{\dim U}$. Let $\dim U = m$.
 
-First, we find an arbitrary basis of $U$, $\{\bf{b}_1,\dots,\bf{b}_m\}$. Let $A=\mat{\bf{b}_1^T \\ \vdots \\ \bf{b}_m^T}$, assuming $\bf{b}_k$ is a column vector. Having row reduced $A$ to its RREF $A'$, we obtain a basis of $U$ where each vector is orthogonal to the others by reading the rows of $A'$. Lastly, we normalize each vector so that they all have a length of $1$. Denote the new basis as $\cal{B}'=\{\bf{b}'_1,\dots,\bf{b}'_m\}$.
+We find the orthogonal basis by starting with an empty set. Each time, we add a vector in $U$ that is orthogonal to all selected vectors in the basis. Let $A_i = \mat{\bf{b}_1^T \\ \vdots \\ \bf{b}_{i}^T}$. If at any step $i < m$, we cannot find such vector to add, then for all $\bf{u} \in U$, $\bf{u} \notin \opn{Nul}A_i$. In addition, we have $\opn{Row}A_i \subsetneqq U$, so $\dim\opn{Row}A_i < \dim U$.
+\begin{align}
+\dim(U+\opn{Nul}A_i) &= \dim U + \dim\opn{Nul}A_i \\
+&> \dim\opn{Row}A_i + \dim\opn{Nul}A_i \\ 
+&= n
+\end{align}
+But $\dim(U+\opn{Nul}A_i) \leq n$ because $U+\opn{Nul}A_i\subseteq \bb{R}^n$. Therefore, it's always possible to construct an orthogonal basis for $U$. Lastly, we normalize each vector so that they all have a length of $1$. Denote the new basis as $\cal{B}'=\{\bf{b}'_1,\dots,\bf{b}'_m\}$.
 
 Suppose $\bf{u}, \bf{v} \in U$. Let $[\bf{u}]_{\cal{B}'}=\mat{u'_1 \\ \vdots \\ u'_m}, [\bf{v}]_{\cal{B}'}=\mat{v'_1 \\ \vdots \\ v'_m}$. We show that the dot product of $\bf{u}$ and $\bf{v}$ is zero iff the dot product of $[\bf{u}]_{\cal{B}'}$ and $[\bf{v}]_{\cal{B}'}$ is zero.
 
