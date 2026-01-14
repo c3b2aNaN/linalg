@@ -1,0 +1,367 @@
+# 4.6 Rank {.unnumbered}
+
+***For this chapter, all vector spaces are finite unless stated explicitly.***
+
+This chapter in the textbook introduces the concept of row spaces and characteristics of it. Early in this note, [Chapter 2.8 Subspaces](../part2/chap2.8.qmd#null-space) explores some of its interesting properties, one of them being the following proposition.
+
+::: {#prp-4-6-1}
+
+Row operations don't change the row space, and the non-zero rows of the REF of a matrix form a basis of the row space.
+:::
+
+::: {.proof}
+
+## Proof of [@prp-4-6-1]
+
+Suppose $E$ is a elementary matrix, and $A\sim EA$.
+
+Then each row of $EA$ is a linear combination of the rows in $A$. Thus, each vector in $\opn{Row}(EA)$ is automatically in $\opn{Row}A$.
+
+Conversely, $EA \sim E^{-1}(EA)$, and the same holds. Each vector in $\opn{Row}(E^{-1}(EA))=\opn{Row}A$ is in $\opn{Row}(EA)$, so $\opn{Row}A = \opn{Row}(EA)$.
+:::
+
+The textbook provides an example to visualize the relation between $\opn{Nul} A$ and $\opn{Row} A$ and between $\opn{Nul} A^T$ and $\opn{Col} A$.
+
+In the below two examples, $A = \displaystyle\mat{3 & 0 & -1 \\ 3 & 0 & -1 \\ 4 & 0 & 5}$.
+
+::: {.callout-tip}
+
+## $\opn{Nul} A$ and $\opn{Row} A$
+
+```{r, message=FALSE}
+# Full Robust Code: make_3d_linear_plot
+# Requires: install.packages("plotly")
+library(plotly)
+
+# ----------------- small math helpers ---------------------------------------
+cross_prod <- function(a, b) c(
+  a[2]*b[3] - a[3]*b[2],
+  a[3]*b[1] - a[1]*b[3],
+  a[1]*b[2] - a[2]*b[1]
+)
+
+arrow_lines_for_tip2 <- function(p, d, size = 0.18) {
+  if (sqrt(sum(d^2)) < 1e-9) return(NULL)
+  ux <- d / sqrt(sum(d^2))
+  arb <- if (abs(ux[1]) < 0.9) c(1,0,0) else c(0,1,0)
+  v_perp1 <- cross_prod(arb, ux)
+  if (sqrt(sum(v_perp1^2)) < 1e-6) { arb <- c(0,0,1); v_perp1 <- cross_prod(arb, ux) }
+  v_perp1 <- v_perp1 / sqrt(sum(v_perp1^2))
+  base1 <- p - ux * size + v_perp1 * (size / 2)
+  base2 <- p - ux * size - v_perp1 * (size / 2)
+  list(line1 = rbind(base1, p), line2 = rbind(base2, p))
+}
+
+# ----------------- main plotting function -----------------------------------
+make_3d_linear_plot <- function(vectors = list(), planes = list(),
+                                L = NULL, head_size = 0.18, plane_n = 40,
+                                axis_width = 4, show_axes = TRUE,
+                                xrange = NULL, yrange = NULL, zrange = NULL,
+                                camera_eye = c(0.5, -1.5, 0.7),
+                                zoom = 1) {
+
+  # 1. Validate scalar inputs
+  if (!is.numeric(camera_eye) || length(camera_eye) != 3) stop("camera_eye must be numeric length 3")
+  if (!is.numeric(zoom) || zoom <= 0) stop("zoom must be a positive number")
+  
+  # Ensure the default plane_n is valid
+  default_n <- suppressWarnings(as.numeric(plane_n))
+  if (length(default_n) == 0 || is.na(default_n) || default_n < 2) default_n <- 40
+
+  # 2. Sanitize vector entries
+  vectors <- lapply(vectors, function(v) {
+    v$vec   <- as.numeric(v$vec)
+    v$start <- if (!is.null(v$start)) as.numeric(v$start) else c(0,0,0)
+    v$color <- if (!is.null(v$color)) v$color else "red"
+    v$name  <- if (!is.null(v$name)) as.character(v$name) else "vec"
+    v$width <- if (!is.null(v$width)) as.numeric(v$width) else 6
+    v
+  })
+
+  # 3. Sanitize planes (ROBUST CHECKS ADDED)
+  planes <- lapply(planes, function(p) {
+    p$v1 <- as.numeric(p$v1)
+    p$v2 <- as.numeric(p$v2)
+    p$color <- if (!is.null(p$color)) p$color else "lightblue"
+    p$opacity <- if (!is.null(p$opacity)) as.numeric(p$opacity) else 0.45
+    p$name <- if (!is.null(p$name)) as.character(p$name) else "Plane"
+
+    # --- SAFETY BLOCK FOR N (Grid Resolution) ---
+    # Attempt to use p$n, otherwise use default
+    candidate_n <- if (!is.null(p$n)) suppressWarnings(as.numeric(p$n)) else default_n
+    # If conversion failed (NA) or value is too small, force fallback
+    if (length(candidate_n) == 0 || is.na(candidate_n) || candidate_n < 2) {
+      candidate_n <- default_n
+    }
+    p$n <- round(candidate_n) # Ensure integer
+
+    # --- SAFETY BLOCK FOR SCALE ---
+    candidate_scale <- if (!is.null(p$scale)) suppressWarnings(as.numeric(p$scale)) else 1.8
+    if (length(candidate_scale) == 0 || is.na(candidate_scale) || candidate_scale <= 0) {
+      candidate_scale <- 1.8
+    }
+    p$scale <- candidate_scale
+    
+    p
+  })
+
+  # 4. Compute suggested axis limit L if not provided
+  if (is.null(L)) {
+    coords <- numeric(0)
+    if (length(vectors) > 0) {
+      for (v in vectors) coords <- c(coords, v$start + v$vec, v$start)
+    }
+    if (length(planes) > 0) {
+      for (p in planes) {
+        s <- p$scale; t <- p$scale
+        corners <- rbind(s*p$v1 + t*p$v2, s*p$v1 - t*p$v2, -s*p$v1 + t*p$v2, -s*p$v1 - t*p$v2)
+        coords <- c(coords, as.numeric(corners))
+      }
+    }
+    maxc <- if (length(coords) == 0) 1 else max(abs(coords))
+    L <- max(1.2 * maxc, 2)
+  }
+
+  xrange <- if (is.null(xrange)) c(-L, L) else xrange
+  yrange <- if (is.null(yrange)) c(-L, L) else yrange
+  zrange <- if (is.null(zrange)) c(-L, L) else zrange
+
+  # 5. Build plane surfaces (Now guaranteed to have valid p$n)
+  plane_surfaces <- lapply(planes, function(p) {
+    s <- seq(-p$scale, p$scale, length.out = p$n)
+    t <- seq(-p$scale, p$scale, length.out = p$n)
+    g <- expand.grid(s = s, t = t)
+    X <- matrix(g$s * p$v1[1] + g$t * p$v2[1], nrow = length(s), ncol = length(t))
+    Y <- matrix(g$s * p$v1[2] + g$t * p$v2[2], nrow = length(s), ncol = length(t))
+    Z <- matrix(g$s * p$v1[3] + g$t * p$v2[3], nrow = length(s), ncol = length(t))
+    list(X = X, Y = Y, Z = Z)
+  })
+
+  fig <- plot_ly()
+
+  # 6. Plot Planes & Labels
+  if (length(planes) > 0) {
+    for (i in seq_along(planes)) {
+      p <- planes[[i]]
+      surf <- plane_surfaces[[i]]
+      cols <- list(c(0,1), c(p$color, p$color))
+      
+      fig <- fig %>%
+        add_surface(x = surf$X, y = surf$Y, z = surf$Z,
+                    opacity = p$opacity, showscale = FALSE, hoverinfo = "name",
+                    colorscale = cols, name = p$name, showlegend = FALSE)
+      
+      label_pos <- p$scale * p$v1 + p$scale * p$v2
+      fig <- fig %>%
+        add_trace(type = "scatter3d", mode = "text",
+                  x = label_pos[1], y = label_pos[2], z = label_pos[3],
+                  text = p$name,
+                  textfont = list(color = "black", size = 12),
+                  showlegend = FALSE, hoverinfo = "none")
+    }
+  }
+
+  # 7. Plot Axes
+  if (isTRUE(show_axes)) {
+    fig <- fig %>%
+      add_trace(type = "scatter3d", mode = "lines",
+                x = c(xrange[1], xrange[2]), y = c(0,0), z = c(0,0),
+                line = list(color = "black", width = axis_width), showlegend = FALSE) %>%
+      add_trace(type = "scatter3d", mode = "lines",
+                x = c(0,0), y = c(yrange[1], yrange[2]), z = c(0,0),
+                line = list(color = "black", width = axis_width), showlegend = FALSE) %>%
+      add_trace(type = "scatter3d", mode = "lines",
+                x = c(0,0), y = c(0,0), z = c(zrange[1], zrange[2]),
+                line = list(color = "black", width = axis_width), showlegend = FALSE)
+
+    x_tip <- c(xrange[2], 0, 0); y_tip <- c(0, yrange[2], 0); z_tip <- c(0, 0, zrange[2])
+    x_head <- arrow_lines_for_tip2(x_tip, c(1,0,0), size = head_size*0.9)
+    y_head <- arrow_lines_for_tip2(y_tip, c(0,1,0), size = head_size*0.9)
+    z_head <- arrow_lines_for_tip2(z_tip, c(0,0,1), size = head_size*0.9)
+
+    for(h in list(x_head, y_head, z_head)) {
+      if(!is.null(h)) {
+        fig <- fig %>% add_trace(type = "scatter3d", mode = "lines",
+                                 x = c(h$line1[,1], NA, h$line2[,1]),
+                                 y = c(h$line1[,2], NA, h$line2[,2]),
+                                 z = c(h$line1[,3], NA, h$line2[,3]),
+                                 line = list(color = "black", width = axis_width), showlegend = FALSE)
+      }
+    }
+  }
+
+  # 8. Plot Vectors (Lines + Markers + Text)
+  if (length(vectors) > 0) {
+    for (i in seq_along(vectors)) {
+      v <- vectors[[i]]
+      start <- v$start
+      tip   <- start + v$vec
+      
+      fig <- fig %>%
+        add_trace(type = "scatter3d", 
+                  mode = "lines+markers+text", 
+                  x = c(start[1], tip[1]), 
+                  y = c(start[2], tip[2]), 
+                  z = c(start[3], tip[3]),
+                  line = list(color = v$color, width = v$width),
+                  marker = list(size = 2),
+                  text = c("", v$name), 
+                  textposition = "top center",
+                  textfont = list(color = v$color, size = 14),
+                  name = v$name,
+                  showlegend = TRUE)
+
+      ah <- arrow_lines_for_tip2(tip, v$vec, size = head_size)
+      if (!is.null(ah)) {
+        fig <- fig %>% add_trace(type = "scatter3d", mode = "lines",
+                                 x = c(ah$line1[,1], NA, ah$line2[,1]),
+                                 y = c(ah$line1[,2], NA, ah$line2[,2]),
+                                 z = c(ah$line1[,3], NA, ah$line2[,3]),
+                                 line = list(color = v$color, width = v$width), 
+                                 showlegend = FALSE)
+      }
+    }
+  }
+
+  fig <- fig %>% add_markers(x = 0, y = 0, z = 0,
+                             marker = list(size = 4, color = "black"), showlegend = FALSE)
+
+  cam_eye_scaled <- as.numeric(camera_eye) * (1 / zoom)
+  camera_list <- list(eye = list(x = cam_eye_scaled[1], y = cam_eye_scaled[2], z = cam_eye_scaled[3]))
+
+  fig <- fig %>% layout(scene = list(
+    aspectmode = "cube",
+    xaxis = list(title = "X", range = xrange, showgrid = TRUE, zeroline = FALSE, showbackground = FALSE),
+    yaxis = list(title = "Y", range = yrange, showgrid = TRUE, zeroline = FALSE, showbackground = FALSE),
+    zaxis = list(title = "Z", range = zrange, showgrid = TRUE, zeroline = FALSE, showbackground = FALSE),
+    camera = camera_list
+  ))
+
+  fig
+}
+
+vecs_multi <- list(
+  list(vec = c(0, 2, 0), color = "green", name = "Nul A")
+)
+
+pls_multi <- list(
+  list(v1 = c(1,0,0), v2 = c(0,0,1), color = "lightblue", name = "Row A")
+)
+
+fig2 <- make_3d_linear_plot(
+  vectors = vecs_multi, 
+  planes = pls_multi, 
+  zoom = 1.3
+)
+fig2
+```
+
+:::
+
+::: {.callout-tip}
+
+## $\opn{Nul} A^T$ and $\opn{Col} A$
+
+```{r, message=FALSE}
+
+vecs_multi <- list(
+  list(vec = c(-1, 1, 0), color = "orange", name = "Nul A^T")
+)
+
+pls_multi <- list(
+  list(v1 = c(1,1,0), v2 = c(0,0,1), color = "lightgreen", name = "Col A")
+)
+
+fig2 <- make_3d_linear_plot(
+  vectors = vecs_multi, 
+  planes = pls_multi, 
+  zoom = 1.3
+)
+fig2
+```
+
+:::
+
+::: {.remark}
+
+We observe that two spaces in each example are perpendicular to each other. In fact, this can be generalized to all matrices of higher dimensions.
+
+::: {.proof}
+
+For all $\bf{v} \in \opn{Nul} A$, $\displaystyle{A\bf{v}=\mat{\opn{row}_1(A) \\ \opn{row}_2(A) \\ \vdots \\ \opn{row}_m(A)}\bf{v}=\bf{0}}$. Thus, for all $1\leq j\leq m$, $\opn{row}_j(A) \cdot \bf{v}=0$, so the two spaces are othrogonal to each other.
+:::
+
+Therefore, $\opn{Col}A = \opn{Row}A^T \perp \opn{Nul}A^T$ as shown in the visualizations.
+
+The orthogonal relation leads to the exploration of the following proposition.
+:::
+
+::: {#prp-4-6-2}
+
+Given vector spaces $U$ and $V$, where $V \subseteq U \subseteq \bb{R}^n$. There's a unique subspace of $U$, $W$, which satisfies that $V+W = U$ and $V \perp W$.
+:::
+
+::: {.proof}
+
+## Proof of [@prp-4-6-2]
+
+Based on knowledge available so far, we only prove the proposition is true when $U$ is a subspace of $\bb{R}^n$, but it's true for all finite inner product spaces.
+
+A natural idea is to use the fact that $\opn{Nul}A \perp \opn{Row}A$.
+
+Our first attempt is to construct a matrix $A$ with rows being a basis of $V$. Therefore, $\opn{Row}A=V$ and $V \perp \opn{Nul}A$. If we could separate a subspace $W$ satisfying the conditions, we would prove it. However, $U$ is a subspace of $\bb{R}^n$, which means we only know that $U \subseteq V+\opn{Nul}A$. The normal way to obtain a basis of $\opn{Nul}A$ by solving the system does not guarantee that, by choosing vectors in the basis that are in $U$, the spanned space $W$ would satisfy that $V+W=U$.
+
+Below is an example with $U=\opn{span}\{(1, 0, 0), (0, 1, 1)\}, V=\opn{span}\{(1, 0, 0)\}$ and the basis of $\opn{Nul}A$ being $\bf{v}_1=(0, -1, 0),\bf{v}_2=(0, 0, 1)$.
+
+::: {.callout-tip}
+
+## A Counterexample
+
+```{r, message=FALSE}
+vecs_multi <- list(
+  list(vec = c(1.5, 0, 0), color = "green", name = "Subspace V"),
+  list(vec = c(0, -1, 0), color = "orange", name = "v1 in Nul A"),
+  list(vec = c(0, 0, 1), color = "red", name = "v2 in Nul A")
+)
+
+pls_multi <- list(
+  list(v1 = c(1,0,0), v2 = c(0,1,1), color = "lightblue", name = "Subspace U")
+)
+
+fig <- make_3d_linear_plot(
+  vectors = vecs_multi, 
+  planes = pls_multi, 
+  zoom = 1.3
+)
+fig
+```
+:::
+
+In this case, neither $W=\opn{span}\{\bf{v}_1\}$ nor $W=\opn{span}\{\bf{v}_2\}$ would be a valid choice.
+
+Eventually, coordinate mappings lead to a successful proof.
+
+::: {#thm-4-4-8}
+
+Let $\mathcal{B}=\left\{\mathbf{b}_1, \ldots, \mathbf{b}_n\right\}$ be a basis for a vector space $V$. Then the coordinate mapping $\mathbf{x} \mapsto[\mathbf{x}]_{\mathcal{B}}$ is a one-to-one linear transformation from $V$ onto $\mathbb{R}^n$.
+:::
+
+The theorem is proved in the textbook, and we would not reiterate the proof here. If we can find a coordinate mapping $\bf{x} \mapsto [\bf{x}]_\cal{B}$ which preserves the orthogonality, by proving the proposition for the coordinate vectors, we complete our proof by mapping $U$ onto $\bb{R}^{\dim U}$. Let $\dim U = m$.
+
+First, we find an arbitrary basis of $U$, $\{\bf{b}_1,\dots,\bf{b}_m\}$. Let $A=\mat{\bf{b}_1^T \\ \vdots \\ \bf{b}_m^T}$, assuming $\bf{b}_k$ is a column vector. Having row reduced $A$ to its RREF $A'$, we obtain a basis of $U$ where each vector is orthogonal to the others by reading the rows of $A'$. Lastly, we normalize each vector so that they all have a length of $1$. Denote the new basis as $\cal{B}'=\{\bf{b}'_1,\dots,\bf{b}'_m\}$.
+
+Suppose $\bf{u}, \bf{v} \in U$. Let $[\bf{u}]_{\cal{B}'}=\mat{u'_1 \\ \vdots \\ u'_m}, [\bf{v}]_{\cal{B}'}=\mat{v'_1 \\ \vdots \\ v'_m}$. We show that the dot product of $\bf{u}$ and $\bf{v}$ is zero iff the dot product of $[\bf{u}]_{\cal{B}'}$ and $[\bf{v}]_{\cal{B}'}$ is zero.
+
+\begin{align}
+\bf{u}^T\bf{v} &= (u'_1\bf{b}'_1 + \dots + u'_m\bf{b}'_m)^T(v'_1\bf{b}'_1 + \dots + v'_m\bf{b}'_m) \\
+&= (u'_1{\bf{b}'_1}^T + \dots + u'_m{\bf{b}'_m}^T)(v'_1\bf{b}'_1 + \dots + v'_m\bf{b}'_m) \\
+&= \sum_{i,j} u'_i v'_j {\bf{b}'_i}^T \bf{b}'_j \\
+&= \sum_{i} u'_i v'_i {\bf{b}'_i}^T \bf{b}'_i \\
+&= \sum_{i} u'_i v'_i \\
+&= [\bf{u}]_{\cal{B}'}^T [\bf{v}]_{\cal{B}'}
+\end{align}
+
+Lines 3 and 4 are equal because $\bf{b}'_i$ and $\bf{b}'_j$ are orthogonal when $i \neq j$. Line 4 and Line 5 are equal because we have normalized the vectors in $\cal{B}'$; thus, ${\bf{b}'_i}^T\bf{b}'_i=\|\bf{b}'_i\|^2=1$.
+
+Let $M=\mat{[\bf{t}_1]_{\cal{B}'} \\ \vdots \\ [\bf{t}_{\dim V}]_{\cal{B}'}}$, where $\{\bf{t}_1,\dots,\bf{t}_{\dim V}\}$ is an arbitrary basis of $V$. Applying the transformation $[\bf{x}]_{\cal{B}'} \mapsto \bf{x}$ on $\opn{Nul}M$ gives the subspace $W$, concluding the proof.
+:::

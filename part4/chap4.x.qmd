@@ -57,3 +57,14 @@ T(\mathbf{b}_k)&=\mathbf{e}_k \\
 
 Since $T,T_1,T_2$ are linear transformations, by proving that they yield the same result for each vector in their basis, we have shown that $T$ is equivalent to applying $T_1$ and then $T_2$. -->
 :::
+
+## Isomorphism
+
+::: {.callout-tip}
+
+## How to write rigorous solutions when using isomorphism?
+
+In some problems, we are given
+:::
+
+## Solving for Bases Using Column Operations
