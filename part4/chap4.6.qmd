@@ -339,7 +339,7 @@ fig
 
 In this case, neither $W=\opn{span}\{\bf{v}_1\}$ nor $W=\opn{span}\{\bf{v}_2\}$ would be a valid choice.
 
-Eventually, coordinate mappings lead to a successful proof.
+Eventually, coordinate mappings lead to a successful (***flawed***) proof.
 
 ::: {#thm-4-4-8}
 
