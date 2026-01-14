@@ -363,5 +363,5 @@ Suppose $\bf{u}, \bf{v} \in U$. Let $[\bf{u}]_{\cal{B}'}=\mat{u'_1 \\ \vdots \\ 
 
 Lines 3 and 4 are equal because $\bf{b}'_i$ and $\bf{b}'_j$ are orthogonal when $i \neq j$. Line 4 and Line 5 are equal because we have normalized the vectors in $\cal{B}'$; thus, ${\bf{b}'_i}^T\bf{b}'_i=\|\bf{b}'_i\|^2=1$.
 
-Let $M=\mat{[\bf{t}_1]_{\cal{B}'} \\ \vdots \\ [\bf{t}_{\dim V}]_{\cal{B}'}}$, where $\{\bf{t}_1,\dots,\bf{t}_{\dim V}\}$ is an arbitrary basis of $V$. Applying the transformation $[\bf{x}]_{\cal{B}'} \mapsto \bf{x}$ on $\opn{Nul}M$ gives the subspace $W$, concluding the proof.
+Let $M=\mat{[\bf{t}_1]_{\cal{B}'} \\ \vdots \\ [\bf{t}_{\dim V}]_{\cal{B}'}}$, where $\{\bf{t}_1,\dots,\bf{t}_{\dim V}\}$ is an arbitrary basis of $V$. Applying the transformation $[\bf{x}]_{\cal{B}'} \mapsto \bf{x}$ on $\opn{Nul}M$ gives the subspace $W$. A subspace including exclusively all vectors that are orthogonal to $\opn{Row}M$ is automatically $\opn{Nul}M$ because the dot product of each row of $M$ and $\bf{v}$ being zero implies that $M\bf{v}=\bf{0}$, concluding the proof.
 :::
