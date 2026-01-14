@@ -31,7 +31,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
 <link href="../references.html" rel="next">
-<link href="../part3/chap3.2x.html" rel="prev">
+<link href="../part4/chap4.6.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -239,12 +239,14 @@ ul.task-list li input[type="checkbox"] {
   </script>\(
 \newcommand{\bb}{\mathbb}
 \newcommand{\bf}{\mathbf}
+\newcommand{\cal}{\mathcal}
 \newcommand{\L}{\left}
 \newcommand{\R}{\right}
 \newcommand{\C}{\mathbb{R}}
 \newcommand{\F}{\mathbb{F}}
 \newcommand{\mat}[1]{\begin{bmatrix} #1 \end{bmatrix}}
 \newcommand{\qed}{\quad\square}
+\newcommand{\opn}{\operatorname}
 \)
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
@@ -288,7 +290,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../part4/chap4.x.html">Part 4: Vector Spaces</a></li><li class="breadcrumb-item"><a href="../part4/chap4.x.html">Summary</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../part4/chap4.6.html">Part 4: Vector Spaces</a></li><li class="breadcrumb-item"><a href="../part4/chap4.x.html">Summary</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -415,6 +417,12 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../part4/chap4.6.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4.6 Rank</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../part4/chap4.x.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Summary</span></a>
   </div>
@@ -438,6 +446,8 @@ window.Quarto = {
    
   <ul>
   <li><a href="#coordinate-systems" id="toc-coordinate-systems" class="nav-link active" data-scroll-target="#coordinate-systems">4.4 Coordinate Systems</a></li>
+  <li><a href="#isomorphism" id="toc-isomorphism" class="nav-link" data-scroll-target="#isomorphism">Isomorphism</a></li>
+  <li><a href="#solving-for-bases-using-column-operations" id="toc-solving-for-bases-using-column-operations" class="nav-link" data-scroll-target="#solving-for-bases-using-column-operations">Solving for Bases Using Column Operations</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/c3b2aNaN/linalg/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -445,7 +455,7 @@ window.Quarto = {
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../part4/chap4.x.html">Part 4: Vector Spaces</a></li><li class="breadcrumb-item"><a href="../part4/chap4.x.html">Summary</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../part4/chap4.6.html">Part 4: Vector Spaces</a></li><li class="breadcrumb-item"><a href="../part4/chap4.x.html">Summary</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Summary</h1>
 </div>
@@ -558,6 +568,25 @@ T(\mathbf{b}_k)&=\mathbf{e}_k \\
 Since $T,T_1,T_2$ are linear transformations, by proving that they yield the same result for each vector in their basis, we have shown that $T$ is equivalent to applying $T_1$ and then $T_2$. -->
 </div>
 </div>
+</section>
+<section id="isomorphism" class="level2">
+<h2 class="anchored" data-anchor-id="isomorphism">Isomorphism</h2>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>How to write rigorous solutions when using isomorphism?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In some problems, we are given</p>
+</div>
+</div>
+</section>
+<section id="solving-for-bases-using-column-operations" class="level2">
+<h2 class="anchored" data-anchor-id="solving-for-bases-using-column-operations">Solving for Bases Using Column Operations</h2>
 
 
 </section>
@@ -978,8 +1007,8 @@ Since $T,T_1,T_2$ are linear transformations, by proving that they yield the sam
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../part3/chap3.2x.html" class="pagination-link" aria-label="3.2 [R] Number Theory?">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">3.2 [R] Number Theory?</span>
+      <a href="../part4/chap4.6.html" class="pagination-link" aria-label="4.6 Rank">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">4.6 Rank</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
