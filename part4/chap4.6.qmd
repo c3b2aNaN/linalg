@@ -374,5 +374,5 @@ Let $M=\mat{[\bf{t}_1]_{\cal{B}'} \\ \vdots \\ [\bf{t}_{\dim V}]_{\cal{B}'}}$, w
 
 ::: {.remark}
 
-It is possible to construct a unit orthogonal basis for any $U \subseteq \bb{R}^n$.
+It is possible to construct a unit orthogonal basis for any vector space $U \subseteq \bb{R}^n$.
 :::
