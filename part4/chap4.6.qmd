@@ -376,3 +376,33 @@ Let $M=\mat{[\bf{t}_1]_{\cal{B}'} \\ \vdots \\ [\bf{t}_{\dim V}]_{\cal{B}'}}$, w
 
 It is possible to construct a unit orthogonal basis for any vector space $U \subseteq \bb{R}^n$.
 :::
+
+::: {.proof}
+
+## An Alternative Proof of [@prp-4-6-2]
+
+Starting with a matrix with its rows being an arbitrary basis for $V$, $\mat{\bf{v}_1^T \\ \vdots \\ \bf{v}_m^T}$, we show that there exists a basis for $W$, $\bf{w}_1,\dots,\bf{w}_p$. Similar to above proof, we define $A_i = \mat{\bf{v}_1^T \\ \vdots \\ \bf{w}_i^T}$. For step $i$, we find a $\bf{w}_{i+1} \neq \bf{0} \in U$ such that $\opn{row}_k(A_i) \bf{w}_{i+1} = 0$ for all rows in $A_i$. That is, $A_i \bf{w}_{i+1} = \bf{0}$.
+
+If at any step $i < p$, where $p = \dim U - m$, there does not exist such $\bf{w}_{i+1}$, then $U \cap \opn{Nul}A_i = \{\bf{0}\}$, so $\dim(U + \opn{Nul}A_i) = \dim U + \dim\opn{Nul}A_i$.
+\begin{align}
+\dim(U+\opn{Nul}A_i) &= \dim U + \dim\opn{Nul}A_i \\
+&> \dim\opn{Row}A_i + \dim\opn{Nul}A_i \\ 
+&= n
+\end{align}
+But $\dim(U+\opn{Nul}A_i) \leq n$ because $U+\opn{Nul}A_i\subseteq \bb{R}^n$. Hence, there exists $W=\opn{span}\{\bf{w}_1,\dots,\bf{w}_p\}$. It's easy to check $W$ satisfies the requirements.
+
+We now prove that any two subspaces $W, W'$ satisfying the stated conditions are equal. Note that $W$ here is not necessarily the above $W$ obtained by construction.
+
+Let $\bf{w}'_1,\dots,\bf{w}'_p$ be a basis for $W'$. Because $V+W'=U$, for all $\bf{w} \in W$, $\bf{w} \in U$, so 
+$$\bf{w} = c_1\bf{v}_1+\dots+c_m\bf{v}_m + d_1\bf{w}'_1+\dots+d_p\bf{w}'_p$$
+
+Let $M=\mat{\bf{v}_1^T\\\vdots\\\bf{v}_m^T}$. Since $V\perp W$ and $V\perp W'$,
+\begin{align}
+M\bf{w} &= M(c_1\bf{v}_1+\dots+c_m\bf{v}_m + d_1\bf{w}'_1+\dots+d_p\bf{w}'_p) \\
+&= M(c_1\bf{v}_1+\dots+c_m\bf{v}_m) \\
+&= \bf{0}
+\end{align}
+Since $c_1\bf{v}_1+\dots+c_m\bf{v}_m$ is in both $\opn{Row}M$ and $\opn{Nul}M$, and a basis is linearly independent, $\bf{c}=\bf{0}$. Thus, $\bf{w}=d_1\bf{w}'_1+\dots+d_p\bf{w}'_p \in W'$. It follows that $W\subseteq W'$.
+
+Conversely, $W' \subseteq W$ is automatically true since $W$ and $W'$ are arbitrary subspaces fulfulling the requirements. Therefore, there is a unique $W$ such that $V+W=U$ and $V\perp W$. $\qed$
+:::
