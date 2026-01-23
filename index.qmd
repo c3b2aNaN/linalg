@@ -23,7 +23,7 @@ The textbook used in the course, *Linear Algebra and Its Applications 5th Editio
 
 ::: {.callout-tip}
 
-## About notations in titles
+## Explanation of notation in titles
 
 - \[R\]: Random thoughts and explorations
 :::
