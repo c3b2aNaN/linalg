@@ -232,45 +232,45 @@
   {
     "objectID": "part4/chap4.x.html",
     "href": "part4/chap4.x.html",
-    "title": "Summary",
+    "title": "Miscellaneous",
     "section": "",
     "text": "4.4 Coordinate Systems",
     "crumbs": [
       "Part 4: Vector Spaces",
-      "Summary"
+      "Miscellaneous"
     ]
   },
   {
     "objectID": "part4/chap4.x.html#coordinate-systems",
     "href": "part4/chap4.x.html#coordinate-systems",
-    "title": "Summary",
+    "title": "Miscellaneous",
     "section": "",
     "text": "Theorem 1 (Theorem 8) Let \\(\\mathcal{B}=\\left\\{\\mathbf{b}_1, \\ldots, \\mathbf{b}_n\\right\\}\\) be a basis for a vector space \\(V\\). Then the coordinate mapping \\(\\mathbf{x} \\mapsto[\\mathbf{x}]_{\\mathcal{B}}\\) is a one-to-one linear transformation from \\(V\\) onto \\(\\mathbb{R}^n\\).\n\n\n\n\n\n\n\n\n\n\nTipRemark\n\n\n\n\n\n\nRemark. What this theorem means is that for a transformation \\(T: V \\to \\mathbb{R}^n\\) which is defined as \\(\\mathbf{x} \\mapsto [\\mathbf{x}]_{\\mathcal{B}}\\), \\(T\\) is a linear transformation and is both one-to-one and onto.\n\n\n\n\n\n\n\n\n\n\n\nExercise 1 (Practice Problem 2) The set \\(\\mathcal{B}=\\left\\{1+t, 1+t^2, t+t^2\\right\\}\\) is a basis for \\(\\mathbb{P}_2\\). Find the coordinate vector of \\(\\mathbf{p}(t)=6+3 t-t^2\\) relative to \\(\\mathcal{B}\\).\n\n\n\n\n\n\n\n\n\n\nTipRemark\n\n\n\n\n\n\nRemark. One way to solve this is to equate the coefficients of the equation \\[c_1(1+t) + c_2(1+t^2) + c_3(t+t^2)=6+3 t-t^2\\] and solve for \\(c_1,c_2,c_3\\).\nHowever, by observation, we can also first write \\(1+t,1+t^2,t+t^2,6+3t-t^2\\) as \\(\\begin{bmatrix}1\\\\ 1\\\\ 0\\end{bmatrix}, \\begin{bmatrix}1\\\\ 0\\\\ 1\\end{bmatrix}, \\begin{bmatrix}0\\\\ 1\\\\ 1\\end{bmatrix}, \\begin{bmatrix}6\\\\ 3\\\\ -1\\end{bmatrix}\\). Then, as for subspaces in \\(\\mathbb{R}\\), we solve the coefficients \\(\\mathbf{c}\\) using row reduction.\n\n\n\n\n\n\n\n\n\n\nTipWhy does this method work?\n\n\n\nLet \\(T: \\mathbf{x} \\mapsto [\\mathbf{x}]_\\mathcal{B}\\), so \\(T\\) is a bijective linear transformation.\n\\[\\begin{align}\nT(c_1\\mathbf{b}_1 + \\cdots + c_n\\mathbf{b}_n) &= c_1 T(\\mathbf{b}_1) + \\cdots + c_n T(\\mathbf{b}_n) \\\\\n&= T(\\mathbf{p})\n\\end{align}\\]\nwhere \\(T(\\mathbf{b}_1),\\dots,T(\\mathbf{b}_n)\\) are the coordinate vectors of the basis. Since \\(T\\) is bijective, we can apply \\(T^{-1}\\) to both side of the equation. Reversing the steps gives the same coefficients.",
     "crumbs": [
       "Part 4: Vector Spaces",
-      "Summary"
+      "Miscellaneous"
     ]
   },
   {
     "objectID": "part4/chap4.x.html#isomorphism",
     "href": "part4/chap4.x.html#isomorphism",
-    "title": "Summary",
+    "title": "Miscellaneous",
     "section": "Isomorphism",
-    "text": "Isomorphism\n\n\n\n\n\n\nTipHow to write rigorous solutions when using isomorphism?\n\n\n\nIn some problems, we are given",
+    "text": "Isomorphism\n\n\n\n\n\n\nTipHow to write rigorous solutions when using isomorphism?\n\n\n\nIn some problems, we are given a basis of a vector space other than a subspace of \\(\\bb{R}^n\\). One of the most frequent ones is about polynomials, such as Exercise 1.",
     "crumbs": [
       "Part 4: Vector Spaces",
-      "Summary"
+      "Miscellaneous"
     ]
   },
   {
     "objectID": "part4/chap4.x.html#solving-for-bases-using-column-operations",
     "href": "part4/chap4.x.html#solving-for-bases-using-column-operations",
-    "title": "Summary",
+    "title": "Miscellaneous",
     "section": "Solving for Bases Using Column Operations",
     "text": "Solving for Bases Using Column Operations",
     "crumbs": [
       "Part 4: Vector Spaces",
-      "Summary"
+      "Miscellaneous"
     ]
   },
   {
