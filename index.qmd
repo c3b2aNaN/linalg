@@ -4,9 +4,11 @@
 
 Recommended Reading:
 
-- [Part 4](part4/chap4.6.qmd#prp-4-6-2)
-- [Part 1](part1/chap1.7.qmd)
-- [3.1 Introduction to Determinants](part3/chap3.1.qmd)
+- [Part 4](part4/chap4.6.qmd)
+    - [4.6 Rank - Exploration on Orthogonality](part4/chap4.6.qmd#prp-4-6-2)
+    - [Miscellaneous - Solving for Bases Using Column Operations](part4/chap4.x.qmd#solving-for-bases-using-column-operations)
+- [3.1 Introduction to Determinants - Proof of Theorems](part3/chap3.1.qmd)
+- [1.7 Linear Independence - Random Thoughts on Its Characterization](part1/chap1.7.qmd#random-thoughts-about-the-characterization-thm-thm1-7-7)
 
 Not Recommended Reading:
 
