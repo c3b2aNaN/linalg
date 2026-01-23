@@ -1,4 +1,4 @@
-# Summary {.unnumbered}
+# Miscellaneous {.unnumbered}
 
 ## 4.4 Coordinate Systems
 
@@ -64,7 +64,7 @@ Since $T,T_1,T_2$ are linear transformations, by proving that they yield the sam
 
 ## How to write rigorous solutions when using isomorphism?
 
-In some problems, we are given
+In some problems, we are given a basis of a vector space other than a subspace of $\bb{R}^n$. One of the most frequent ones is about polynomials, such as [@exr-4-4-p2].
 :::
 
 ## Solving for Bases Using Column Operations
