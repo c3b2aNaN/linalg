@@ -447,7 +447,10 @@ window.Quarto = {
   <ul>
   <li><a href="#coordinate-systems" id="toc-coordinate-systems" class="nav-link active" data-scroll-target="#coordinate-systems">4.4 Coordinate Systems</a></li>
   <li><a href="#isomorphism" id="toc-isomorphism" class="nav-link" data-scroll-target="#isomorphism">Isomorphism</a></li>
-  <li><a href="#solving-for-bases-using-column-operations" id="toc-solving-for-bases-using-column-operations" class="nav-link" data-scroll-target="#solving-for-bases-using-column-operations">Solving for Bases Using Column Operations</a></li>
+  <li><a href="#solving-for-bases-using-column-operations" id="toc-solving-for-bases-using-column-operations" class="nav-link" data-scroll-target="#solving-for-bases-using-column-operations">Solving for Bases Using Column Operations</a>
+  <ul class="collapse">
+  <li><a href="#an-example" id="toc-an-example" class="nav-link" data-scroll-target="#an-example">An Example</a></li>
+  </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/c3b2aNaN/linalg/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -577,18 +580,95 @@ Since $T,T_1,T_2$ are linear transformations, by proving that they yield the sam
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>How to write rigorous solutions when using isomorphism?
+<span class="screen-reader-only">Tip</span>How to write rigorous solutions when using coordinate mappings and isomorphism?
 </div>
 </div>
 <div class="callout-body-container callout-body">
 <p>In some problems, we are given a basis of a vector space other than a subspace of <span class="math inline">\(\bb{R}^n\)</span>. One of the most frequent ones is about polynomials, such as <a href="#exr-4-4-p2" class="quarto-xref">Exercise&nbsp;<span>1</span></a>.</p>
+<p>A formalized version of this type of problems: Given basis <span class="math inline">\(\cal{B}=\{\bf{b}_1, \dots, \bf{b}_n\}\)</span> and <span class="math inline">\(\bf{v}\)</span> in vector space <span class="math inline">\(V\)</span>, find <span class="math inline">\([\bf{v}]_\cal{B}\)</span>.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Proof
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<div class="proof">
+<p><span class="proof-title"><em>Proof</em>. </span>Define transformation <span class="math inline">\(T: \bf{x} \mapsto [\bf{x}]_\cal{E}\)</span>, where <span class="math inline">\(\cal{E}\)</span> is another basis of vector space <span class="math inline">\(V\)</span> (usually <span class="math inline">\(\{1,x,x^2,\dots\}\)</span> for polynomial spaces).</p>
+<p>Solve <span class="math inline">\(\mat{[\bf{b}_1]_\cal{E} &amp; \cdots &amp; [\bf{b}_n]_\cal{E}}\bf{x} = [\bf{v}]_\cal{E}\)</span> for <span class="math inline">\(\bf{x}\)</span>. Then,</p>
+<p><span class="math display">\[x_1[\bf{b}_1]_\cal{E} + \dots + x_n[\bf{b}_n]_\cal{E} = [\bf{v}]_\cal{E}\]</span></p>
+<p><strong>Because <span class="math inline">\(T\)</span> is a linear transformation</strong>, <span class="math inline">\([x_1\bf{b}_1+\dots+x_n\bf{b}_n]_\cal{E}=[\bf{v}]_\cal{E}\)</span>.</p>
+<p><strong>Since <span class="math inline">\(T\)</span> is one-to-one</strong>, <span class="math inline">\([\bf{u}]_\cal{E}=[\bf{v}]_\cal{E}\)</span> if and only if <span class="math inline">\(\bf{u}=\bf{v}\)</span>. Therefore, <span class="math inline">\(\bf{v}=x_1\bf{b}_1+\dots+x_n\bf{b}_n\)</span>, <span class="math display">\[[\bf{v}]_\cal{B}=\bf{x}\]</span></p>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 </section>
 <section id="solving-for-bases-using-column-operations" class="level2">
 <h2 class="anchored" data-anchor-id="solving-for-bases-using-column-operations">Solving for Bases Using Column Operations</h2>
+<p>The standard method to obtain a basis for either column spaces, row spaces, or null spaces is performing row reductions.</p>
+<p>Let <span class="math inline">\(B\)</span> be the RREF of <span class="math inline">\(A\)</span>. The columns in <span class="math inline">\(A\)</span> that correspond with a pivot column in <span class="math inline">\(B\)</span> form a basis for <span class="math inline">\(\opn{Col}A\)</span>, the non-zero rows of <span class="math inline">\(B\)</span> form a basis for <span class="math inline">\(\opn{Row}A\)</span>, and the parametric vector form of its solution set we derive from <span class="math inline">\(B\)</span> indicates a basis for <span class="math inline">\(\opn{Nul}A\)</span>.</p>
+<blockquote class="blockquote">
+<p><em>My friend: Why should I perform row reductions? Why not column operations?</em><br>
+<em>Me: If you clearly know what you are doing, you can solve them using column operations.</em><br>
+<em>— during a linear algebra class.</em></p>
+</blockquote>
+<p>Using column operations to solve for the column space and the row space is simply doing row reduction on the transpose of the original matrix. Therefore, the non-zero columns of the reduced column echelon form (RCEF) give a basis for the column space, and the pivot rows in the original constitute a basis for the row space.</p>
+<p>However, null spaces are different because they are defined as <span class="math inline">\(\{\bf{x} : A\bf{x}=\bf{0}\}\)</span> rather than explicitly the span of some vectors. The idea of transpose doesn’t work here because its counterpart is <span class="math inline">\(\opn{Nul}A^T\)</span>, which even complicates the problem.</p>
+<p>Similar to row operations, column operations can also be expressed by right-multiplying elementary matrices. Let the RCEF of a matrix <span class="math inline">\(A\)</span> with <span class="math inline">\(n\)</span> columns, <span class="math inline">\(B=A E_1 \cdots E_p = AM\)</span>, where <span class="math inline">\(E_1,\dots,E_p\)</span> are the elementary matrices corresponding to the column operations. Observe that <span class="math inline">\(B\)</span> has the following form: <span class="math display">\[\mat{1 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 0 &amp; 0 \\ \ast &amp; \ast &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 1 &amp; 0}\]</span></p>
+<p>Let <span class="math inline">\(r=\opn{rank}A\)</span>, then <span class="math inline">\(x_1=\cdots=x_r=0\)</span> for equation <span class="math inline">\(B\bf{x}=(AM)\bf{x}=\bf{0}\)</span>, while <span class="math inline">\(x_{r+1},\dots,x_n\)</span> are free variables completely independent of <span class="math inline">\(x_1,\dots,x_r\)</span>. Therefore, we can write a basis for <span class="math inline">\(\opn{Nul}(AM)\)</span>: <span class="math inline">\(\{\bf{e}_{r+1},\dots,\bf{e}_n\}\)</span>. Since elementary matrices are invertible, <span class="math inline">\(M\)</span> is also invertible. Thus, for all <span class="math inline">\(\bf{v}\in \opn{Nul}A\)</span>, there exists <span class="math inline">\(\bf{x}=M^{-1}\bf{v}\in\opn{Nul}(AM)\)</span> such that <span class="math inline">\(AM(M^{-1}\bf{v})=AM\bf{x}=\bf{0}\)</span>. Conversely, for all <span class="math inline">\(\bf{x}\in\opn{Nul}(AM)\)</span>, we have <span class="math inline">\(M\bf{x}\in\opn{Nul}A\)</span>. Therefore, left-multiplying each vector in the basis for <span class="math inline">\(\opn{Nul}(AM)\)</span>—<span class="math inline">\(\bf{e}_{r+1},\dots,\bf{e}_n\)</span>—gives a basis for <span class="math inline">\(\opn{Nul}A\)</span>. Moreover, because these vectors are columns in an identity matrix, the basis for <span class="math inline">\(\opn{Nul}A\)</span> is simply the <span class="math inline">\(r+1\)</span>-th column to the <span class="math inline">\(n\)</span>-th column of <span class="math inline">\(M\)</span>.</p>
+<p>One problem remains: how to obtain <span class="math inline">\(M\)</span>? Using the same logic of finding the inverse of a matrix, we augment the original matrix with an identity matrix below <span class="math inline">\(A\)</span>. <span class="math display">\[\mat{A \\ I}\sim\mat{B \\ M}\]</span> As <span class="math inline">\(A\)</span> is reduced to the reduced column echelon form, the identity matrix is transformed to <span class="math inline">\(M\)</span>.</p>
+<section id="an-example" class="level3">
+<h3 class="anchored" data-anchor-id="an-example">An Example</h3>
+<p><span class="math display">\[\mat{1 &amp; 2 &amp; 3 \\ 2 &amp; 4 &amp; 6 \\ 1 &amp; 1 &amp; 1}\]</span></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Solution (Row Operations)
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<div class="proof solution">
+<p><span class="proof-title"><em>Solution</em> (Row Operations). </span><span class="math display">\[\mat{1 &amp; 2 &amp; 3 \\ 2 &amp; 4 &amp; 6 \\ 1 &amp; 1 &amp; 1}\sim \mat{1 &amp; 0 &amp; -1 \\ 0 &amp; 1 &amp; 2 \\ 0 &amp; 0 &amp; 0}\]</span></p>
+<p>Therefore, <span class="math inline">\(\left\{\mat{1 \\ -2 \\ 1}\right\}\)</span> is a basis for <span class="math inline">\(\opn{Nul}A\)</span>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Solution (Column Operations)
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<div class="proof solution">
+<p><span class="proof-title"><em>Solution</em> (Column Operations). </span><span class="math display">\[\mat{1 &amp; 2 &amp; 3 \\ 2 &amp; 4 &amp; 6 \\ 1 &amp; 1 &amp; 1 \\ 1 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 1}\sim\mat{1 &amp; 0 &amp; 0 \\ 2 &amp; 0 &amp; 0 \\ 1 &amp; -1 &amp; -2 \\ 1 &amp; -2 &amp; -3 \\ 0 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 1}\sim\mat{1 &amp; 0 &amp; 0 \\ 2 &amp; 0 &amp; 0 \\ 1 &amp; 1 &amp; 0 \\ 1 &amp; 2 &amp; 1 \\ 0 &amp; -1 &amp; -2 \\ 0 &amp; 0 &amp; 1}\]</span></p>
+<p>The third column <span class="math inline">\(\mat{1 \\ -2 \\ 1}\)</span> gives the exactly same result as what we obtain using row operations.</p>
+</div>
+</div>
+</div>
+</div>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
