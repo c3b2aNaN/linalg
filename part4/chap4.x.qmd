@@ -93,7 +93,7 @@ Let $B$ be the RREF of $A$. The columns in $A$ that correspond with a pivot colu
 > *Me: If you clearly know what you are doing, you can solve them using column operations.* \
 > *--- during a linear algebra class.*
 
-Using column operations to solve for the column space and the row space is simply doing row reduction on the transpose of the original matrix. Therefore, the non-zero columns of the reduced column echelon form (RCEF) give a basis for the column space, and the pivot rows in the original constitute a basis for the row space.
+Using column operations to solve for the column space and the row space is simply doing row reduction on the transpose of the original matrix. Therefore, the non-zero columns of the reduced column echelon form (RCEF) give a basis for the column space, and the pivot rows in the original matrix constitute a basis for the row space.
 
 However, null spaces are different because they are defined as $\{\bf{x} : A\bf{x}=\bf{0}\}$ rather than explicitly the span of some vectors. The idea of transpose doesn't work here because its counterpart is $\opn{Nul}A^T$, which even complicates the problem.
 
