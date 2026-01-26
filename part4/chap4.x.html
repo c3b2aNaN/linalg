@@ -623,7 +623,24 @@ Since $T,T_1,T_2$ are linear transformations, by proving that they yield the sam
 <p>Using column operations to solve for the column space and the row space is simply doing row reduction on the transpose of the original matrix. Therefore, the non-zero columns of the reduced column echelon form (RCEF) give a basis for the column space, and the pivot rows in the original matrix constitute a basis for the row space.</p>
 <p>However, null spaces are different because they are defined as <span class="math inline">\(\{\bf{x} : A\bf{x}=\bf{0}\}\)</span> rather than explicitly the span of some vectors. The idea of transpose doesn’t work here because its counterpart is <span class="math inline">\(\opn{Nul}A^T\)</span>, which even complicates the problem.</p>
 <p>Similar to row operations, column operations can also be expressed by right-multiplying elementary matrices. Let the RCEF of a matrix <span class="math inline">\(A\)</span> with <span class="math inline">\(n\)</span> columns, <span class="math inline">\(B=A E_1 \cdots E_p = AM\)</span>, where <span class="math inline">\(E_1,\dots,E_p\)</span> are the elementary matrices corresponding to the column operations. Observe that <span class="math inline">\(B\)</span> has the following form: <span class="math display">\[\mat{1 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 0 &amp; 0 \\ \ast &amp; \ast &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 1 &amp; 0}\]</span></p>
-<p>Let <span class="math inline">\(r=\opn{rank}A\)</span>, then <span class="math inline">\(x_1=\cdots=x_r=0\)</span> for equation <span class="math inline">\(B\bf{x}=(AM)\bf{x}=\bf{0}\)</span>, while <span class="math inline">\(x_{r+1},\dots,x_n\)</span> are free variables completely independent of <span class="math inline">\(x_1,\dots,x_r\)</span>. Therefore, we can write a basis for <span class="math inline">\(\opn{Nul}(AM)\)</span>: <span class="math inline">\(\{\bf{e}_{r+1},\dots,\bf{e}_n\}\)</span>. Since elementary matrices are invertible, <span class="math inline">\(M\)</span> is also invertible. Thus, for all <span class="math inline">\(\bf{v}\in \opn{Nul}A\)</span>, there exists <span class="math inline">\(\bf{x}=M^{-1}\bf{v}\in\opn{Nul}(AM)\)</span> such that <span class="math inline">\(AM(M^{-1}\bf{v})=AM\bf{x}=\bf{0}\)</span>. Conversely, for all <span class="math inline">\(\bf{x}\in\opn{Nul}(AM)\)</span>, we have <span class="math inline">\(M\bf{x}\in\opn{Nul}A\)</span>. Therefore, left-multiplying each vector in the basis for <span class="math inline">\(\opn{Nul}(AM)\)</span>—<span class="math inline">\(\bf{e}_{r+1},\dots,\bf{e}_n\)</span>—gives a basis for <span class="math inline">\(\opn{Nul}A\)</span>. Moreover, because these vectors are columns in an identity matrix, the basis for <span class="math inline">\(\opn{Nul}A\)</span> is simply the <span class="math inline">\(r+1\)</span>-th column to the <span class="math inline">\(n\)</span>-th column of <span class="math inline">\(M\)</span>.</p>
+<p>Let <span class="math inline">\(r=\opn{rank}A\)</span>, then <span class="math inline">\(x_1=\cdots=x_r=0\)</span> for equation <span class="math inline">\(B\bf{x}=(AM)\bf{x}=\bf{0}\)</span>, while <span class="math inline">\(x_{r+1},\dots,x_n\)</span> are free variables completely independent of <span class="math inline">\(x_1,\dots,x_r\)</span>. Therefore, we can write a basis for <span class="math inline">\(\opn{Nul}(AM)\)</span>—<span class="math inline">\(\{\bf{e}_{r+1},\dots,\bf{e}_n\}\)</span>.</p>
+<p>Since elementary matrices are invertible, <span class="math inline">\(M\)</span> is also invertible. We show that <span class="math inline">\(\{M\bf{e}_{r+1},\dots,M\bf{e}_n\}\)</span> is a basis for <span class="math inline">\(\opn{Nul}A\)</span>.</p>
+<ul>
+<li>Span: For all <span class="math inline">\(\bf{v} \in \opn{Nul}A\)</span>, <span class="math inline">\(A\bf{v}=(AM)(M^{-1}\bf{v})=\bf{0}\)</span>, so <span class="math inline">\(M^{-1}\bf{v}\in\opn{Nul}(AM)\)</span></li>
+</ul>
+<p><span class="math display">\[\begin{align}
+\bf{v}&amp;=M(M^{-1}\bf{v}) \\
+&amp;=M(c_{r+1}\bf{e}_{r+1}+\dots+c_n\bf{e}_n) \\
+&amp;=c_{r+1}(M\bf{e}_{r+1})+\dots+c_n(M\bf{e}_n)
+\end{align}\]</span></p>
+<ul>
+<li>Linear Independence: By contradiction, suppose it is linearly dependent. There exists <span class="math inline">\(\bf{x}\neq\bf{0}\)</span> such that <span class="math display">\[\mat{M\bf{e}_{r+1} &amp; \cdots &amp; M\bf{e}_n}\bf{x}=\bf{0}\]</span> Left-multiply the equation by <span class="math inline">\(M^{-1}\)</span>, <span class="math display">\[\begin{align}
+M^{-1}\mat{M\bf{e}_{r+1} &amp; \cdots &amp; M\bf{e}_n}\bf{x}&amp;=\mat{M^{-1}M\bf{e}_{r+1} &amp; \cdots &amp; M^{-1}M\bf{e}_n}\bf{x} \\
+&amp;=\mat{\bf{e}_{r+1} &amp; \cdots &amp; \bf{e}_n}\bf{x} \\
+&amp;=M^{-1}\bf{0}=\bf{0}
+\end{align}\]</span> Since <span class="math inline">\(\bf{x}\neq\bf{0}\)</span>, this leads to that <span class="math inline">\(\{\bf{e}_{r+1},\dots,\bf{e}_n\}\)</span>, a basis for <span class="math inline">\(\opn{Nul}(AM)\)</span>, is linear dependent.</li>
+</ul>
+<p>Therefore, <span class="math inline">\(\{M\bf{e}_{r+1},\dots,M\bf{e}_n\}\)</span> forms a basis for <span class="math inline">\(\opn{Nul}A\)</span>. Specifically, these vectors are the <span class="math inline">\(r+1\)</span>-th column to the <span class="math inline">\(n\)</span>-th column of matrix <span class="math inline">\(M\)</span>.</p>
 <p>One problem remains: how to obtain <span class="math inline">\(M\)</span>? Using the same logic of finding the inverse of a matrix, we augment the original matrix with an identity matrix below <span class="math inline">\(A\)</span>. <span class="math display">\[\mat{A \\ I}\sim\mat{B \\ M}\]</span> As <span class="math inline">\(A\)</span> is reduced to the reduced column echelon form, the identity matrix is transformed to <span class="math inline">\(M\)</span>.</p>
 <section id="an-example" class="level3">
 <h3 class="anchored" data-anchor-id="an-example">An Example</h3>
@@ -662,6 +679,24 @@ Since $T,T_1,T_2$ are linear transformations, by proving that they yield the sam
 <div class="proof solution">
 <p><span class="proof-title"><em>Solution</em> (Column Operations). </span><span class="math display">\[\mat{1 &amp; 2 &amp; 3 \\ 2 &amp; 4 &amp; 6 \\ 1 &amp; 1 &amp; 1 \\ 1 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 1}\sim\mat{1 &amp; 0 &amp; 0 \\ 2 &amp; 0 &amp; 0 \\ 1 &amp; -1 &amp; -2 \\ 1 &amp; -2 &amp; -3 \\ 0 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 1}\sim\mat{1 &amp; 0 &amp; 0 \\ 2 &amp; 0 &amp; 0 \\ 1 &amp; 1 &amp; 0 \\ 1 &amp; 2 &amp; 1 \\ 0 &amp; -1 &amp; -2 \\ 0 &amp; 0 &amp; 1}\]</span></p>
 <p>The third column <span class="math inline">\(\mat{1 \\ -2 \\ 1}\)</span> gives the exactly same result as what we obtain using row operations.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Remark
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<div class="proof remark">
+<p><span class="proof-title"><em>Remark</em>. </span>In fact, we may only reduce <span class="math inline">\(A\)</span> to the column echelon form since all operations required to transform a matrix from its column echelon form to its reduced column echelon form do not change the <span class="math inline">\(r+1\)</span>-th to the <span class="math inline">\(n\)</span>-th columns of <span class="math inline">\(M\)</span>.</p>
 </div>
 </div>
 </div>
