@@ -100,7 +100,30 @@ However, null spaces are different because they are defined as $\{\bf{x} : A\bf{
 Similar to row operations, column operations can also be expressed by right-multiplying elementary matrices. Let the RCEF of a matrix $A$ with $n$ columns, $B=A E_1 \cdots E_p = AM$, where $E_1,\dots,E_p$ are the elementary matrices corresponding to the column operations. Observe that $B$ has the following form:
 $$\mat{1 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 \\ \ast & \ast & 0 & 0 \\ 0 & 0 & 1 & 0}$$
 
-Let $r=\opn{rank}A$, then $x_1=\cdots=x_r=0$ for equation $B\bf{x}=(AM)\bf{x}=\bf{0}$, while $x_{r+1},\dots,x_n$ are free variables completely independent of $x_1,\dots,x_r$. Therefore, we can write a basis for $\opn{Nul}(AM)$: $\{\bf{e}_{r+1},\dots,\bf{e}_n\}$. Since elementary matrices are invertible, $M$ is also invertible. Thus, for all $\bf{v}\in \opn{Nul}A$, there exists $\bf{x}=M^{-1}\bf{v}\in\opn{Nul}(AM)$ such that $AM(M^{-1}\bf{v})=AM\bf{x}=\bf{0}$. Conversely, for all $\bf{x}\in\opn{Nul}(AM)$, we have $M\bf{x}\in\opn{Nul}A$. Therefore, left-multiplying each vector in the basis for $\opn{Nul}(AM)$---$\bf{e}_{r+1},\dots,\bf{e}_n$---gives a basis for $\opn{Nul}A$. Moreover, because these vectors are columns in an identity matrix, the basis for $\opn{Nul}A$ is simply the $r+1$-th column to the $n$-th column of $M$.
+Let $r=\opn{rank}A$, then $x_1=\cdots=x_r=0$ for equation $B\bf{x}=(AM)\bf{x}=\bf{0}$, while $x_{r+1},\dots,x_n$ are free variables completely independent of $x_1,\dots,x_r$. Therefore, we can write a basis for $\opn{Nul}(AM)$---$\{\bf{e}_{r+1},\dots,\bf{e}_n\}$. 
+
+Since elementary matrices are invertible, $M$ is also invertible. We show that $\{M\bf{e}_{r+1},\dots,M\bf{e}_n\}$ is a basis for $\opn{Nul}A$.
+
+- Span: For all $\bf{v} \in \opn{Nul}A$, $A\bf{v}=(AM)(M^{-1}\bf{v})=\bf{0}$, so $M^{-1}\bf{v}\in\opn{Nul}(AM)$
+
+\begin{align}
+\bf{v}&=M(M^{-1}\bf{v}) \\
+&=M(c_{r+1}\bf{e}_{r+1}+\dots+c_n\bf{e}_n) \\
+&=c_{r+1}(M\bf{e}_{r+1})+\dots+c_n(M\bf{e}_n)
+\end{align}
+
+- Linear Independence: By contradiction, suppose it is linearly dependent. There exists $\bf{x}\neq\bf{0}$ such that
+$$\mat{M\bf{e}_{r+1} & \cdots & M\bf{e}_n}\bf{x}=\bf{0}$$
+Left-multiply the equation by $M^{-1}$, 
+\begin{align}
+M^{-1}\mat{M\bf{e}_{r+1} & \cdots & M\bf{e}_n}\bf{x}&=\mat{M^{-1}M\bf{e}_{r+1} & \cdots & M^{-1}M\bf{e}_n}\bf{x} \\
+&=\mat{\bf{e}_{r+1} & \cdots & \bf{e}_n}\bf{x} \\
+&=M^{-1}\bf{0}=\bf{0}
+\end{align}
+Since $\bf{x}\neq\bf{0}$, this leads to that 
+$\{\bf{e}_{r+1},\dots,\bf{e}_n\}$, a basis for $\opn{Nul}(AM)$, is linear dependent.
+
+Therefore, $\{M\bf{e}_{r+1},\dots,M\bf{e}_n\}$ forms a basis for $\opn{Nul}A$. Specifically, these vectors are the $r+1$-th column to the $n$-th column of matrix $M$.
 
 One problem remains: how to obtain $M$? Using the same logic of finding the inverse of a matrix, we augment the original matrix with an identity matrix below $A$.
 $$\mat{A \\ I}\sim\mat{B \\ M}$$
@@ -126,4 +149,9 @@ Therefore, $\left\{\mat{1 \\ -2 \\ 1}\right\}$ is a basis for $\opn{Nul}A$.
 $$\mat{1 & 2 & 3 \\ 2 & 4 & 6 \\ 1 & 1 & 1 \\ 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1}\sim\mat{1 & 0 & 0 \\ 2 & 0 & 0 \\ 1 & -1 & -2 \\ 1 & -2 & -3 \\ 0 & 1 & 0 \\ 0 & 0 & 1}\sim\mat{1 & 0 & 0 \\ 2 & 0 & 0 \\ 1 & 1 & 0 \\ 1 & 2 & 1 \\ 0 & -1 & -2 \\ 0 & 0 & 1}$$
 
 The third column $\mat{1 \\ -2 \\ 1}$ gives the exactly same result as what we obtain using row operations.
+:::
+
+::: {.remark}
+
+In fact, we may only reduce $A$ to the column echelon form since all operations required to transform a matrix from its column echelon form to its reduced column echelon form do not change the $r+1$-th to the $n$-th columns of $M$.
 :::
