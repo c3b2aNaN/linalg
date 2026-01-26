@@ -121,7 +121,7 @@ M^{-1}\mat{M\bf{e}_{r+1} & \cdots & M\bf{e}_n}\bf{x}&=\mat{M^{-1}M\bf{e}_{r+1} &
 &=M^{-1}\bf{0}=\bf{0}
 \end{align}
 Since $\bf{x}\neq\bf{0}$, this leads to that 
-$\{\bf{e}_{r+1},\dots,\bf{e}_n\}$, a basis for $\opn{Nul}(AM)$, is linear dependent.
+$\{\bf{e}_{r+1},\dots,\bf{e}_n\}$, a basis for $\opn{Nul}(AM)$, is linearly dependent.
 
 Therefore, $\{M\bf{e}_{r+1},\dots,M\bf{e}_n\}$ forms a basis for $\opn{Nul}A$. Specifically, these vectors are the $r+1$-th column to the $n$-th column of matrix $M$.
 
