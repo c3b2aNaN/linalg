@@ -21,7 +21,7 @@ Pending:
 
 This website contains notes, including proofs, random thoughts, and explorations, when I am taking a linear algebra course in grade 12.
 
-The textbook used in the course, *Linear Algebra and Its Applications 5th Edition*  [@linalgapp], serves as the basis of this book.
+The textbook used in the course, *Linear Algebra and Its Applications 5th Edition*  [@linalgapp], serves as the basis of this note.
 
 ::: {.callout-tip}
 
