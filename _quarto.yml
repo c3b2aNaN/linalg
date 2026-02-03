@@ -20,6 +20,7 @@ book:
       chapters:
       - part2/chap2.5.qmd
       - part2/chap2.8.qmd
+      - part2/chap2.p.qmd
     - part: "Part 3: Determinants"
       chapters:
       - part3/chap3.1.qmd

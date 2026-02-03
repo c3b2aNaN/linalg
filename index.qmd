@@ -1,5 +1,12 @@
 # Preface {.unnumbered}
 
+::: {.callout-warning}
+
+## Winter Break
+
+Updates may be less frequent. Content will be more varied, including interesting problems and topics from other areas of math.
+:::
+
 ::: {.callout-tip}
 
 Recommended Reading:
@@ -16,6 +23,7 @@ Not Recommended Reading:
 
 Pending:
 
+- [Part 2 Interesting Problems](part2/chap2.p.qmd)
 - [3.2 \[R\] Number Theory? - Quotient Spaces](part3/chap3.2x.qmd#quotient-spaces)
 :::
 
