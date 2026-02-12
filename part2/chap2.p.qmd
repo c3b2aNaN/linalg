@@ -26,5 +26,10 @@ Is our equation consistent for all $B$? This must not be the case because it is 
 
 The problem is the step $A X=B, \quad L A X=L B$. The equation $LAX=LB$ is not equivalent to $AX=B$. The logical relation here is
 $$AX=B \implies LAX=LB$$
-However, to solve an equation, we need an "if and only if" relation. What this tells is that for $B$ such that $AX=B$ is consistent, $X$ equals $LB$ and is therefore unique. 
+However, to solve an equation, we need an "if and only if" relation. What this tells is that for $B$ such that $AX=B$ is consistent, $X$ equals $LB$ and is therefore unique.
+
+This is analogous to extraneous roots which results from solving equations using non-equivalent equations. Here are a few simple examples:
+
+1. $\sqrt{x}=-1 \implies x=1$
+2. $\displaystyle\frac{1}{x-2}=3 \implies 3(x-2)=1$
 :::
