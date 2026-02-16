@@ -35,7 +35,7 @@ The textbook used in the course, *Linear Algebra and Its Applications 5th Editio
 
 ## Explanation of notation in titles
 
-- \[R\]: Random thoughts and explorations
+- \[R\]: Random thoughts and explorations.
 :::
 
 \begin{align}\end{align}
